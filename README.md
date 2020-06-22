@@ -16,7 +16,7 @@ Potential Future Tweaks:
 
 ### Wireframes:
 
-### Users
+### Sudoku
 |    |    |    |    |    |    |    |    |    |
 |    |    |    |    |    |    |    |    |    |
 |    |    |    |    |    |    |    |    |    |
