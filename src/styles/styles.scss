@@ -1,0 +1,38 @@
+
+canvas { 
+  background: #eee; 
+  display: flex; 
+  margin: 70 auto; 
+}
+
+
+html {
+  display: flex;
+  // flex-direction: row;
+}
+head {
+  background-color:cadetblue;
+}
+body {display: flex;}
+.sidePanel {
+  // background-color:darkolivegreen; 
+  // background-color:rgb(55, 78, 14); 
+  // color: darkgoldenrod; 
+  background-color: yellowgreen; 
+  // margin: 100; 
+  margin-top: 70; 
+  margin-bottom: 70; 
+  width: 200px;
+}
+
+// #myCanvas { 
+//   background: #eee; 
+//   display: block; 
+//   margin: 40 auto; 
+// } 
+
+// #subCanvas { 
+//   background: whitesmoke; 
+//   display: block; 
+//   margin: 40 auto; 
+// }

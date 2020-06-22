@@ -2,25 +2,23 @@
   <head>
     <meta charset="utf-8" /> 
     <title>Sudoku</title>
-    <!-- <h1>Sudoku</h1> -->
+    <h1>Sudoku</h1>
     <!-- <link type="text/scss" href="./src/styles/index.scss" rel="stylesheet/scss"> -->
+    <link rel="stylesheet" href="./dist/main.css" />
+    <!-- <script type="text/javascript" src="./index.js"></script> -->
     <style>
-      html {display: flex;}
-      body {display: flex;}
-      .sidePanel {background-color: yellowgreen; margin: 40; width: 200px;}
       {padding: 0, margin: 0}
-      canvas { background: #eee; display: block; margin: 40 auto; }
-      /* #myCanvas { background: #eee; display: block; margin: 40 auto; } */
-      /* #subCanvas { background: whitesmoke; display: block; margin: 40 auto; } */
       
     </style>
   </head>
   <body>
+    <script src="./dist/main.js"></script>
   
   <div class="sidePanel">
     <h1>Sudoku</h1>
-    <p>GitHub</p>
-    <p>LinkedIn</p>
+    <a href="https://github.com/rahulj93/JavaScript-Project---Sudoku">GitHub</a>
+    <br></br>
+    <a href="https://www.linkedin.com/in/rahul-jain-ny">LinkedIn</a>
   </div>
   
   <canvas id="myCanvas" width="540" height="540">
@@ -28,8 +26,15 @@
   </canvas>
 
   <div class="sidePanel">
-    <p>Score</p>
-    <p>Time</p>
+    <h2>Instructions</h2>
+      <ol>
+        <li>Fill in rows and columns with numbers 1-9</li>
+        <li>Fill in 3x3 boxes with numbers 1-9</li>
+      </ol>
+    <h2>Stats</h2>
+    <!-- <br></br> -->
+    <p>Score: </p>
+    <p>Time: </p>
   </div>
   
   <script>
