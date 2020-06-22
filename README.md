@@ -1,11 +1,13 @@
-Background and Overview
+# Background and Overview
 
-Functionality and MVPs:
+# Functionality and MVPs:
 
-Wireframes:
+# Wireframes:
 
-Architecture and Technology: 
+# Architecture and Technology: 
 
-Implementation Timeline: 
+- JavaScript
+
+# Implementation Timeline: 
 
 <!-- Bonus Features -->
