@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta charset="utf-8" /> 
+    <title>Sudoku</title>
+    <!-- <h1>Sudoku</h1> -->
+    <!-- <link type="text/scss" href="./src/styles/index.scss" rel="stylesheet/scss"> -->
+    <style>
+      html {display: flex;}
+      body {display: flex;}
+      .sidePanel {background-color: yellowgreen; margin: 40; width: 200px;}
+      {padding: 0, margin: 0}
+      canvas { background: #eee; display: block; margin: 40 auto; }
+      /* #myCanvas { background: #eee; display: block; margin: 40 auto; } */
+      /* #subCanvas { background: whitesmoke; display: block; margin: 40 auto; } */
+      
+    </style>
+  </head>
+  <body>
+  
+  <div class="sidePanel">
+    <h1>Sudoku</h1>
+    <p>GitHub</p>
+    <p>LinkedIn</p>
+  </div>
+  
+  <canvas id="myCanvas" width="540" height="540">
+    <!-- <canvas id="subCanvas" width="180" height="180"></canvas> -->
+  </canvas>
+
+  <div class="sidePanel">
+    <p>Score</p>
+    <p>Time</p>
+  </div>
+  
+  <script>
+    // JavaScript code goes here
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");     
+  
+    function drawRect() {
+      ctx.beginPath();
+      // ctx.rect(canvas.width/1.01,canvas.height-105,100,100);
+      for (h=0; h<540; h+=60) {
+        ctx.rect(0,h,60,60);
+        // ctx.rect(h,h,60,60);
+        ctx.rect(h,0,60,60);
+        ctx.rect(h,60,60,60);
+        ctx.rect(h,120,60,60);
+        ctx.rect(h,180,60,60);
+        ctx.rect(h,240,60,60);
+        ctx.rect(h,300,60,60);
+        ctx.rect(h,360,60,60);
+        ctx.rect(h,420,60,60);
+        ctx.rect(h,480,60,60);
+        // ctx.rect(h,h,60,60);
+      }
+      // ctx.rect(0,60,60,60);
+      // ctx.fill();
+      ctx.strokeStyle = "rgba(0,0,255,0.5)";
+      ctx.stroke();
+      ctx.closePath(); 
+    }
+    setInterval(drawRect, 40);
+    
+  </script>
+
+  </body>
+</html>
