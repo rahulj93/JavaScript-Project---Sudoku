@@ -41,7 +41,7 @@
       let ctx = canvas.getContext("2d");     
 
       function generateNum() {
-        let num = Math.floor(Math.random() * 10);
+        let num = Math.ceil(Math.random() * 9);
         console.log(num); 
         return num;
       }
@@ -51,7 +51,9 @@
         let count = 1;
         ctx.beginPath();
 
-        let row = []; 
+        let row1 = []; 
+        let row2 = []; 
+        let row3 = []; 
 
         for (b=0; b<180; b+=180) {
           // ctx.lineWidth = 10;
@@ -68,6 +70,9 @@
                 col.push(num);
                 box.push(num);
                 ctx.fillText(num,h+25,w+45);
+              } else {
+                col.push("");
+                box.push("");
               }
               // ctx.font="10px Arial";
               ctx.strokeStyle = "rgba(0,0,255,0.5)";
@@ -75,11 +80,16 @@
               ctx.stroke();
               ctx.closePath(); 
             }
+            row1.push(col[0]);
+            row2.push(col[1]);
+            row3.push(col[2]);
             console.log(col);
             // newBox.push(col);
             // row.push(box);
             console.log(`Box: ${box}`);
-            // console.log(`Row: ${row}`);
+            console.log(`Row 1: ${row1}`);
+            console.log(`Row 2: ${row2}`);
+            console.log(`Row 3: ${row3}`);
           }
         }
 
