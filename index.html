@@ -2,14 +2,10 @@
   <head>
     <meta charset="utf-8" /> 
     <title>Sudoku</title>
-    <h1>Sudoku</h1>
+    <!-- <h1>Sudoku</h1> -->
     <!-- <link type="text/scss" href="./src/styles/index.scss" rel="stylesheet/scss"> -->
     <link type="text/css" rel="stylesheet" href="./dist/main.css" />
     <!-- <script type="text/javascript" src="./index.js"></script> -->
-    <!-- <style>
-      {padding: 0, margin: 0}
-      
-    </style> -->
   </head>
   <body>
     <script src="./dist/main.js"></script>
@@ -51,24 +47,58 @@
       }
 
       function drawRect() {
-        // ctx.rect(canvas.width/1.01,canvas.height-105,100,100);
         // let arr = new Array; 
         let count = 1;
-        for (h=0; h<540; h+=60) {
-          console.log(`step ${count}`); 
-          count ++; 
-          // arr[h] = [];
-          for (w=0; w<=540; w+=60) {
-            ctx.beginPath();
-            ctx.rect(h,w,60,60);
-            ctx.font="20px Arial";
-            // ctx.font="10px Arial";
-            ctx.strokeStyle = "rgba(0,0,255,0.5)";
-            ctx.stroke();
-            ctx.fillText(generateNum(),h,w);
-            ctx.closePath(); 
+        ctx.beginPath();
+
+        let row = []; 
+
+        for (b=0; b<180; b+=180) {
+          // ctx.lineWidth = 10;
+          ctx.stroke();
+          let box = []; 
+          for (h=b; h<b+180; h+=60) {
+            console.log(`column ${count}`); count ++; 
+            let col = []; 
+            for (w=0; w<180; w+=60) {
+              ctx.rect(h,w,60,60);
+              ctx.font="20px Arial";
+              let num = generateNum();
+              if (!col.includes(num) && !box.includes(num)) {
+                col.push(num);
+                box.push(num);
+                ctx.fillText(num,h+25,w+45);
+              }
+              // ctx.font="10px Arial";
+              ctx.strokeStyle = "rgba(0,0,255,0.5)";
+              // ctx.lineWidth = 1;
+              ctx.stroke();
+              ctx.closePath(); 
+            }
+            console.log(col);
+            // newBox.push(col);
+            // row.push(box);
+            console.log(`Box: ${box}`);
+            // console.log(`Row: ${row}`);
           }
         }
+
+
+        // for (h=0; h<540; h+=60) {
+        //   console.log(`step ${count}`); 
+        //   count ++; 
+        //   // arr[h] = [];
+        //   for (w=0; w<=540; w+=60) {
+        //     ctx.beginPath();
+        //     ctx.rect(h,w,60,60);
+        //     ctx.font="20px Arial";
+        //     // ctx.font="10px Arial";
+        //     ctx.strokeStyle = "rgba(0,0,255,0.5)";
+        //     ctx.stroke();
+        //     ctx.fillText(generateNum(),h,w);
+        //     ctx.closePath(); 
+        //   }
+        // }
 
     }
     drawRect();
