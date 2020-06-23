@@ -31,6 +31,7 @@
     <!-- <br></br> -->
     <p>Score: </p>
     <p>Time: </p>
+    <button><a href="file:///Users/rahuljain/Desktop/for%20GItHub/JavaScriptProject/Sudoku/index.html">Reset Board</a></button>
   </div>
   
   <div>
@@ -42,75 +43,149 @@
 
       function generateNum() {
         let num = Math.ceil(Math.random() * 9);
-        console.log(num); 
+        // console.log(num); 
         return num;
       }
 
+      class Sudoku {
+        constructor() {
+          this.row1 = [];
+          this.row2 = [];
+          this.row3 = [];
+          this.row4 = [];
+          this.row5 = [];
+          this.row6 = [];
+          this.row7 = [];
+          this.row8= [];
+          this.row9= [];
+          // this.drawSmallBox(left, right, top, bottom) = this.drawSmallBox.bind(this);
+          this.drawLargeBox = this.drawLargeBox.bind(this);
+        }
+      }
+  
+      function drawSmallBox(left, right, top, bottom) {
+        let count = 1;
+        ctx.beginPath();
+        // ctx.lineWidth = 10;
+
+        let row1 = []; 
+        let row2 = []; 
+        let row3 = []; 
+
+        ctx.font = "20px Arial";
+        ctx.strokeStyle = "rgba(0,0,255,0.5)";
+        for (b = left; b < right; b += 180) {
+          ctx.stroke();
+          let box = [];
+          for (x = b; x < b + 180; x += 60) {
+            console.log(`column ${count}`); count++;
+            let col = [];
+            for (y = top; y < bottom; y += 60) {
+              ctx.rect(x, y, 60, 60);
+              let num = generateNum();
+              if (!col.includes(num) && !box.includes(num)) {
+                col.push(num); box.push(num);
+                ctx.fillText(num, x + 25, y + 45);
+              } else {
+                col.push(""); box.push("");
+              }
+              ctx.stroke();
+              ctx.closePath();
+            }
+
+            if (!row1.includes(col[0])) {
+              row1.push(col[0]);
+            };
+            if (!row2.includes(col[1])) {
+              row2.push(col[1]);
+            };
+            if (!row3.includes(col[2])) {
+              row3.push(col[2]);
+            };
+            // if (!this.row1.includes(col[0])) {
+            //   this.row1.push(col[0]);
+            // };
+            // if (!this.row2.includes(col[1])) {
+            //   this.row2.push(col[1]);
+            // };
+            // if (!this.row3.includes(col[2])) {
+            //   this.row3.push(col[2]);
+            // };
+          }
+          console.log(`Row 1: ${row1}`);
+          console.log(`Row 2: ${row2}`);
+          console.log(`Row 3: ${row3}`);
+          // console.log(`Box: ${box}`);
+          console.log(`box between left, ${left}, and right, ${right}, complete! with: [${box}]`);
+        }
+      }
+      function drawLargeBox() {
+        for (left=0; left< 540; left+=180) {
+            drawSmallBox(left, left+180, 0, 180);
+            drawSmallBox(left, left+180, 180, 360);
+            drawSmallBox(left, left+180, 360, 540);
+            // console.log(drawSmallBox.row1)
+        }
+      };
+
+
       function drawRect() {
-        // let arr = new Array; 
+
         let count = 1;
         ctx.beginPath();
 
         let row1 = []; 
         let row2 = []; 
         let row3 = []; 
-
-        for (b=0; b<180; b+=180) {
-          // ctx.lineWidth = 10;
-          ctx.stroke();
-          let box = []; 
-          for (h=b; h<b+180; h+=60) {
-            console.log(`column ${count}`); count ++; 
-            let col = []; 
-            for (w=0; w<180; w+=60) {
-              ctx.rect(h,w,60,60);
-              ctx.font="20px Arial";
-              let num = generateNum();
-              if (!col.includes(num) && !box.includes(num)) {
-                col.push(num);
-                box.push(num);
-                ctx.fillText(num,h+25,w+45);
-              } else {
-                col.push("");
-                box.push("");
+        let row4 = []; 
+        let row5 = []; 
+        let row6 = []; 
+        let row7 = []; 
+        let row8 = []; 
+        let row9 = []; 
+        
+        // for (r=0; r<540; r+=180) {
+          for (b=0; b<180; b+=180) {
+            ctx.stroke();
+            let box = []; 
+            for (x=b; x<b+180; x+=60) {
+              console.log(`column ${count}`); count ++; 
+              let col = []; 
+              for (y=0; y<180; y+=60) {
+                ctx.rect(x,y,60,60);
+                let num = generateNum();
+                if (!col.includes(num) && !box.includes(num)) {
+                  col.push(num); box.push(num);
+                  ctx.fillText(num,x+25,y+45);
+                } else {
+                  col.push(""); box.push("");
+                }
+                ctx.stroke();
+                ctx.closePath(); 
               }
-              // ctx.font="10px Arial";
-              ctx.strokeStyle = "rgba(0,0,255,0.5)";
-              // ctx.lineWidth = 1;
-              ctx.stroke();
-              ctx.closePath(); 
+              
+              if (!row1.includes(col[0])) {
+                row1.push(col[0]);
+              }; 
+              if (!row2.includes(col[1])) {
+                row2.push(col[1]);
+              }; 
+              if (!row3.includes(col[2])) {
+                row3.push(col[2]);
+              }; 
+              console.log(col);
+              console.log(`Box: ${box}`);
+              console.log(`Row 1: ${row1}`);
+              console.log(`Row 2: ${row2}`);
+              console.log(`Row 3: ${row3}`);
             }
-            row1.push(col[0]);
-            row2.push(col[1]);
-            row3.push(col[2]);
-            console.log(col);
-            // newBox.push(col);
-            // row.push(box);
-            console.log(`Box: ${box}`);
-            console.log(`Row 1: ${row1}`);
-            console.log(`Row 2: ${row2}`);
-            console.log(`Row 3: ${row3}`);
           }
-        }
-
-        // for (h=0; h<540; h+=60) {
-        //   console.log(`step ${count}`); 
-        //   count ++; 
-        //   // arr[h] = [];
-        //   for (w=0; w<=540; w+=60) {
-        //     ctx.beginPath();
-        //     ctx.rect(h,w,60,60);
-        //     ctx.font="20px Arial";
-        //     // ctx.font="10px Arial";
-        //     ctx.strokeStyle = "rgba(0,0,255,0.5)";
-        //     ctx.stroke();
-        //     ctx.fillText(generateNum(),h,w);
-        //     ctx.closePath(); 
-        //   }
-        // }
-
     }
-    drawRect();
+    // drawRect();
+    drawLargeBox();
+
+    // drawSmallBox();
+    // Sudoku.drawLargeBox;
     // setInterval(drawRect, 40);
     
     
