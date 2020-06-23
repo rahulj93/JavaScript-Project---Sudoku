@@ -4,12 +4,12 @@
     <title>Sudoku</title>
     <h1>Sudoku</h1>
     <!-- <link type="text/scss" href="./src/styles/index.scss" rel="stylesheet/scss"> -->
-    <link rel="stylesheet" href="./dist/main.css" />
+    <link type="text/css" rel="stylesheet" href="./dist/main.css" />
     <!-- <script type="text/javascript" src="./index.js"></script> -->
-    <style>
+    <!-- <style>
       {padding: 0, margin: 0}
       
-    </style>
+    </style> -->
   </head>
   <body>
     <script src="./dist/main.js"></script>
@@ -37,37 +37,47 @@
     <p>Time: </p>
   </div>
   
-  <script>
-    // JavaScript code goes here
-    let canvas = document.getElementById("myCanvas");
-    let ctx = canvas.getContext("2d");     
-  
-    function drawRect() {
-      ctx.beginPath();
-      // ctx.rect(canvas.width/1.01,canvas.height-105,100,100);
-      for (h=0; h<540; h+=60) {
-        ctx.rect(0,h,60,60);
-        // ctx.rect(h,h,60,60);
-        ctx.rect(h,0,60,60);
-        ctx.rect(h,60,60,60);
-        ctx.rect(h,120,60,60);
-        ctx.rect(h,180,60,60);
-        ctx.rect(h,240,60,60);
-        ctx.rect(h,300,60,60);
-        ctx.rect(h,360,60,60);
-        ctx.rect(h,420,60,60);
-        ctx.rect(h,480,60,60);
-        // ctx.rect(h,h,60,60);
-      }
-      // ctx.rect(0,60,60,60);
-      // ctx.fill();
-      ctx.strokeStyle = "rgba(0,0,255,0.5)";
-      ctx.stroke();
-      ctx.closePath(); 
-    }
-    setInterval(drawRect, 40);
+  <div>
     
-  </script>
+    <script>
+      // JavaScript code goes here
+      let canvas = document.getElementById("myCanvas");
+      let ctx = canvas.getContext("2d");     
 
+      function generateNum() {
+        let num = Math.floor(Math.random() * 10);
+        console.log(num); 
+        return num;
+      }
+
+      function drawRect() {
+        // ctx.rect(canvas.width/1.01,canvas.height-105,100,100);
+        // let arr = new Array; 
+        let count = 1;
+        for (h=0; h<540; h+=60) {
+          console.log(`step ${count}`); 
+          count ++; 
+          // arr[h] = [];
+          for (w=0; w<=540; w+=60) {
+            ctx.beginPath();
+            ctx.rect(h,w,60,60);
+            ctx.font="20px Arial";
+            // ctx.font="10px Arial";
+            ctx.strokeStyle = "rgba(0,0,255,0.5)";
+            ctx.stroke();
+            ctx.fillText(generateNum(),h,w);
+            ctx.closePath(); 
+          }
+        }
+
+    }
+    drawRect();
+    // setInterval(drawRect, 40);
+    
+    
+    </script>
+    <input type="text"> </input>
+  </div>
+    
   </body>
-</html>
+  </html>
