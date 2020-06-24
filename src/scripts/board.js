@@ -99,23 +99,25 @@ class Board {
     // x is 180 -> count = 3 bc 540/9 = 60 and 180/60 = 3
 
     let box = [];
-    let count = startX/60; 
+    let colIndex = startX/60; 
 
     // for (let x=180; x<360; x+=60) {
     for (let x=startX; x< (startX+180); x+=60) {
-      count ++; 
+      colIndex ++; 
       let col = []; 
       for (let y=startY; y<(startY+180); y+=60) {
         // this.ctx.rect(x,y,60,60);
         num = this.generateNum();
-        if (!box.includes(num) && !this.columns[count-1].flat().flat().includes(num)) {
+        if (!box.includes(num) && !this.columns[colIndex-1].flat().flat().includes(num)) {
           box.push(num); 
           col.push(num);
           this.ctx.fillText(num, x + 25, y + 45);
+        } else {
+          col.push("-");
         }
       }
-      this.columns[count-1].push(col);
-      this.columns[count-1].flat();
+      this.columns[colIndex-1].push(col);
+      this.columns[colIndex-1].flat();
       console.log(`box: [${box}]`);
       console.log("Columns: ", this.columns);
       // console.log(`Columns: ${this.columns}`);
