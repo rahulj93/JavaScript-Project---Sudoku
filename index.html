@@ -69,6 +69,7 @@
               let num = generateNum();
               if (!col.includes(num) && !box.includes(num)) {
                 col.push(num); box.push(num);
+                ctx.font = "150px Arial";
                 ctx.fillText(num, x + 25, y + 45);
               } else {
                 col.push(""); box.push("");
@@ -86,15 +87,6 @@
             if (!row3.includes(col[2])) {
               row3.push(col[2]);
             };
-            // if (!this.row1.includes(col[0])) {
-            //   this.row1.push(col[0]);
-            // };
-            // if (!this.row2.includes(col[1])) {
-            //   this.row2.push(col[1]);
-            // };
-            // if (!this.row3.includes(col[2])) {
-            //   this.row3.push(col[2]);
-            // };
           }
           console.log(`Row 1: ${row1}`);
           console.log(`Row 2: ${row2}`);
@@ -168,11 +160,11 @@
 
         let checkpoint = 0;
 
-        for (x = b; x < b + 180; x += 60) {
+        for (x = b; x < b + 540; x += 60) {
           console.log(`column ${count}`); count++;
           let col = [];
 
-          // this goes across the x axis 3 spaces and generates each little column in the smallbox. 
+          // this goes across the x axis 3 (or 9 depending on the x limit) spaces and generates each little column in the smallbox. 
           checkpoint++;
 
           for (y = large; y < (large + 180); y += 60) {
@@ -187,23 +179,23 @@
             let num = generateNum();
             let bool = false;
 
-            if (checkpoint %3 === 1 && !column1.flat().includes(num)) {
+            if (checkpoint === 1 && !column1.flat().includes(num)) {
               bool = true;
-            } else if (checkpoint %3 === 2 && !column2.flat().includes(num)) {
+            } else if (checkpoint === 2 && !column2.flat().includes(num)) {
               bool = true;
-            } else if (checkpoint %3 === 0 && !column3.flat().includes(num)) {
+            } else if (checkpoint === 3 && !column3.flat().includes(num)) {
               bool = true;
-            } else if (checkpoint % 3 === 0 && !column3.flat().includes(num)) {
+            } else if (checkpoint === 4 && !column4.flat().includes(num)) {
               bool = true;
-            } else if (checkpoint % 3 === 0 && !column3.flat().includes(num)) {
+            } else if (checkpoint === 5 && !column5.flat().includes(num)) {
               bool = true;
-            } else if (checkpoint % 3 === 0 && !column3.flat().includes(num)) {
+            } else if (checkpoint === 6 && !column6.flat().includes(num)) {
               bool = true;
-            } else if (checkpoint % 3 === 0 && !column3.flat().includes(num)) {
+            } else if (checkpoint === 7 && !column7.flat().includes(num)) {
               bool = true;
-            } else if (checkpoint % 3 === 0 && !column3.flat().includes(num)) {
+            } else if (checkpoint === 8 && !column8.flat().includes(num)) {
               bool = true;
-            } else if (checkpoint % 3 === 0 && !column3.flat().includes(num)) {
+            } else if (checkpoint === 9 && !column9.flat().includes(num)) {
               bool = true;
             } 
 
@@ -220,6 +212,18 @@
               column2.push(col);
             } else if (checkpoint === 3) {
               column3.push(col);
+            } else if (checkpoint === 4) {
+              column4.push(col);
+            } else if (checkpoint === 5) {
+              column5.push(col);
+            } else if (checkpoint === 6) {
+              column6.push(col);
+            } else if (checkpoint === 7) {
+              column7.push(col);
+            } else if (checkpoint === 8) {
+              column8.push(col);
+            } else if (checkpoint === 9) {
+              column9.push(col);
             };
 
             ctx.closePath();
@@ -232,12 +236,24 @@
     let col1 = parsify(column1);
     let col2 = parsify(column2);
     let col3 = parsify(column3);
+    let col4 = parsify(column4);
+    let col5 = parsify(column5);
+    let col6 = parsify(column6);
+    let col7 = parsify(column7);
+    let col8 = parsify(column8);
+    let col9 = parsify(column9);
     console.log(col1);
     console.log(col2);
     console.log(col3);
+    console.log(col4);
+    console.log(col5);
+    console.log(col6);
+    console.log(col7);
+    console.log(col8);
+    console.log(col9);
 
     let rows = { 1: row1, 2: row2, 3: row3, 4: row4, 5: row5, 6: row6, 7: row7, 8: row8, 9: row9 };
-    let cols = { 1: col1, 2: col2, 3: col3, 4: col4, 5: col5, 6: col6, 7: col7, 8: col8, 9: col9,  };
+    let cols = { 1: col1, 2: col2, 3: col3, 4: col4, 5: col5, 6: col6, 7: col7, 8: col8, 9: col9 };
 
     for (i = 1; i <= 9; i++) {
       for (j = 0; j < 9; j++) {
@@ -249,6 +265,12 @@
     console.log(`row 1: ${rows[1]}`);
     console.log(`row 2: ${rows[2]}`);
     console.log(`row 3: ${rows[3]}`);
+    console.log(`row 4: ${rows[4]}`);
+    console.log(`row 5: ${rows[5]}`);
+    console.log(`row 6: ${rows[6]}`);
+    console.log(`row 7: ${rows[7]}`);
+    console.log(`row 8: ${rows[8]}`);
+    console.log(`row 9: ${rows[9]}`);
 
   }
 
