@@ -163,6 +163,26 @@
             let num = generateNum();
             let bool = false;
 
+            // if (checkpoint === 1 && !column1.flat().includes(num)) {
+            //   bool = true;
+            // } else if (checkpoint === 2 && !column2.flat().includes(num)) {
+            //   bool = true;
+            // } else if (checkpoint === 3 && !column3.flat().includes(num)) {
+            //   bool = true;
+            // } else if (checkpoint === 4 && !column4.flat().includes(num)) {
+            //   bool = true;
+            // } else if (checkpoint === 5 && !column5.flat().includes(num)) {
+            //   bool = true;
+            // } else if (checkpoint === 6 && !column6.flat().includes(num)) {
+            //   bool = true;
+            // } else if (checkpoint === 7 && !column7.flat().includes(num)) {
+            //   bool = true;
+            // } else if (checkpoint === 8 && !column8.flat().includes(num)) {
+            //   bool = true;
+            // } else if (checkpoint === 9 && !column9.flat().includes(num)) {
+            //   bool = true;
+            // }
+
             if (!columns[checkpoint].flat().includes(num)) {
               bool = true; 
             };
@@ -174,13 +194,12 @@
               col.push(""); box.push("");
             }
 
-            columns[checkpoint].push(col);
-
+            
             ctx.closePath();
           }
+          columns[checkpoint].push(col);
         }
         console.log(`Box: ${box}`);
-        console.log(`Row 1: ${row1}`);
       }
     }
 
@@ -191,14 +210,15 @@
     };
 
     for (i=1; i<=9; i++) {
-      console.log(`col ${i}: ${cols[i]}`);
+      // console.log(`col ${i}: ${cols[i]}`);
+      console.log(`column ${i}: ${columns[i]}`);
     }
 
     // let rows = { 1: row1, 2: row2, 3: row3, 4: row4, 5: row5, 6: row6, 7: row7, 8: row8, 9: row9 };
 
     for (i = 1; i <= 9; i++) {
-      for (j = 0; j < 9; j++) {
-        rows[i].push(cols[j + 1][i - 1]);
+      for (j = 1; j <= 9; j++) {
+        rows[i].push(cols[j][i - 1]);
       }
     };
 
