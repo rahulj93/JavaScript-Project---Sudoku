@@ -207,6 +207,7 @@ b.placeNums(360,180);
 b.placeNums(360,360);
 
 
+b.genRows();
 
 // b.placeNums(0,0);
 

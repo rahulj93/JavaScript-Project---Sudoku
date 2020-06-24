@@ -41,6 +41,7 @@ class Board {
     this.drawBall = this.drawBall.bind(this);
     this.drawBoxes = this.drawBoxes.bind(this);
     this.placeNums = this.placeNums.bind(this);
+    this.genRows = this.genRows.bind(this);
   }
   
   generateNum() {
@@ -99,7 +100,8 @@ class Board {
     // x is 180 -> count = 3 bc 540/9 = 60 and 180/60 = 3
 
     let box = [];
-    let colIndex = startX/60; 
+    let colIndex = (startX/60) - 1; 
+    let rowIndex = (startY/60) -1;
 
     // for (let x=180; x<360; x+=60) {
     for (let x=startX; x< (startX+180); x+=60) {
@@ -108,7 +110,7 @@ class Board {
       for (let y=startY; y<(startY+180); y+=60) {
         // this.ctx.rect(x,y,60,60);
         num = this.generateNum();
-        if (!box.includes(num) && !this.columns[colIndex-1].flat().flat().includes(num)) {
+        if (!box.includes(num) && !this.columns[colIndex].flat().flat().includes(num)) {
           box.push(num); 
           col.push(num);
           this.ctx.fillText(num, x + 25, y + 45);
@@ -116,8 +118,8 @@ class Board {
           col.push("-");
         }
       }
-      this.columns[colIndex-1].push(col);
-      this.columns[colIndex-1].flat();
+      this.columns[colIndex].push(col);
+      this.columns[colIndex].flat();
       console.log(`box: [${box}]`);
       console.log("Columns: ", this.columns);
       // console.log(`Columns: ${this.columns}`);
@@ -129,6 +131,16 @@ class Board {
     // this.ctx.fillText(num, 180 + 25, 180 + 45);
 
     this.ctx.closePath();
+  }
+
+  genRows() {
+    for (let col=0; col<9; col++) {
+      for (let row=0; row<9; row++) {
+        let el = this.columns[row].flat()[col];
+        this.rows[col].push(el);
+      }
+      console.log('Rows: ', this.rows); 
+    }
   }
 
 };
