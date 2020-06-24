@@ -192,6 +192,27 @@ b.generateNum();
 // b.drawBall();
 b.drawBoxes();
 // b.drawBoard();
-b.placeNums();
+b.placeNums(0,0);
+// b.placeNums(0,180);
+// b.placeNums(0,360);
+
+
+// b.placeNums(180,0);
+// b.placeNums(180,180);
+// b.placeNums(180,360);
+
+
+// b.placeNums(360,0);
+// b.placeNums(360,180);
+// b.placeNums(360,360);
+
+
+
+// b.placeNums(0,0);
+
+// b.placeNums(180, 180);
+// b.placeNums(0, 180);
+// b.placeNums(0, 360);
+// b.placeNums(180, 0);
 
 b.drawOutline();

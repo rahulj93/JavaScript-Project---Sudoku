@@ -1,7 +1,27 @@
 class Board {
   constructor(canvas, ctx) {
-    // this.smallBox = {};  
-    this.rows = {}; 
+    // this.boxes = {
+    //   0: [],
+    //   1: [],
+    //   2: [],
+    //   3: [],
+    //   4: [],
+    //   5: [],
+    //   6: [],
+    //   7: [],
+    //   8: []
+    // };  
+    this.rows = {
+      0: [],
+      1: [],
+      2: [],
+      3: [],
+      4: [],
+      5: [],
+      6: [],
+      7: [],
+      8: []
+    }; 
     this.columns = { 
       0: [], 
       1: [], 
@@ -46,37 +66,17 @@ class Board {
     for (let x = 0; x<=540; x+=180) {
       this.ctx.moveTo(x,0);
       this.ctx.lineTo(x, 540);
+
+      this.ctx.moveTo(0,x);
+      this.ctx.lineTo(540, x);
     }
 
-    for (let y = 0; y<=540; y+=180) {
-      this.ctx.moveTo(0,y);
-      this.ctx.lineTo(540, y);
-    }
+    // for (let y = 0; y<=540; y+=180) {
+    //   this.ctx.moveTo(0,y);
+    //   this.ctx.lineTo(540, y);
+    // }
 
     this.ctx.stroke();
-
-    // this.ctx.moveTo(0,0);
-    // this.ctx.lineTo(540,0);
-    // this.ctx.moveTo(0,540);
-    // this.ctx.lineTo(540,540);
-    // this.ctx.moveTo(0,0);
-    // this.ctx.lineTo(0,540);
-    // this.ctx.moveTo(540,0);
-    // this.ctx.lineTo(540,540);
-
-    // this.ctx.moveTo(180,0);
-    // this.ctx.lineTo(180,540);
-
-    // this.ctx.moveTo(360,0);
-    // this.ctx.lineTo(360,540);
-
-    // this.ctx.moveTo(0,180);
-    // this.ctx.lineTo(540,180);
-
-    // this.ctx.moveTo(0,360);
-    // this.ctx.lineTo(540,360);
-    // this.ctx.stroke();
-
 
     this.ctx.closePath();
   }
@@ -93,16 +93,17 @@ class Board {
     this.ctx.closePath(); 
   }
 
-  placeNums() {
+  placeNums(startX,startY) {
     this.ctx.beginPath();
 
     let box = [];
     let count = 0; 
 
-    for (let x=180; x<360; x+=60) {
+    // for (let x=180; x<360; x+=60) {
+    for (let x=startX; x< (startX+180); x+=60) {
       count ++; 
       let col = []; 
-      for (let y=180; y<360; y+=60) {
+      for (let y=startY; y<(startY+180); y+=60) {
         // this.ctx.rect(x,y,60,60);
         num = this.generateNum();
         if (!box.includes(num)) {
@@ -113,7 +114,10 @@ class Board {
       }
       this.columns[count-1].push(col);
       this.columns[count-1].flat();
-      console.log(this.columns);
+      console.log(`box: [${box}]`);
+      console.log("Columns: ", this.columns);
+      // console.log(`Columns: ${this.columns}`);
+      console.log("cols:", Object.values(this.columns).flat());
     }
 
     // this.ctx.rect(180, 180, 60, 60);
@@ -122,11 +126,6 @@ class Board {
 
     this.ctx.closePath();
   }
-
-  fillNums() {
-    // this.ctx.fillText(num, x + 25, y + 45);
-  }
-
 
 };
 
