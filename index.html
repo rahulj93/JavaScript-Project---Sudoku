@@ -135,9 +135,21 @@
     let row1 = [];
     let row2 = [];
     let row3 = [];
+    let row4 = [];
+    let row5 = [];
+    let row6 = [];
+    let row7 = [];
+    let row8 = [];
+    let row9 = [];
     let column1 = [];
     let column2 = [];
     let column3 = [];
+    let column4 = [];
+    let column5 = [];
+    let column6 = [];
+    let column7 = [];
+    let column8 = [];
+    let column9 = [];
 
     let c = 0;
 
@@ -175,12 +187,11 @@
             let num = generateNum();
             let bool = false;
 
-            if (checkpoint === 1 && !column1.flat().includes(num)) {
-              // if (checkpoint === 1 && !Object.values(column1).flat().includes(num)) {
+            if (checkpoint %3 === 1 && !column1.flat().includes(num)) {
               bool = true;
-            } else if (checkpoint === 2 && !column2.flat().includes(num)) {
+            } else if (checkpoint %3 === 2 && !column2.flat().includes(num)) {
               bool = true;
-            } else if (checkpoint === 3 && !column3.flat().includes(num)) {
+            } else if (checkpoint %3 === 0 && !column3.flat().includes(num)) {
               bool = true;
             }
 
@@ -192,7 +203,6 @@
             }
 
             if (checkpoint === 1) {
-              // column1[checkpoint]=(col);
               column1.push(col);
             } else if (checkpoint === 2) {
               column2.push(col);
@@ -206,11 +216,6 @@
         console.log(`Box: ${box}`);
         console.log(`Row 1: ${row1}`);
       }
-
-      // console.log(Object.keys(col1).flat());
-      // console.log(column1);
-      // console.log(column2.flat());
-      // console.log(column3.flat());
     }
     let col1 = parsify(column1);
     let col2 = parsify(column2);
@@ -219,24 +224,16 @@
     console.log(col2);
     console.log(col3);
 
-    let rows = { 1: row1, 2: row2, 3: row3 };
-    let cols = { 1: col1, 2: col2, 3: col3 };
+    let rows = { 1: row1, 2: row2, 3: row3, 4: row4, 5: row5, 6: row6, 7: row7, 8: row8, 9: row9 };
+    let cols = { 1: col1, 2: col2, 3: col3, 4: col4, 5: col5, 6: col6, 7: col7, 8: col8, 9: col9,  };
 
-    for (i = 1; i <= 3; i++) {
-      for (j = 0; j < 3; j++) {
+    for (i = 1; i <= 9; i++) {
+      for (j = 0; j < 9; j++) {
         rows[i].push(cols[j + 1][i - 1]);
       }
     };
 
-    // row1.push(col1[0]);
-    // row1.push(col2[0]); 
-    // row1.push(col3[0]); 
-
-    // row2.push(col1[1]);
-    // row2.push(col2[1]); 
-    // row2.push(col3[1]); 
-
-
+    
     console.log(`row 1: ${rows[1]}`);
     console.log(`row 2: ${rows[2]}`);
     console.log(`row 3: ${rows[3]}`);
