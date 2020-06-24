@@ -96,8 +96,10 @@ class Board {
   placeNums(startX,startY) {
     this.ctx.beginPath();
 
+    // x is 180 -> count = 3 bc 540/9 = 60 and 180/60 = 3
+
     let box = [];
-    let count = 0; 
+    let count = startX/60; 
 
     // for (let x=180; x<360; x+=60) {
     for (let x=startX; x< (startX+180); x+=60) {
@@ -106,7 +108,7 @@ class Board {
       for (let y=startY; y<(startY+180); y+=60) {
         // this.ctx.rect(x,y,60,60);
         num = this.generateNum();
-        if (!box.includes(num)) {
+        if (!box.includes(num) && !this.columns[count-1].flat().flat().includes(num)) {
           box.push(num); 
           col.push(num);
           this.ctx.fillText(num, x + 25, y + 45);
