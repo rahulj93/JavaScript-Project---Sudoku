@@ -210,6 +210,8 @@ b.placeNums(180,360);
 b.placeNums(360,180);
 
 
+b.checkValues();
+
 
 
 // b.genRows();
