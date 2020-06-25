@@ -96,6 +96,8 @@ class Board {
 
   placeNums(startX,startY) {
     this.ctx.beginPath();
+    this.ctx.font = "30px Arial";
+
     // x is 180 -> count = 3 bc 540/9 = 60 and 180/60 = 3
 
     let box = [];
