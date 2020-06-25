@@ -100,31 +100,34 @@ class Board {
 
     let box = [];
     let colIndex = (startX/60) - 1; 
-    let rowIndex = (startY/60) -1;
-
+    
     for (let x=startX; x< (startX+180); x+=60) {
-
+      
+      let rowIndex = (startY/60)-1;
       colIndex ++; 
       let col = []; 
 
       for (let y=startY; y<(startY+180); y+=60) {
+        rowIndex++; 
 
-        rowIndex ++; 
+        // console.log("HUHHGHGHG", rowIndex, this.rows);
+
         num = this.generateNum();
         let bool=false; 
-        if (!this.rows[rowIndex % 3].includes(num)) {
+        if (!this.rows[rowIndex].includes(num)) {
           bool=true;
         }
         
         if (bool && !box.includes(num) && !this.columns[colIndex].flat().flat().includes(num)) {
           box.push(num); 
           col.push(num);
-          this.rows[rowIndex%3].push(num);
+          this.rows[rowIndex].push(num);
           this.ctx.fillText(num, x + 25, y + 45);
         } else {
           col.push("-");
-          this.rows[rowIndex%3].push("-");
+          this.rows[rowIndex].push("-");
         }
+
       }
 
       this.columns[colIndex].push(col);
