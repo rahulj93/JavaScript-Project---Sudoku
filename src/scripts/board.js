@@ -96,51 +96,58 @@ class Board {
 
   placeNums(startX,startY) {
     this.ctx.beginPath();
-
     // x is 180 -> count = 3 bc 540/9 = 60 and 180/60 = 3
 
     let box = [];
     let colIndex = (startX/60) - 1; 
     let rowIndex = (startY/60) -1;
 
-    // for (let x=180; x<360; x+=60) {
     for (let x=startX; x< (startX+180); x+=60) {
+
       colIndex ++; 
       let col = []; 
+
       for (let y=startY; y<(startY+180); y+=60) {
-        // this.ctx.rect(x,y,60,60);
+
+        rowIndex ++; 
         num = this.generateNum();
-        if (!box.includes(num) && !this.columns[colIndex].flat().flat().includes(num)) {
+        let bool=false; 
+        if (!this.rows[rowIndex % 3].includes(num)) {
+          bool=true;
+        }
+        
+        if (bool && !box.includes(num) && !this.columns[colIndex].flat().flat().includes(num)) {
           box.push(num); 
           col.push(num);
+          this.rows[rowIndex%3].push(num);
           this.ctx.fillText(num, x + 25, y + 45);
         } else {
           col.push("-");
+          this.rows[rowIndex%3].push("-");
         }
       }
+
       this.columns[colIndex].push(col);
-      this.columns[colIndex].flat();
+      this.columns[colIndex] = this.columns[colIndex].flat();
+
       console.log(`box: [${box}]`);
       console.log("Columns: ", this.columns);
-      // console.log(`Columns: ${this.columns}`);
-      console.log("cols:", Object.values(this.columns).flat());
+      // console.log("cols:", Object.values(this.columns).flat());
     }
 
-    // this.ctx.rect(180, 180, 60, 60);
-    // let num = this.generateNum();
-    // this.ctx.fillText(num, 180 + 25, 180 + 45);
-
+    console.log("Rows: ", this.rows);
     this.ctx.closePath();
   }
 
   genRows() {
-    for (let col=0; col<9; col++) {
-      for (let row=0; row<9; row++) {
+    for (let col=0; col<Object.keys(this.columns).length; col++) {
+      for (let row = 0; row < Object.keys(this.columns).length; row++) {
         let el = this.columns[row].flat()[col];
         this.rows[col].push(el);
       }
-      console.log('Rows: ', this.rows); 
     }
+    // console.log('Rows: ', this.rows); 
+    return this.rows;
   }
 
 };
