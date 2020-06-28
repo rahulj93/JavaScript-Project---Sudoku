@@ -134,7 +134,7 @@ function drawRect() {
             col.push(num); box.push(num);
             ctx.fillText(num, x + 25, y + 45);
           } else {
-            col.push(""); box.push("");
+            col.push(0); box.push(0);
           }
 
 
@@ -183,44 +183,67 @@ function drawRect() {
     // Sudoku.drawLargeBox;
     // setInterval(drawRect, 40);
 
-
-
-let b = new Board(canvas,ctx);
-b.generateNum();
-
-
-// b.drawBall();
-b.drawBoxes();
-// b.drawBoard();
-b.placeNums(180,180);
-
-b.placeNums(0,0);
-b.placeNums(360,360);
-
-b.placeNums(0,360);
-b.placeNums(360,0);
+let sudoku = document.getElementById("resetBoard"); 
+sudoku.onclick = launchSudoku; 
+    
 
 
 
-b.placeNums(0,180);
-b.placeNums(180,0);
+// clearBoard() {
+//   clearRect(0, 0, 540, 540);
+// }
+
+function launchSudoku () {
+  // let canvas = document.getElementById("myCanvas");
+  // let ctx = canvas.getContext("2d");
+  // ctx.clearBoard();
+  // ctx.beginPath();
+  ctx.clearRect(0, 0, 540, 540);
+  // ctx.closePath();
+
+  alert("New Board! ");
+  let b = new Board(canvas,ctx);
+  b.generateNum();
+  
+  
+  // b.drawBall();
+  b.drawBoxes();
+  // b.drawBoard();
+  b.placeNums(180,180);
+  
+  b.placeNums(0,0);
+  b.placeNums(360,360);
+  
+  b.placeNums(0,360);
+  b.placeNums(360,0);
+  
+  
+  
+  b.placeNums(0,180);
+  b.placeNums(180,0);
+  
+  
+  b.placeNums(180,360);
+  b.placeNums(360,180);
+  
+  
+  b.checkValues();
+  
+  
+  
+  // b.genRows();
+  
+  // b.placeNums(0,0);
+  
+  // b.placeNums(180, 180);
+  // b.placeNums(0, 180);
+  // b.placeNums(0, 360);
+  // b.placeNums(180, 0);
+  
+  b.drawOutline();
+
+}
 
 
-b.placeNums(180,360);
-b.placeNums(360,180);
-
-
-b.checkValues();
-
-
-
-// b.genRows();
-
-// b.placeNums(0,0);
-
-// b.placeNums(180, 180);
-// b.placeNums(0, 180);
-// b.placeNums(0, 360);
-// b.placeNums(180, 0);
-
-b.drawOutline();
+// document.getElementById("resetBoard").onclick = launchSudoku(); 
+ 

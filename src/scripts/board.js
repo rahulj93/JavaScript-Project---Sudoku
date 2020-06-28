@@ -41,6 +41,7 @@ class Board {
     this.drawBoxes = this.drawBoxes.bind(this);
     this.placeNums = this.placeNums.bind(this);
     this.checkValues = this.checkValues.bind(this);
+    // this.clearBoard = this.clearBoard.bind(this);
   }
   
   generateNum() {
@@ -102,19 +103,30 @@ class Board {
         rowIndex++; 
 
         num = this.generateNum();
+
+        //  Since I'm building a box one column at a time, the following boolean variable checks that the number isn't already in the row (whether added while building a different box or added while building this box)
+
         let bool=false; 
         if (!this.rows[rowIndex].includes(num)) {
           bool=true;
         }
+
+        // Roll a dice to limit the number placements to the board to reduce the risk of building an unsolvable board 
+
+        let diceRoll = false; 
+        let coin = Math.ceil(Math.random()*6);
+        if (coin ===1) {
+          diceRoll = true;
+        }
         
-        if (bool && !box.includes(num) && !this.columns[colIndex].flat().flat().includes(num)) {
+        if (diceRoll && bool && !box.includes(num) && !this.columns[colIndex].flat().flat().includes(num)) {
           box.push(num); 
           col.push(num);
           this.rows[rowIndex][colIndex]= num ;
           this.ctx.fillText(num, x + 25, y + 45);
         } else {
-          col.push("-");
-          this.rows[rowIndex][colIndex]= "-" ;
+          col.push(0);
+          this.rows[rowIndex][colIndex]= 0 ;
         }
 
       }
@@ -152,9 +164,33 @@ class Board {
     console.log("Checking rows: ", this.rows);
     let box1 = [ this.rows[0].slice(0, 3), this.rows[1].slice(0, 3), this.rows[2].slice(0, 3) ];
     let box2 = [ this.rows[3].slice(0, 3), this.rows[4].slice(0, 3), this.rows[5].slice(0, 3) ];
+    let box3 = [ this.rows[6].slice(0, 3), this.rows[7].slice(0, 3), this.rows[8].slice(0, 3) ];
+    
+    let box4 = [ this.rows[0].slice(3, 6), this.rows[1].slice(3, 6), this.rows[2].slice(3, 6) ];
+    let box5 = [ this.rows[3].slice(3, 6), this.rows[4].slice(3, 6), this.rows[5].slice(3, 6) ];
+    let box6 = [ this.rows[6].slice(3, 6), this.rows[7].slice(3, 6), this.rows[8].slice(3, 6) ];
+
+    let box7 = [ this.rows[0].slice(6, 9), this.rows[1].slice(6, 9), this.rows[2].slice(6, 9) ];
+    let box8 = [ this.rows[3].slice(6, 9), this.rows[4].slice(6, 9), this.rows[5].slice(6, 9) ];
+    let box9 = [ this.rows[6].slice(6, 9), this.rows[7].slice(6, 9), this.rows[8].slice(6, 9) ];
+
     console.log("box1: ", box1);
     console.log("box2: ", box2);
+    console.log("box3: ", box3);
+
+    console.log("box4: ", box4);
+    console.log("box5: ", box5);
+    console.log("box6: ", box6);
+
+    console.log("box7: ", box7);
+    console.log("box8: ", box8);
+    console.log("box9: ", box9);
+
   }
+
+  // clearBoard() {
+  //   clearRect(0, 0, 540, 540);
+  // }
 
 };
 
