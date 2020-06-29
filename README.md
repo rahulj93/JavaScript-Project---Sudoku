@@ -10,6 +10,7 @@ Potential Future Tweaks:
 
 ### Functionality and MVPs:
 
+- Generate a playable Sudoku board by clicking a button
 - Render an error when user makes an invalid move, and prevent the move from happening 
 - Generate a score ( some function of time taken and number of invalid moves attempted)
 
