@@ -10,7 +10,13 @@ Potential Future Tweaks:
 
 ### Functionality and MVPs:
 
-- Generate a playable Sudoku board by clicking a button
+- Implement an original algorithm using Object-Oriented Programming to generate a Sudoku board
+- Generate a new, playable Sudoku board by clicking a button (using JavaScript event handling) 
+- Use JavaScript Document Object Model to manipulate HTML Canvas 
+
+
+
+If I can find a way to allow user input on Canvas, then I'll also include the following functionality: 
 - Render an error when user makes an invalid move, and prevent the move from happening 
 - Generate a score ( some function of time taken and number of invalid moves attempted)
 
