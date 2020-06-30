@@ -11,7 +11,7 @@ Potential Future Tweaks:
 ### Functionality and MVPs:
 
 - Write an original algorithm using Object-Oriented Programming to generate a Sudoku board
-- Generate a new, playable Sudoku board by clicking a button (using JavaScript event handling) 
+- Generate a new, solvable Sudoku board by clicking a button (using JavaScript event handling) 
 - Use JavaScript Document Object Model to manipulate HTML Canvas 
 
 
