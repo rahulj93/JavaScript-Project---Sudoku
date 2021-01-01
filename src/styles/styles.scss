@@ -10,12 +10,12 @@ html {
 }
 
 #myCanvas { 
-  background: #eee; 
-  display: block; 
-  // display: flex;
-  flex-wrap: wrap; 
+//   background: #eee; 
+//   display: block; 
+//   // display: flex;
+//   flex-wrap: wrap; 
   margin: 70 auto; 
-  position: relative;
+//   position: relative;
 } 
 
 // #subCanvas { 
@@ -54,11 +54,16 @@ body {display: flex;}
   margin-bottom: 70; 
   margin-left: 15;
   margin-right: 15;
-  width: 250px;
+  // width: 250px;
+  width: 15vw;
   display: flex;
   flex-direction: column;
   // justify-content: center;
   align-content: center;
-  padding: 20px;
+  // padding: 20px;
+  padding: 2vw;
+
+
+  height: 54vh;
 }
 
