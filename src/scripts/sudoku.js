@@ -71,11 +71,26 @@ function newSudoku() {
           cell.style.height = '5.4vh'; 
           cell.style.border = '.2vw dotted black';
           cell.id = i + '-' + j; 
-          cell.appendChild(document.createTextNode(cell.id));
+          let prob = Math.floor(Math.random()*2);
+          console.log(`prob: ${prob}`);
+          // if (j%3 ===0) {
+          if (prob) {
+            cell.appendChild(document.createTextNode(Math.ceil(Math.random()*9)));            
+          } else {
+            console.log('eh'); 
+            let inp = document.createElement('input'); 
+            inp.style.width = '5.4vw';
+            inp.style.height = '5.4vh';
+            inp.style.backgroundColor = 'white'; 
+            inp.style.border = '.2vw dotted black';
+            cell.appendChild(inp); 
+            // cell.appendChild(document.createTextNode(Math.ceil(Math.random()*9)));            
+            // cell.appendChild(document.createTextNode(cell.id));
+          }
         }
       }
 
-      document.getElementById('6-1').appendChild(document.createTextNode('  ayyy'));
+      // document.getElementById('6-1').appendChild(document.createTextNode('  ayyy'));
     }
 
 function launchSudoku() {
