@@ -1,5 +1,5 @@
 class Board {
-  constructor() {
+  constructor(canvas, ctx) {
     this.boxes = {
       0: [],
       1: [],
@@ -33,6 +33,10 @@ class Board {
       7: [],
       8: [],
     }
+
+    this.canvas = canvas;
+    this.ctx = ctx;
+
     this.generateNum = this.generateNum.bind(this);
     this.drawBoxes = this.drawBoxes.bind(this);
     this.placeNums = this.placeNums.bind(this);

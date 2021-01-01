@@ -49,6 +49,7 @@ function newSudoku() {
       Object.assign(box.style, {
         height: '17.4vh', 
         width: '17.4vw',
+        // border: '.2vw solid black',
         border: '.2vw solid black',
         display: 'flex',
         flexFlow: 'wrap'
@@ -69,20 +70,13 @@ function newSudoku() {
           cell.style.width = '5.4vw'; 
           cell.style.height = '5.4vh'; 
           cell.style.border = '.2vw dotted black';
-          cell.id = j + '-' + i; 
+          cell.id = i + '-' + j; 
+          cell.appendChild(document.createTextNode(cell.id));
         }
       }
-    }
-    
-    let sudoku = document.getElementById("resetBoard");
-    sudoku.onclick = launchSudoku;
-    // sudoku.onclick = newSudoku;
-    
 
-    
-// clearBoard() {
-//   clearRect(0, 0, 540, 540);
-// }
+      document.getElementById('6-1').appendChild(document.createTextNode('  ayyy'));
+    }
 
 function launchSudoku() {
   let canvas = document.getElementById("myCanvas");
@@ -135,5 +129,18 @@ function launchSudoku() {
 
 }
 
+newSudoku(); 
+let sudoku = document.getElementById("resetBoard");
+// sudoku.onclick = launchSudoku;
+    sudoku.onclick = newSudoku;
+
+// clearBoard() {
+//   clearRect(0, 0, 540, 540);
+// }
 
 // document.getElementById("resetBoard").onclick = launchSudoku(); 
+// let canvas = document.getElementById("myCanvas");
+// let ctx = canvas.getContext("2d");
+// let b = new Board(canvas, ctx); 
+// b.generateNum(); 
+// b.drawBoxes(); 
