@@ -99,6 +99,7 @@ class Grid {
   
   obtainIDs() {
     let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
+    let quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': []}
 
     for (let i =1; i<=9; i++) {
       for (let j=1; j<=9; j++) {
@@ -109,7 +110,9 @@ class Grid {
         ele.appendChild(document.createTextNode(obj[j] + ',' + obj[i]))
         if (x <=3 && y<=3) {
           let quad = 'topleft'; 
+          quads['topleft'].push([x,y]); 
           console.log(quad);
+          console.log(quads);
         } else if (x>3 && x<=6 && y<=3) {
           let quad = 'topmiddle'; 
           console.log(quad);
@@ -135,6 +138,11 @@ class Grid {
           console.log(quad);
         } else if (x>6 && y>6) {
           let quad = 'bottomright'; 
+          let num = Math.ceil(Math.random()*9); 
+          if (!quads['bottomright'].includes(num)) {
+            quads['bottomright'].push(num);
+          }; 
+          console.log(quads);
           console.log(quad);
         } 
       }
