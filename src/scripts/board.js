@@ -101,46 +101,230 @@ class Grid {
     let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
     let quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': []}
 
+    // quads['topleft'].forEach(el=>{
+    //   document.getElementById(el).backgroundColor = 'gray'; 
+    // })
+    // document.getElementById('topleft').backgroundColor = 'gray';
+
     for (let i =1; i<=9; i++) {
       for (let j=1; j<=9; j++) {
         console.log(obj[j], obj[i])
         let x = obj[j]; 
         let y = obj[i]; 
         let ele = document.getElementById('x:' + obj[j] + ', y:' + obj[i])
-        ele.appendChild(document.createTextNode(obj[j] + ',' + obj[i]))
+        // ele.appendChild(document.createTextNode(obj[j] + ',' + obj[i]))
         if (x <=3 && y<=3) {
           let quad = 'topleft'; 
-          quads['topleft'].push([x,y]); 
+          // quads['topleft'].push([x,y]); 
+          // console.log(quads);
+          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'red';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
+
+          let num = Math.ceil(Math.random() * 9);
+          if (!quads['topleft'].includes(num)) {
+            quads['topleft'].push(num);
+            // ele.appendChild(document.createTextNode('   num:   ' + num))
+            ele.appendChild(document.createTextNode(num))
+            
+          } else {
+            let inp = document.createElement('input');
+            inp.type = 'text'; inp.value = '';
+            //   // inp.style = Object.assign(inp.style, cell.style); 
+            inp.style.width = '5.4vw';
+            inp.style.height = '5.4vh';
+            inp.style.backgroundColor = 'white';
+            inp.style.border = '.2vw dotted black';
+            ele.appendChild(inp);
+          };
+          console.log(quads);           
+          
           console.log(quad);
-          console.log(quads);
         } else if (x>3 && x<=6 && y<=3) {
           let quad = 'topmiddle'; 
+          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'orange';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'gray';
+
+          let num = Math.ceil(Math.random() * 9);
+          if (!quads['topmiddle'].includes(num)) {
+            quads['topmiddle'].push(num);
+            // ele.appendChild(document.createTextNode('   num:   ' + num))
+            ele.appendChild(document.createTextNode(num))
+          } else {
+            let inp = document.createElement('input');
+            inp.type = 'text'; inp.value = '';
+            //   // inp.style = Object.assign(inp.style, cell.style); 
+            inp.style.width = '5.4vw';
+            inp.style.height = '5.4vh';
+            // inp.style.backgroundColor = 'white';
+            inp.style.backgroundColor = 'gray';
+            inp.style.border = '.2vw dotted black';
+            ele.appendChild(inp);
+          };
+          console.log(quads);           
+          
           console.log(quad);
         } else if (x>6 && y<=3) {
           let quad = 'topright'; 
+          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'yellow';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
+
+          let num = Math.ceil(Math.random() * 9);
+          if (!quads['topright'].includes(num)) {
+            quads['topright'].push(num);
+            // ele.appendChild(document.createTextNode('   num:   ' + num))
+            ele.appendChild(document.createTextNode(num))
+          } else {
+            let inp = document.createElement('input');
+            inp.type = 'text'; inp.value = '';
+            //   // inp.style = Object.assign(inp.style, cell.style); 
+            inp.style.width = '5.4vw';
+            inp.style.height = '5.4vh';
+            inp.style.backgroundColor = 'white';
+            // inp.style.backgroundColor = 'gray';
+            inp.style.border = '.2vw dotted black';
+            ele.appendChild(inp);
+          };
+          console.log(quads);           
+          
           console.log(quad);
         } 
         if (x <=3 && y>3 && y<=6) {
           let quad = 'midleft'; 
+          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'green';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'gray';
+
+          let num = Math.ceil(Math.random() * 9);
+          if (!quads['midleft'].includes(num)) {
+            quads['midleft'].push(num);
+            // ele.appendChild(document.createTextNode('   num:   ' + num))
+            ele.appendChild(document.createTextNode(num))
+          } else {
+            let inp = document.createElement('input');
+            inp.type = 'text'; inp.value = '';
+            //   // inp.style = Object.assign(inp.style, cell.style); 
+            inp.style.width = '5.4vw';
+            inp.style.height = '5.4vh';
+            // inp.style.backgroundColor = 'white';
+            inp.style.backgroundColor = 'gray';
+            inp.style.border = '.2vw dotted black';
+            ele.appendChild(inp);
+          };
+          console.log(quads);           
           console.log(quad);
         } else if (x>3 && x<=6 && y>3 && y<=6) {
           let quad = 'midmiddle'; 
+          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'brown';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
+
+          let num = Math.ceil(Math.random() * 9);
+          if (!quads['midmiddle'].includes(num)) {
+            quads['midmiddle'].push(num);
+            // ele.appendChild(document.createTextNode('   num:   ' + num))
+            ele.appendChild(document.createTextNode(num))
+          } else {
+            let inp = document.createElement('input');
+            inp.type = 'text'; inp.value = '';
+            //   // inp.style = Object.assign(inp.style, cell.style); 
+            inp.style.width = '5.4vw';
+            inp.style.height = '5.4vh';
+            inp.style.backgroundColor = 'white';
+            // inp.style.backgroundColor = 'gray';
+            inp.style.border = '.2vw dotted black';
+            ele.appendChild(inp);
+          };
+          console.log(quads);   
           console.log(quad);
         } else if (x>6 && y>3 && y<=6) {
           let quad = 'midright'; 
+          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'indigo';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'gray';
+
+          let num = Math.ceil(Math.random() * 9);
+          if (!quads['midright'].includes(num)) {
+            quads['midright'].push(num);
+            // ele.appendChild(document.createTextNode('   num:   ' + num))
+            ele.appendChild(document.createTextNode(num))
+          } else {
+            let inp = document.createElement('input');
+            inp.type = 'text'; inp.value = '';
+            //   // inp.style = Object.assign(inp.style, cell.style); 
+            inp.style.width = '5.4vw';
+            inp.style.height = '5.4vh';
+            inp.style.backgroundColor = 'white';
+            // inp.style.backgroundColor = 'gray';
+            inp.style.border = '.2vw dotted black';
+            ele.appendChild(inp);
+          };
+          console.log(quads);   
+          
           console.log(quad);
         } 
         if (x <=3 && y>6) {
           let quad = 'bottomleft'; 
+          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'violet';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
+
+          let num = Math.ceil(Math.random() * 9);
+          if (!quads['bottomleft'].includes(num)) {
+            quads['bottomleft'].push(num);
+            // ele.appendChild(document.createTextNode('   num:   ' + num))
+            ele.appendChild(document.createTextNode(num))
+          } else {
+            let inp = document.createElement('input');
+            inp.type = 'text'; inp.value = '';
+            //   // inp.style = Object.assign(inp.style, cell.style); 
+            inp.style.width = '5.4vw';
+            inp.style.height = '5.4vh';
+            inp.style.backgroundColor = 'white';
+            // inp.style.backgroundColor = 'gray';
+            inp.style.border = '.2vw dotted black';
+            ele.appendChild(inp);
+          };
+          console.log(quads);   
+          
           console.log(quad);
         } else if (x>3 && x<=6 && y>6) {
           let quad = 'bottommiddle'; 
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'gray';
+
+          let num = Math.ceil(Math.random() * 9);
+          if (!quads['bottommiddle'].includes(num)) {
+            quads['bottommiddle'].push(num);
+            // ele.appendChild(document.createTextNode('   num:   ' + num))
+            ele.appendChild(document.createTextNode(num))
+          } else {
+            let inp = document.createElement('input');
+            inp.type = 'text'; inp.value = '';
+            //   // inp.style = Object.assign(inp.style, cell.style); 
+            inp.style.width = '5.4vw';
+            inp.style.height = '5.4vh';
+            // inp.style.backgroundColor = 'white';
+            inp.style.backgroundColor = 'gray';
+            inp.style.border = '.2vw dotted black';
+            ele.appendChild(inp);
+          };
+          console.log(quads);          
+          
           console.log(quad);
         } else if (x>6 && y>6) {
           let quad = 'bottomright'; 
+          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'tan';
+
           let num = Math.ceil(Math.random()*9); 
           if (!quads['bottomright'].includes(num)) {
             quads['bottomright'].push(num);
+            // ele.appendChild(document.createTextNode('   num:   ' + num))
+            ele.appendChild(document.createTextNode(num))
+          } else {
+            let inp = document.createElement('input');
+            inp.type = 'text'; inp.value = '';
+            //   // inp.style = Object.assign(inp.style, cell.style); 
+            inp.style.width = '5.4vw';
+            inp.style.height = '5.4vh';
+            inp.style.backgroundColor = 'white';
+            // inp.style.backgroundColor = 'gray';
+            inp.style.border = '.2vw dotted black';
+            ele.appendChild(inp);
           }; 
           console.log(quads);
           console.log(quad);
@@ -149,7 +333,7 @@ class Grid {
       // document.getElementById(obj[i]  obj[j]);
     }
   }
-
+  
   render() {
     let sud = document.createElement('div'); 
     // sud.appendChild()
