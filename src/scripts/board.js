@@ -1,6 +1,158 @@
 class Grid {
   constructor() {
+    this.boxes = {
+      0: [],
+      1: [],
+      2: [],
+      3: [],
+      4: [],
+      5: [],
+      6: [],
+      7: [],
+      8: [],
+    };
+    this.rows = {
+      0: [],
+      1: [],
+      2: [],
+      3: [],
+      4: [],
+      5: [],
+      6: [],
+      7: [],
+      8: [],
+    }
+    this.columns = {
+      0: [],
+      1: [],
+      2: [],
+      3: [],
+      4: [],
+      5: [],
+      6: [],
+      7: [],
+      8: [],
+    }
+
+
     this.newGrid = this.newGrid.bind(this); 
+    this.smallBox = this.smallBox.bind(this); 
+    this.render = this.render.bind(this); 
+    this.createCartesian = this.createCartesian.bind(this); 
+  }
+
+  createCartesian() {
+    let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
+
+
+
+    let quadrant = document.getElementById('myCanvas'); 
+    Object.assign(quadrant.style, {
+      height: '54vh',
+      width: '54vw',
+      display: 'flex',
+      flexFlow: 'wrap',
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      color: 'black',
+      margin: '70 auto'
+    });
+
+    for (let y=1; y<=9; y++) {
+      for (let x=1; x<=9; x++) {
+        let box = document.createElement('div');
+        quadrant.appendChild(box);
+        Object.assign(box.style, {
+          height: '5.4vh',
+          width: '5.4vw',
+          border: '.2vw solid black',
+          display: 'flex',
+          flexFlow: 'wrap'
+        });
+        // let ident = { 'x': x, 'y': y }; 
+        let ident = 'x:' + x + ', y:' + y; 
+        box.id = ident; 
+        // box.appendChild(document.createTextNode(x + ',' + y));   
+        // box.appendChild(document.createTextNode(ident));  
+        console.log(box.id); 
+        // box.appendChild(document.createTextNode(box.id));   
+        console.log(box.id.split('')[2], box.id.split('')[7]); 
+        // console.log(box.id.split('')[7]); 
+        console.log(box.id.split('')[7] === '9'); 
+        console.log(box.id.split('')[7] === obj[9]); 
+        console.log(obj.indexOf(box.id.split('')[2])); 
+        console.log(obj.indexOf(box.id.split('')[7])); 
+      }
+    }
+
+    for (let i =1; i<=9; i++) {
+      for (let j=1; j<=9; j++) {
+        console.log(obj[j], obj[i])
+        let ele = document.getElementById('x:' + obj[j] + ', y:' + obj[i])
+        ele.appendChild(document.createTextNode(obj[j] + ',' + obj[i]))
+      }
+      // document.getElementById(obj[i]  obj[j]);
+    }
+
+  }
+
+  render() {
+    let sud = document.createElement('div'); 
+    // sud.appendChild()
+    for(let i=1; i<=6; i++) {
+      this.smallBox(); 
+    }
+  }
+
+  smallBox() {
+    let grid = document.getElementById("myCanvas"); 
+    Object.assign(grid.style, {
+      height: '17.4vh',
+      width: '17.4vw',
+      display: 'flex',
+      flexFlow: 'wrap',
+      backgroundColor: 'white',
+      justifyContent: 'center',
+      color: 'black',
+      margin: '70 auto'
+    });
+    
+    let nums = []; 
+    for (let i = 1; i<=9; i++) {
+      let box = document.createElement('div'); 
+      grid.appendChild(box); 
+      Object.assign(box.style, {
+        height: '5.4vh',
+        width: '5.4vw',
+        border: '.2vw solid black',
+        display: 'flex',
+        flexFlow: 'wrap'
+      });
+
+      let num = Math.ceil(Math.random() * 9); 
+
+      let prob = Math.floor(Math.random() * 2);
+
+      // console.log(`prob: ${prob}`);
+      // if (j%3 ===0) {
+      if (!nums.includes(num) && prob) {
+          box.appendChild(document.createTextNode(num));
+          nums.push(num); 
+      // }
+      } else {
+      //   console.log('eh');
+        let inp = document.createElement('input');
+        inp.type = 'text'; inp.value = '';
+      //   // inp.style = Object.assign(inp.style, cell.style); 
+        inp.style.width = '5.4vw';
+        inp.style.height = '5.4vh';
+        inp.style.backgroundColor = 'white';
+        inp.style.border = '.2vw dotted black';
+        box.appendChild(inp);
+        // cell.appendChild(document.createTextNode(Math.ceil(Math.random()*9)));            
+      //   // cell.appendChild(document.createTextNode(cell.id));
+      }
+    }
   }
 
   newGrid() {
@@ -65,7 +217,10 @@ class Grid {
 } }; 
 
 let g = new Grid();
-g.newGrid(); 
+// g.newGrid(); 
+// g.smallBox(); 
+// g.render(); 
+g.createCartesian();
 
 // function newSudoku() {
   // let grid = document.getElementById("myCanvas");
@@ -301,17 +456,6 @@ class Board {
 
     console.log("Rows: ", this.rows);
     this.ctx.closePath();
-  }
-
-  genRows() {
-    for (let col = 0; col < Object.keys(this.columns).length; col++) {
-      for (let row = 0; row < Object.keys(this.columns).length; row++) {
-        let el = this.columns[row].flat()[col];
-        this.rows[col].push(el);
-      }
-    }
-    // console.log('Rows: ', this.rows); 
-    return this.rows;
   }
 
   checkValues() {
