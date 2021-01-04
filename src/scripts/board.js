@@ -116,7 +116,27 @@ class Grid {
         } else if (x>6 && y<=3) {
           let quad = 'topright'; 
           console.log(quad);
-        }
+        } 
+        if (x <=3 && y>3 && y<=6) {
+          let quad = 'midleft'; 
+          console.log(quad);
+        } else if (x>3 && x<=6 && y>3 && y<=6) {
+          let quad = 'midmiddle'; 
+          console.log(quad);
+        } else if (x>6 && y>3 && y<=6) {
+          let quad = 'midright'; 
+          console.log(quad);
+        } 
+        if (x <=3 && y>6) {
+          let quad = 'bottomleft'; 
+          console.log(quad);
+        } else if (x>3 && x<=6 && y>6) {
+          let quad = 'bottommiddle'; 
+          console.log(quad);
+        } else if (x>6 && y>6) {
+          let quad = 'bottomright'; 
+          console.log(quad);
+        } 
       }
       // document.getElementById(obj[i]  obj[j]);
     }
