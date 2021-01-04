@@ -103,8 +103,20 @@ class Grid {
     for (let i =1; i<=9; i++) {
       for (let j=1; j<=9; j++) {
         console.log(obj[j], obj[i])
+        let x = obj[j]; 
+        let y = obj[i]; 
         let ele = document.getElementById('x:' + obj[j] + ', y:' + obj[i])
         ele.appendChild(document.createTextNode(obj[j] + ',' + obj[i]))
+        if (x <=3 && y<=3) {
+          let quad = 'topleft'; 
+          console.log(quad);
+        } else if (x>3 && x<=6 && y<=3) {
+          let quad = 'topmiddle'; 
+          console.log(quad);
+        } else if (x>6 && y<=3) {
+          let quad = 'topright'; 
+          console.log(quad);
+        }
       }
       // document.getElementById(obj[i]  obj[j]);
     }
