@@ -55,6 +55,7 @@ class Grid {
       flexFlow: 'wrap',
       backgroundColor: 'white',
       justifyContent: 'center',
+      // justifyContent: 'space-around',
       color: 'black',
       margin: '70 auto'
     });
@@ -142,7 +143,7 @@ class Grid {
         } else if (x>3 && x<=6 && y<=3) {
           let quad = 'topmiddle'; 
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'orange';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'gray';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
 
           let num = Math.ceil(Math.random() * 9);
           if (!quads['topmiddle'].includes(num)) {
@@ -156,7 +157,7 @@ class Grid {
             inp.style.width = '5.4vw';
             inp.style.height = '5.4vh';
             // inp.style.backgroundColor = 'white';
-            inp.style.backgroundColor = 'gray';
+            inp.style.backgroundColor = 'lightgray';
             inp.style.border = '.2vw dotted black';
             ele.appendChild(inp);
           };
@@ -191,7 +192,7 @@ class Grid {
         if (x <=3 && y>3 && y<=6) {
           let quad = 'midleft'; 
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'green';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'gray';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
 
           let num = Math.ceil(Math.random() * 9);
           if (!quads['midleft'].includes(num)) {
@@ -205,7 +206,7 @@ class Grid {
             inp.style.width = '5.4vw';
             inp.style.height = '5.4vh';
             // inp.style.backgroundColor = 'white';
-            inp.style.backgroundColor = 'gray';
+            inp.style.backgroundColor = 'lightgray';
             inp.style.border = '.2vw dotted black';
             ele.appendChild(inp);
           };
@@ -237,7 +238,7 @@ class Grid {
         } else if (x>6 && y>3 && y<=6) {
           let quad = 'midright'; 
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'indigo';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'gray';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
 
           let num = Math.ceil(Math.random() * 9);
           if (!quads['midright'].includes(num)) {
@@ -250,8 +251,8 @@ class Grid {
             //   // inp.style = Object.assign(inp.style, cell.style); 
             inp.style.width = '5.4vw';
             inp.style.height = '5.4vh';
-            inp.style.backgroundColor = 'white';
-            // inp.style.backgroundColor = 'gray';
+            // inp.style.backgroundColor = 'white';
+            inp.style.backgroundColor = 'lightgray';
             inp.style.border = '.2vw dotted black';
             ele.appendChild(inp);
           };
@@ -285,7 +286,7 @@ class Grid {
           console.log(quad);
         } else if (x>3 && x<=6 && y>6) {
           let quad = 'bottommiddle'; 
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'gray';
+          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
 
           let num = Math.ceil(Math.random() * 9);
           if (!quads['bottommiddle'].includes(num)) {
@@ -299,7 +300,7 @@ class Grid {
             inp.style.width = '5.4vw';
             inp.style.height = '5.4vh';
             // inp.style.backgroundColor = 'white';
-            inp.style.backgroundColor = 'gray';
+            inp.style.backgroundColor = 'lightgray';
             inp.style.border = '.2vw dotted black';
             ele.appendChild(inp);
           };
