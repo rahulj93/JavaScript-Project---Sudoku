@@ -39,6 +39,7 @@ class Grid {
     this.smallBox = this.smallBox.bind(this); 
     this.render = this.render.bind(this); 
     this.createCartesian = this.createCartesian.bind(this); 
+    this.obtainIDs = this.obtainIDs.bind(this);
   }
 
   createCartesian() {
@@ -85,6 +86,20 @@ class Grid {
       }
     }
 
+    // for (let i =1; i<=9; i++) {
+    //   for (let j=1; j<=9; j++) {
+    //     console.log(obj[j], obj[i])
+    //     let ele = document.getElementById('x:' + obj[j] + ', y:' + obj[i])
+    //     ele.appendChild(document.createTextNode(obj[j] + ',' + obj[i]))
+    //   }
+    //   // document.getElementById(obj[i]  obj[j]);
+    // }
+    
+  }
+  
+  obtainIDs() {
+    let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
+
     for (let i =1; i<=9; i++) {
       for (let j=1; j<=9; j++) {
         console.log(obj[j], obj[i])
@@ -93,7 +108,6 @@ class Grid {
       }
       // document.getElementById(obj[i]  obj[j]);
     }
-
   }
 
   render() {
@@ -221,6 +235,7 @@ let g = new Grid();
 // g.smallBox(); 
 // g.render(); 
 g.createCartesian();
+g.obtainIDs();
 
 // function newSudoku() {
   // let grid = document.getElementById("myCanvas");
