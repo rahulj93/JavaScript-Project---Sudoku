@@ -40,10 +40,13 @@ class Grid {
     this.render = this.render.bind(this); 
     this.createCartesian = this.createCartesian.bind(this); 
     this.obtainIDs = this.obtainIDs.bind(this);
+
+    this.obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
+
   }
 
   createCartesian() {
-    let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
+    // let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
 
 
 
@@ -81,9 +84,9 @@ class Grid {
         console.log(box.id.split('')[2], box.id.split('')[7]); 
         // console.log(box.id.split('')[7]); 
         console.log(box.id.split('')[7] === '9'); 
-        console.log(box.id.split('')[7] === obj[9]); 
-        console.log(obj.indexOf(box.id.split('')[2])); 
-        console.log(obj.indexOf(box.id.split('')[7])); 
+        console.log(box.id.split('')[7] === this.obj[9]); 
+        console.log(this.obj.indexOf(box.id.split('')[2])); 
+        console.log(this.obj.indexOf(box.id.split('')[7])); 
       }
     }
 
@@ -99,8 +102,9 @@ class Grid {
   }
   
   obtainIDs() {
-    let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
+    // let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
     let quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': []}
+    let rows = [[],[],[],[],[],[],[],[],[]]; 
 
     // quads['topleft'].forEach(el=>{
     //   document.getElementById(el).backgroundColor = 'gray'; 
@@ -109,11 +113,17 @@ class Grid {
 
     for (let i =1; i<=9; i++) {
       for (let j=1; j<=9; j++) {
-        console.log(obj[j], obj[i])
-        let x = obj[j]; 
-        let y = obj[i]; 
-        let ele = document.getElementById('x:' + obj[j] + ', y:' + obj[i])
+        console.log(this.obj[j], this.obj[i])
+        let x = this.obj[j]; 
+        let y = this.obj[i]; 
+        let ele = document.getElementById('x:' + this.obj[j] + ', y:' + this.obj[i])
         // ele.appendChild(document.createTextNode(obj[j] + ',' + obj[i]))
+        console.log(`rows: ${this.rows}`);
+        let num = Math.ceil(Math.random() * 9);
+        console.log(`num: ${num}`); 
+        rows[x-1].push(num); 
+        console.log(`rows ${x}: ${rows[x-1]}`);
+
         if (x <=3 && y<=3) {
           let quad = 'topleft'; 
           // quads['topleft'].push([x,y]); 
@@ -121,7 +131,6 @@ class Grid {
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'red';
           document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
 
-          let num = Math.ceil(Math.random() * 9);
           if (!quads['topleft'].includes(num)) {
             quads['topleft'].push(num);
             // ele.appendChild(document.createTextNode('   num:   ' + num))
@@ -138,14 +147,13 @@ class Grid {
             ele.appendChild(inp);
           };
           console.log(quads);           
-          
           console.log(quad);
         } else if (x>3 && x<=6 && y<=3) {
           let quad = 'topmiddle'; 
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'orange';
           document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
 
-          let num = Math.ceil(Math.random() * 9);
+          // let num = Math.ceil(Math.random() * 9);
           if (!quads['topmiddle'].includes(num)) {
             quads['topmiddle'].push(num);
             // ele.appendChild(document.createTextNode('   num:   ' + num))
@@ -169,7 +177,7 @@ class Grid {
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'yellow';
           document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
 
-          let num = Math.ceil(Math.random() * 9);
+          // let num = Math.ceil(Math.random() * 9);
           if (!quads['topright'].includes(num)) {
             quads['topright'].push(num);
             // ele.appendChild(document.createTextNode('   num:   ' + num))
@@ -194,7 +202,7 @@ class Grid {
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'green';
           document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
 
-          let num = Math.ceil(Math.random() * 9);
+          // let num = Math.ceil(Math.random() * 9);
           if (!quads['midleft'].includes(num)) {
             quads['midleft'].push(num);
             // ele.appendChild(document.createTextNode('   num:   ' + num))
@@ -217,7 +225,7 @@ class Grid {
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'brown';
           document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
 
-          let num = Math.ceil(Math.random() * 9);
+          // let num = Math.ceil(Math.random() * 9);
           if (!quads['midmiddle'].includes(num)) {
             quads['midmiddle'].push(num);
             // ele.appendChild(document.createTextNode('   num:   ' + num))
@@ -240,7 +248,7 @@ class Grid {
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'indigo';
           document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
 
-          let num = Math.ceil(Math.random() * 9);
+          // let num = Math.ceil(Math.random() * 9);
           if (!quads['midright'].includes(num)) {
             quads['midright'].push(num);
             // ele.appendChild(document.createTextNode('   num:   ' + num))
@@ -265,7 +273,7 @@ class Grid {
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'violet';
           document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
 
-          let num = Math.ceil(Math.random() * 9);
+          // let num = Math.ceil(Math.random() * 9);
           if (!quads['bottomleft'].includes(num)) {
             quads['bottomleft'].push(num);
             // ele.appendChild(document.createTextNode('   num:   ' + num))
@@ -288,7 +296,7 @@ class Grid {
           let quad = 'bottommiddle'; 
           document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
 
-          let num = Math.ceil(Math.random() * 9);
+          // let num = Math.ceil(Math.random() * 9);
           if (!quads['bottommiddle'].includes(num)) {
             quads['bottommiddle'].push(num);
             // ele.appendChild(document.createTextNode('   num:   ' + num))
@@ -311,7 +319,7 @@ class Grid {
           let quad = 'bottomright'; 
           // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'tan';
 
-          let num = Math.ceil(Math.random()*9); 
+          // let num = Math.ceil(Math.random()*9); 
           if (!quads['bottomright'].includes(num)) {
             quads['bottomright'].push(num);
             // ele.appendChild(document.createTextNode('   num:   ' + num))
