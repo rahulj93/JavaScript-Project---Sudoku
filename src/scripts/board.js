@@ -88,18 +88,20 @@ class Grid {
         } else {
           y = 7; 
         }
+        // y = Math.ceil(i/3-1)+Math.floor(i/3+1); 
         // let diffX = (j%3)-1; 
         x+=(j-1)%3; 
         // x += diffX;
         // x += (j%3); 
         // x+=(j%3); 
-        if (j <= 3) {
-          y += 0;
-        } else if (j > 3 && j <= 6) {
-          y += 1;
-        } else if (j>6) {
-          y += 2;
-        }
+        y += Math.ceil(j/3) - 1;
+        // if (j <= 3) {
+        //   y += 0;
+        // } else if (j > 3 && j <= 6) {
+        //   y += 1;
+        // } else if (j>6) {
+        //   y += 2;
+        // }
         let cell = document.createElement('div');
         // cell.appendChild(document.createTextNode(j));
         box.appendChild(cell);
