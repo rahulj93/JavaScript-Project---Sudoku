@@ -34,6 +34,7 @@ class Grid {
       8: [],
     }
 
+    this.quadrant = document.getElementById('myCanvas'); 
 
     this.newGrid = this.newGrid.bind(this); 
     this.smallBox = this.smallBox.bind(this); 
@@ -47,9 +48,8 @@ class Grid {
 
   createCartesian() {
     // let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
-
-    let quadrant = document.getElementById('myCanvas'); 
-    Object.assign(quadrant.style, {
+    // let quadrant = document.getElementById('myCanvas'); 
+    Object.assign(this.quadrant.style, {
       height: '54vh',
       width: '54vw',
       display: 'flex',
@@ -60,43 +60,87 @@ class Grid {
       color: 'black',
       margin: '70 auto'
     });
-
-    for (let y=1; y<=9; y++) {
-      for (let x=1; x<=9; x++) {
-        let box = document.createElement('div');
-        quadrant.appendChild(box);
-        Object.assign(box.style, {
-          height: '5.4vh',
-          width: '5.4vw',
-          border: '.2vw solid black',
-          display: 'flex',
-          flexFlow: 'wrap'
-        });
-        // let ident = { 'x': x, 'y': y }; 
+    let x = 0; 
+    let y = 0; 
+    for (let i = 1; i <= 9; i++) {
+      let box = document.createElement('div');
+      this.quadrant.appendChild(box);
+      Object.assign(box.style, {
+        height: '17.4vh',
+        width: '17.4vw',
+        border: '.2vw solid black',
+        display: 'flex',
+        flexFlow: 'wrap'
+      });
+      
+      for (let j = 1; j <= 9; j++) {
+        if (i%3 === 1) {
+          x = 1; 
+        } else if (i%3 === 2) {
+          x = 4; 
+        } else if (i%3 ===0) {
+          x = 7; 
+        }
+        if (i<=3) {
+          y = 1; 
+        } else if (i>3 && i<=6) {
+          y = 4; 
+        } else {
+          y = 7; 
+        }
+        // console.log(j%3); 
+        // console.log(x); 
+        // let diffX = (j%3)-1; 
+        x+=(j-1)%3; 
+        // x += diffX;
+        // x += (j%3); 
+        // x+=(j%3); 
+        if (j <= 3) {
+          y += 0;
+        } else if (j > 3 && j <= 6) {
+          y += 1;
+        } else if (j>6) {
+          y += 2;
+        }
+        let cell = document.createElement('div');
+        // cell.appendChild(document.createTextNode(j));
+        box.appendChild(cell);
+        cell.style.width = '5.4vw';
+        cell.style.height = '5.4vh';
+        cell.style.border = '.2vw dotted black';
+        // cell.id = i + '-' + j;
         let ident = 'x:' + x + ', y:' + y; 
-        box.id = ident; 
-        // box.appendChild(document.createTextNode(x + ',' + y));   
-        // box.appendChild(document.createTextNode(ident));  
-        console.log(box.id); 
-        // box.appendChild(document.createTextNode(box.id));   
-        console.log(box.id.split('')[2], box.id.split('')[7]); 
-        // console.log(box.id.split('')[7]); 
-        console.log(box.id.split('')[7] === '9'); 
-        console.log(box.id.split('')[7] === this.obj[9]); 
-        console.log(this.obj.indexOf(box.id.split('')[2])); 
-        console.log(this.obj.indexOf(box.id.split('')[7])); 
+        cell.id = ident; 
+        console.log(cell.id); 
+        // cell.appendChild(document.createTextNode(x + ',' + y));   
+        // cell.appendChild(document.createTextNode(y));   
       }
     }
-
-    // for (let i =1; i<=9; i++) {
-    //   for (let j=1; j<=9; j++) {
-    //     console.log(obj[j], obj[i])
-    //     let ele = document.getElementById('x:' + obj[j] + ', y:' + obj[i])
-    //     ele.appendChild(document.createTextNode(obj[j] + ',' + obj[i]))
+    // for (let y=1; y<=9; y++) {
+    //   for (let x=1; x<=9; x++) {
+    //     let box = document.createElement('div');
+    //     this.quadrant.appendChild(box);
+    //     Object.assign(box.style, {
+    //       height: '5.4vh',
+    //       width: '5.4vw',
+    //       border: '.2vw solid black',
+    //       display: 'flex',
+    //       flexFlow: 'wrap',
+    //       backgroundColor: 'white',
+    //     });
+    //     // let ident = { 'x': x, 'y': y }; 
+    //     let ident = 'x:' + x + ', y:' + y; 
+    //     box.id = ident;    
+    //     console.log(box.id); 
+    //     // box.appendChild(document.createTextNode(box.id));   
+    //     console.log(box.id.split('')[2], box.id.split('')[7]); 
+    //     // console.log(box.id.split('')[7]); 
+    //     console.log(box.id.split('')[7] === '9'); 
+    //     console.log(box.id.split('')[7] === this.obj[9]); 
+    //     console.log(this.obj.indexOf(box.id.split('')[2])); 
+    //     console.log(this.obj.indexOf(box.id.split('')[7])); 
     //   }
-    //   // document.getElementById(obj[i]  obj[j]);
-    // }
-    
+    // }    
   }
   
   obtainIDs() {
@@ -105,10 +149,6 @@ class Grid {
     let rows = [[],[],[],[],[],[],[],[],[]]; 
     let cols = [[],[],[],[],[],[],[],[],[]]; 
     let quad = ''; 
-    // quads['topleft'].forEach(el=>{
-    //   document.getElementById(el).backgroundColor = 'gray'; 
-    // })
-    // document.getElementById('topleft').backgroundColor = 'gray';
 
     for (let i =1; i<=9; i++) {
       for (let j=1; j<=9; j++) {
@@ -120,82 +160,69 @@ class Grid {
         console.log(`rows: ${this.rows}`);
         let num = Math.ceil(Math.random() * 9);
         console.log(`num: ${num}`); 
-        // rows[x-1].push(num); 
-        // cols[y-1].push(num); 
-        // console.log(`rows ${x}: ${rows[x-1]}`);
-        // console.log(`cols ${y}: ${cols[y-1]}`);
+        let id = 'x:' + x + ', y:' + y; 
 
+        // quad = ''; 
+
+        // if (y<=3) {
+        //   quad += 'top'; 
+        // } else if (y>3 && y<=6) {
+        //   quad += 'mid'; 
+        // } else if (y>6) {
+        //   quad += 'bottom'; 
+        // }
+        // if (x<=3) {
+        //   quad += 'left'; 
+        // } else if (x>3 && x<=6) {
+        //   quad += 'middle';
+        // } else if (x>6) {
+        //   quad += 'right'; 
+        // }
+        // Object.keys(quads).forEach((box, i) => {
+        //   if (box === quad && i%2 === 0) {
+        //     document.getElementById(id).style.backgroundColor = 'white';
+        //   } else if (box === quad && i%2 !== 0) {
+        //     document.getElementById(id).style.backgroundColor = 'lightgray';
+        //   }
+        // })
         if (x <=3 && y<=3) {
-          // let quad = 'topleft'; 
           quad = 'topleft'; 
           // quads['topleft'].push([x,y]); 
-          // console.log(quads);
-          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'red';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
-
-          // if (!quads['topleft'].includes(num)) {
-          //   quads['topleft'].push(num);
-          //   ele.appendChild(document.createTextNode(num))
-            
-          // } else {
-          //   let inp = document.createElement('input');
-          //   inp.type = 'text'; inp.value = '';
-          //   inp.style.width = '5.4vw';
-          //   inp.style.height = '5.4vh';
-          //   inp.style.backgroundColor = 'white';
-          //   inp.style.border = '.2vw dotted black';
-          //   ele.appendChild(inp);
-          // };
-          // console.log(quads);           
-          // console.log(quad);
         } else if (x>3 && x<=6 && y<=3) {
-          // let quad = 'topmiddle'; 
           quad = 'topmiddle'; 
-          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'orange';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
-        } else if (x>6 && y<=3) {
-          // let quad = 'topright'; 
+          // document.getElementById(id).style.backgroundColor = 'lightgray';
+          document.getElementById(id).style.backgroundColor = 'tan';
+        } else if (x>6 && y<=3) { 
           quad = 'topright'; 
-          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'yellow';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
-        } 
-        if (x <=3 && y>3 && y<=6) {
-          // let quad = 'midleft'; 
+        } else if (x <=3 && y>3 && y<=6) { 
           quad = 'midleft'; 
-          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'green';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
+          // document.getElementById(id).style.backgroundColor = 'lightgray';
+          document.getElementById(id).style.backgroundColor = 'tan';
         } else if (x>3 && x<=6 && y>3 && y<=6) {
-          // let quad = 'midmiddle'; 
           quad = 'midmiddle'; 
-          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'brown';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
-        } else if (x>6 && y>3 && y<=6) {
-          // let quad = 'midright'; 
+        } else if (x>6 && y>3 && y<=6) { 
           quad = 'midright'; 
-          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'indigo';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
-        } 
-        if (x <=3 && y>6) {
-          // let quad = 'bottomleft'; 
+          // document.getElementById(id).style.backgroundColor = 'lightgray';
+          document.getElementById(id).style.backgroundColor = 'tan';
+        } else if (x <=3 && y>6) { 
           quad = 'bottomleft'; 
-          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'violet';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
-        } else if (x>3 && x<=6 && y>6) {
-          // let quad = 'bottommiddle'; 
+        } else if (x>3 && x<=6 && y>6) { 
           quad = 'bottommiddle'; 
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'lightgray';
+          // document.getElementById(id).style.backgroundColor = 'lightgray';
+          document.getElementById(id).style.backgroundColor = 'tan';
         } else if (x>6 && y>6) {
-          // let quad = 'bottomright'; 
           quad = 'bottomright'; 
-          // document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'tan';
-          document.getElementById('x:' + x + ', y:' + y).style.backgroundColor = 'white';
         } 
 
-        let bool = true; 
+        let bool = true;  
+        let diceRoll = false;
+        let coin = Math.ceil(Math.random() * 6);
+        if (coin < 2) {
+          diceRoll = true;
+        }
         if (rows[y-1].includes(num) || cols[x-1].includes(num)) {
           bool = false; 
-        }
-  
+        }  
 
         if (bool && !quads[quad].includes(num)) {
           quads[quad].push(num);
@@ -211,7 +238,7 @@ class Grid {
           inp.style.width = '5.4vw';
           inp.style.height = '5.4vh';
           // inp.style.backgroundColor = 'white';
-          inp.style.backgroundColor = document.getElementById('x:' + x + ', y:' + y).style.backgroundColor;
+          inp.style.backgroundColor = document.getElementById(id).style.backgroundColor;
           inp.style.border = '.2vw dotted black';
           ele.appendChild(inp);
         };
