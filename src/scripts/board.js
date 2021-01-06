@@ -88,8 +88,6 @@ class Grid {
         } else {
           y = 7; 
         }
-        // console.log(j%3); 
-        // console.log(x); 
         // let diffX = (j%3)-1; 
         x+=(j-1)%3; 
         // x += diffX;
@@ -218,6 +216,7 @@ class Grid {
           quad = 'bottomright'; 
           document.getElementById(id).style.backgroundColor = 'white';
         } 
+        // document.getElementById(id).style.backgroundColor = 'white';
 
         let bool = true;  
         let diceRoll = false;
