@@ -187,6 +187,7 @@ class Grid {
         // })
         if (x <=3 && y<=3) {
           quad = 'topleft'; 
+          document.getElementById(id).style.backgroundColor = 'white';
           // quads['topleft'].push([x,y]); 
         } else if (x>3 && x<=6 && y<=3) {
           quad = 'topmiddle'; 
@@ -194,24 +195,28 @@ class Grid {
           document.getElementById(id).style.backgroundColor = 'tan';
         } else if (x>6 && y<=3) { 
           quad = 'topright'; 
+          document.getElementById(id).style.backgroundColor = 'white';
         } else if (x <=3 && y>3 && y<=6) { 
           quad = 'midleft'; 
           // document.getElementById(id).style.backgroundColor = 'lightgray';
           document.getElementById(id).style.backgroundColor = 'tan';
         } else if (x>3 && x<=6 && y>3 && y<=6) {
           quad = 'midmiddle'; 
+          document.getElementById(id).style.backgroundColor = 'white';
         } else if (x>6 && y>3 && y<=6) { 
           quad = 'midright'; 
           // document.getElementById(id).style.backgroundColor = 'lightgray';
           document.getElementById(id).style.backgroundColor = 'tan';
         } else if (x <=3 && y>6) { 
           quad = 'bottomleft'; 
+          document.getElementById(id).style.backgroundColor = 'white';
         } else if (x>3 && x<=6 && y>6) { 
           quad = 'bottommiddle'; 
           // document.getElementById(id).style.backgroundColor = 'lightgray';
           document.getElementById(id).style.backgroundColor = 'tan';
         } else if (x>6 && y>6) {
           quad = 'bottomright'; 
+          document.getElementById(id).style.backgroundColor = 'white';
         } 
 
         let bool = true;  
