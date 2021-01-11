@@ -1,18 +1,17 @@
 class Grid {
   constructor() {
     this.boxes = {
-      0: [],
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: [],
-      7: [],
-      8: [],
+      1: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      2: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      3: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      4: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      5: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      6: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      7: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      8: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      9: [1, 2, 3, 4, 5, 6, 7, 8, 9]
     };
     this.rows = {
-      0: [],
       1: [],
       2: [],
       3: [],
@@ -21,9 +20,9 @@ class Grid {
       6: [],
       7: [],
       8: [],
+      9: []
     }
     this.columns = {
-      0: [],
       1: [],
       2: [],
       3: [],
@@ -32,23 +31,13 @@ class Grid {
       6: [],
       7: [],
       8: [],
+      9: []
     }
 
+    this.quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': [] }
+    this.quadsArray = ['topleft', 'topmiddle', 'topright', 'midleft', 'midmiddle', 'midright', 'bottomleft', 'bottommiddle', 'bottomright']; 
+
     this.quadrant = document.getElementById('myCanvas'); 
-
-    this.newGrid = this.newGrid.bind(this); 
-    this.smallBox = this.smallBox.bind(this); 
-    this.render = this.render.bind(this); 
-    this.createCartesian = this.createCartesian.bind(this); 
-    this.obtainIDs = this.obtainIDs.bind(this);
-
-    this.obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
-
-  }
-
-  createCartesian() {
-    // let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
-    // let quadrant = document.getElementById('myCanvas'); 
     Object.assign(this.quadrant.style, {
       height: '54vh',
       width: '54vw',
@@ -60,6 +49,25 @@ class Grid {
       color: 'black',
       margin: '70 auto'
     });
+    // this.box.style = {}; 
+    // this.cell.style = {}; 
+    this.createCartesian = this.createCartesian.bind(this); 
+    this.obtainIDs = this.obtainIDs.bind(this);
+
+    this.val = ''; 
+    this.obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
+
+    this.smallBox = this.smallBox.bind(this); 
+    this.render = this.render.bind(this); 
+this.genNums = this.genNums.bind(this);
+    this.filled = ['.']
+
+  }
+
+  createCartesian() {
+    // let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
+    // let quadrant = document.getElementById('myCanvas'); 
+
     let x = 0; 
     let y = 0; 
     for (let i = 1; i <= 9; i++) {
@@ -74,19 +82,26 @@ class Grid {
       });
       
       for (let j = 1; j <= 9; j++) {
-        if (i%3 === 1) {
-          x = 1; 
-        } else if (i%3 === 2) {
-          x = 4; 
-        } else if (i%3 ===0) {
-          x = 7; 
-        }
+        let quad = ''; 
         if (i<=3) {
           y = 1; 
+          quad += 'top';  
         } else if (i>3 && i<=6) {
           y = 4; 
+          quad += 'mid';  
         } else {
           y = 7; 
+          quad += 'bottom';  
+        }
+        if (i%3 === 1) {
+          x = 1; 
+          quad += 'left';  
+        } else if (i%3 === 2) {
+          x = 4; 
+          quad += 'middle'; 
+        } else if (i%3 ===0) {
+          x = 7; 
+          quad += 'right'; 
         }
         // y = Math.ceil(i/3-1)+Math.floor(i/3+1); 
         // let diffX = (j%3)-1; 
@@ -114,6 +129,13 @@ class Grid {
         console.log(cell.id); 
         // cell.appendChild(document.createTextNode(x + ',' + y));   
         // cell.appendChild(document.createTextNode(y));   
+        cell.className = quad; 
+        if (this.quadsArray.indexOf(quad) % 2 === 0) {
+          cell.style.backgroundColor = 'white'; 
+        } else {
+          cell.style.backgroundColor = 'tan'; 
+        }  
+        // console.log(quad); 
       }
     }
     // for (let y=1; y<=9; y++) {
@@ -145,7 +167,7 @@ class Grid {
   
   obtainIDs() {
     // let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
-    let quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': []}
+    // let quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': []}
     let rows = [[],[],[],[],[],[],[],[],[]]; 
     let cols = [[],[],[],[],[],[],[],[],[]]; 
     let quad = ''; 
@@ -161,64 +183,16 @@ class Grid {
         let num = Math.ceil(Math.random() * 9);
         console.log(`num: ${num}`); 
         let id = 'x:' + x + ', y:' + y; 
+        quad = ele.className; 
 
-        // quad = ''; 
-
-        // if (y<=3) {
-        //   quad += 'top'; 
-        // } else if (y>3 && y<=6) {
-        //   quad += 'mid'; 
-        // } else if (y>6) {
-        //   quad += 'bottom'; 
-        // }
-        // if (x<=3) {
-        //   quad += 'left'; 
-        // } else if (x>3 && x<=6) {
-        //   quad += 'middle';
-        // } else if (x>6) {
-        //   quad += 'right'; 
-        // }
         // Object.keys(quads).forEach((box, i) => {
         //   if (box === quad && i%2 === 0) {
         //     document.getElementById(id).style.backgroundColor = 'white';
         //   } else if (box === quad && i%2 !== 0) {
-        //     document.getElementById(id).style.backgroundColor = 'lightgray';
+        //     // document.getElementById(id).style.backgroundColor = 'lightgray';
+        //     document.getElementById(id).style.backgroundColor = 'tan';
         //   }
         // })
-        if (x <=3 && y<=3) {
-          quad = 'topleft'; 
-          document.getElementById(id).style.backgroundColor = 'white';
-          // quads['topleft'].push([x,y]); 
-        } else if (x>3 && x<=6 && y<=3) {
-          quad = 'topmiddle'; 
-          // document.getElementById(id).style.backgroundColor = 'lightgray';
-          document.getElementById(id).style.backgroundColor = 'tan';
-        } else if (x>6 && y<=3) { 
-          quad = 'topright'; 
-          document.getElementById(id).style.backgroundColor = 'white';
-        } else if (x <=3 && y>3 && y<=6) { 
-          quad = 'midleft'; 
-          // document.getElementById(id).style.backgroundColor = 'lightgray';
-          document.getElementById(id).style.backgroundColor = 'tan';
-        } else if (x>3 && x<=6 && y>3 && y<=6) {
-          quad = 'midmiddle'; 
-          document.getElementById(id).style.backgroundColor = 'white';
-        } else if (x>6 && y>3 && y<=6) { 
-          quad = 'midright'; 
-          // document.getElementById(id).style.backgroundColor = 'lightgray';
-          document.getElementById(id).style.backgroundColor = 'tan';
-        } else if (x <=3 && y>6) { 
-          quad = 'bottomleft'; 
-          document.getElementById(id).style.backgroundColor = 'white';
-        } else if (x>3 && x<=6 && y>6) { 
-          quad = 'bottommiddle'; 
-          // document.getElementById(id).style.backgroundColor = 'lightgray';
-          document.getElementById(id).style.backgroundColor = 'tan';
-        } else if (x>6 && y>6) {
-          quad = 'bottomright'; 
-          document.getElementById(id).style.backgroundColor = 'white';
-        } 
-        // document.getElementById(id).style.backgroundColor = 'white';
 
         let bool = true;  
         let diceRoll = false;
@@ -230,8 +204,8 @@ class Grid {
           bool = false; 
         }  
 
-        if (bool && !quads[quad].includes(num)) {
-          quads[quad].push(num);
+        if (bool && !this.quads[quad].includes(num)) {
+          this.quads[quad].push(num);
           ele.appendChild(document.createTextNode(num)); 
           rows[y - 1].push(num);
           cols[x - 1].push(num);
@@ -241,27 +215,50 @@ class Grid {
 
           let inp = document.createElement('input');
           inp.type = 'text'; inp.value = '';
+          inp.id = id; 
+          inp.className = quad; 
           inp.style.width = '5.4vw';
           inp.style.height = '5.4vh';
           // inp.style.backgroundColor = 'white';
           inp.style.backgroundColor = document.getElementById(id).style.backgroundColor;
+          // inp.style.backgroundColor = 'black';
+          // inp.style.color = 'green';
           inp.style.border = '.2vw dotted black';
           ele.appendChild(inp);
+          let val = 'no' 
+          let quads = this.quads; 
+          inp.onchange = function(e) {
+            e.preventDefault(); 
+            let int = parseInt(e.target.value, 10); 
+            // console.log(`quads: ${quads[quad]}`); 
+            console.log(`quads: ${quads[inp.className]}`); 
+            // console.log(`quads includes?: ${quads[quad].includes(e.target.value)}`); 
+            // console.log(`quads includes?: ${quads[inp.className].includes(parseInt(e.target.value,10))}`); 
+            console.log(`quads includes ${int}?: ${quads[inp.className].includes(int)}`); 
+            // console.log(`quad: ${quad}`); 
+            console.log(`quad: ${inp.className}`); 
+            // console.log(e.toString());
+            if (!quads[inp.className].includes((int))) {
+            // if (e.target.value % 2 === 0) {
+              inp.value = e.target.value; 
+              // console.log(this.val); 
+              console.log(val); 
+              // this.val = e.target.value; 
+              val = e.target.value; 
+              // console.log(e.target.value); 
+              // console.log(this.val); 
+              console.log(val); 
+            } else {
+              alert('try again');
+            }
+          } 
         };
         console.log(`rows ${x}: ${rows[x - 1]}`);
         console.log(`cols ${y}: ${cols[y - 1]}`);
         console.log(quad);
-        console.log(quads);
+        console.log(this.quads);
       }
       // document.getElementById(obj[i]  obj[j]);
-    }
-  }
-  
-  render() {
-    let sud = document.createElement('div'); 
-    // sud.appendChild()
-    for(let i=1; i<=6; i++) {
-      this.smallBox(); 
     }
   }
 
@@ -315,73 +312,149 @@ class Grid {
     }
   }
 
-  newGrid() {
-    let grid = document.getElementById("myCanvas");
-    // grid.style.backgroundColor = 'white'; 
-    // grid.style.cssText = "display: flex; flexFlow: wrap; width: 54vw; height: 54vh;"
-    Object.assign(grid.style, {
-      height: '54vh',
-      width: '54vw',
-      display: 'flex',
-      flexFlow: 'wrap',
-      backgroundColor: 'white',
-      justifyContent: 'center',
-      color: 'black',
-      margin: '70 auto'
-    });
-
-    for (let i = 1; i <= 9; i++) {
-      console.log(`i: ${i}`);
-      let box = document.createElement('div');
-      // box.appendChild(document.createTextNode(i)); 
-      grid.appendChild(box);
-      Object.assign(box.style, {
-        height: '17.4vh',
-        width: '17.4vw',
-        border: '.2vw solid black',
-        display: 'flex',
-        flexFlow: 'wrap'
-      });
-      // box.style.border = ".2vw solid black";
-      box.id = i;
-      console.log(`id: # ${i}`);
-
-      for (let j = 1; j <= 9; j++) {
-        let cell = document.createElement('div');
-        // cell.appendChild(document.createTextNode(j));
-        box.appendChild(cell);
-        cell.style.width = '5.4vw';
-        cell.style.height = '5.4vh';
-        cell.style.border = '.2vw dotted black';
-        cell.id = i + '-' + j;
-        let prob = Math.floor(Math.random() * 2);
-        console.log(`prob: ${prob}`);
-        // if (j%3 ===0) {
-        if (prob) {
-          cell.appendChild(document.createTextNode(Math.ceil(Math.random() * 9)));
-        } else {
-          console.log('eh');
-          let inp = document.createElement('input');
-          inp.type = 'text'; inp.value = '';
-          // inp.style = Object.assign(inp.style, cell.style); 
-          inp.style.width = '5.4vw';
-          inp.style.height = '5.4vh';
-          inp.style.backgroundColor = 'white';
-          inp.style.border = '.2vw dotted black';
-          cell.appendChild(inp);
-          // cell.appendChild(document.createTextNode(Math.ceil(Math.random()*9)));            
-          // cell.appendChild(document.createTextNode(cell.id));
-        }
-      }
+  render() {
+    let sud = document.createElement('div');
+    // sud.appendChild()
+    for (let i = 1; i <= 6; i++) {
+      this.smallBox();
+    }
   }
-} }; 
+
+  genNums() {
+    // pick any random x and any random y and place random num from 1 - 9. 
+    // don't block rows, columns, boxes. 
+    // repeat until board is full. 
+    // let str = '0123456789'; 
+    // if (this.filled.length === 1) {
+    //   for (let i=1; i<=9; i++) {
+    //     for (let j=1; j<=9; j++) {
+    //       let id = 'x:' + i + ', y:' + j; 
+    //       let el = document.getElementById(id); 
+    //       el.appendChild(document.createTextNode(str)); 
+    //     }
+    //   }; 
+    // }
+    // if (this.filled.length === 82) {
+    //   console.log('full board!')
+    //   return; 
+    // }; 
+    // let x = Math.ceil(Math.random()*9); 
+    // let y = Math.ceil(Math.random() * 9); 
+    // let id = 'x:' + x + ', y:' + y; 
+    // let el = document.getElementById(id); 
+    // let stri = el.childNodes[0]; 
+    // console.log(stri); 
+
+    // let num = Math.ceil(Math.random() * 9); 
+    // let bool = true;
+    
+    // if (this.quads[el.className].includes(num)) {
+    //   bool = false; 
+    // }
+
+    // if (this.rows[x].includes(num)) {
+    //   bool = false; 
+    // }
+
+    // if (this.columns[y].includes(num)) {
+    //   bool = false; 
+    // }
+
+    // if (bool) {
+    //   let arr = str.split(''); 
+    //   arr[num] = '.'; 
+    //   str = arr.join('');  
+    //   console.log(str);
+    //   // for (let i=1; i<=9; i++) {
+    //   //   let id = 'x:' + x + ', y:' + i;
+    //   //   let el = document.getElementById(id); 
+    //   //   el.removeChild(el.childNodes[0]); 
+    //   //   el.appendChild(document.createTextNode(str));
+    //   // } 
+    //   // for (let i=1; i<=9; i++) {
+    //   //   let id = 'x:' + i + ', y:' + y;
+    //   //   let el = document.getElementById(id); 
+    //   //   el.removeChild(el.childNodes[0]); 
+    //   //   el.appendChild(document.createTextNode(str));
+    //   // } 
+    //   this.quads[el.className].push(num);
+    //   this.rows[x].push(num);
+    //   this.columns[y].push(num); 
+    //   el.removeChild(el.childNodes[0]);
+    //   el.appendChild(document.createTextNode(num));
+    //   this.filled.push(id); 
+    // }
+    // // str.split('')[num] = '-'; 
+    // // if (el.childNodes[0][num] === '.') {
+    // //   this.genNums(); 
+    // // } 
+
+    // this.genNums(); 
+
+    // // return; 
+
+    // // console.log(x+',' + y);
+    // // console.log(num); 
+    // // console.log(str);
+
+    // return; 
+    let x = Math.ceil(Math.random()*9); 
+    let y = Math.ceil(Math.random() * 9); 
+    let id = 'x:' + x + ', y:' + y; 
+    console.log(this.filled);
+    console.log(this.quads);
+
+    if (this.filled.length === 82) {
+      console.log('full board!')
+      return; 
+    }; 
+    let bool = true; 
+    let el = document.getElementById(id); 
+    let num = Math.ceil(Math.random() * 9)
+
+    if (this.filled.includes(id)) {
+      bool = false; 
+    }; 
+    if (this.quads[el.className].includes(num)) {
+      bool = false; 
+    }; 
+    if (this.rows[x].includes(num)) {
+      bool = false; 
+    };
+    if (this.columns[y].includes(num)) {
+      bool = false; 
+    }
+
+      if (bool) {
+        // let el = document.getElementById(id); 
+        // el.appendChild(document.createTextNode(x+', '+y))
+        console.log(el.className); 
+        // let num = Math.ceil(Math.random() * 9)
+        this.quads[el.className].push(num); 
+        el.appendChild(document.createTextNode(num))
+        this.filled.push(id); 
+        console.log(this.filled);
+        this.quads[el.className].push(num); 
+        this.rows[x].push(num); 
+        this.columns[y].push(num); 
+        let boxNumber = this.quadsArray.indexOf(el.className) + 1; 
+        this.boxes[boxNumber].splice(this.boxes[boxNumber].indexOf(num), 1); 
+        console.log(this.boxes)
+      }
+
+      console.log(this.quadsArray.indexOf(el.className)+1); 
+
+    // this.genNums(); 
+    
+  }
+}; 
 
 let g = new Grid();
-// g.newGrid(); 
 // g.smallBox(); 
 // g.render(); 
 g.createCartesian();
-g.obtainIDs();
+// g.obtainIDs();
+g.genNums(); 
 
 // function newSudoku() {
   // let grid = document.getElementById("myCanvas");
@@ -471,182 +544,3 @@ g.obtainIDs();
 // }
 
 // newSudoku(); 
-
-
-
-
-class Board {
-  constructor(canvas, ctx) {
-    this.boxes = {
-      0: [],
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: [],
-      7: [],
-      8: [],
-    }; 
-    this.rows = {
-      0: [],
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: [],
-      7: [],
-      8: [],
-    }
-    this.columns = {
-      0: [],
-      1: [],
-      2: [],
-      3: [],
-      4: [],
-      5: [],
-      6: [],
-      7: [],
-      8: [],
-    }
-
-    this.canvas = canvas;
-    this.ctx = ctx;
-
-    this.generateNum = this.generateNum.bind(this);
-    this.drawBoxes = this.drawBoxes.bind(this);
-    this.placeNums = this.placeNums.bind(this);
-    this.checkValues = this.checkValues.bind(this);
-  }
-
-  generateNum() {
-    let num = Math.ceil(Math.random() * 9);
-    console.log(`num: ${num}`);
-    return num;
-  }
-
-  drawOutline() {
-    this.ctx.beginPath();
-    this.ctx.lineWidth = 4;
-
-    for (let x = 0; x <= 540; x += 180) {
-      this.ctx.moveTo(x, 0);
-      this.ctx.lineTo(x, 540);
-
-      this.ctx.moveTo(0, x);
-      this.ctx.lineTo(540, x);
-    }
-
-    // for (let y = 0; y<=540; y+=180) {
-    //   this.ctx.moveTo(0,y);
-    //   this.ctx.lineTo(540, y);
-    // }
-
-    this.ctx.stroke();
-
-    this.ctx.closePath();
-  }
-
-  drawBoxes() {
-    this.ctx.beginPath();
-    this.ctx.lineWidth = 0.5;
-    for (let x = 0; x < 540; x += 60) {
-      for (let y = 0; y < 540; y += 60) {
-        this.ctx.rect(x, y, 60, 60);
-      }
-    }
-    this.ctx.stroke();
-    this.ctx.closePath();
-  }
-
-  placeNums(startX, startY) {
-    this.ctx.beginPath();
-    this.ctx.font = "20px Arial";
-
-    // x is 180 -> count = 3 bc 540/9 = 60 and 180/60 = 3
-
-    let box = [];
-    let colIndex = (startX / 60) - 1;
-
-    for (let x = startX; x < (startX + 180); x += 60) {
-
-      let rowIndex = (startY / 60) - 1;
-      colIndex++;
-      let col = [];
-
-      for (let y = startY; y < (startY + 180); y += 60) {
-        rowIndex++;
-
-        num = this.generateNum();
-
-        //  Since I'm building a box one column at a time, the following boolean variable checks that the number isn't already in the row (whether added while building a different box or added while building this box)
-
-        let bool = false;
-        if (!this.rows[rowIndex].includes(num)) {
-          bool = true;
-        }
-
-        // Roll a dice to limit the number placements to the board to reduce the risk of building an unsolvable board 
-
-        let diceRoll = false;
-        let coin = Math.ceil(Math.random() * 6);
-        if (coin === 1) {
-          diceRoll = true;
-        }
-
-        if (diceRoll && bool && !box.includes(num) && !this.columns[colIndex].flat().flat().includes(num)) {
-          box.push(num);
-          col.push(num);
-          this.rows[rowIndex][colIndex] = num;
-          this.ctx.fillText(num, x + 25, y + 45);
-        } else {
-          col.push(0);
-          this.rows[rowIndex][colIndex] = 0;
-        }
-
-      }
-
-      this.columns[colIndex].push(col);
-      this.columns[colIndex] = this.columns[colIndex].flat();
-
-      console.log(`box: [${box}]`);
-      console.log("Columns: ", this.columns);
-      // console.log("cols:", Object.values(this.columns).flat());
-    }
-
-    console.log("Rows: ", this.rows);
-    this.ctx.closePath();
-  }
-
-  checkValues() {
-    console.log("Checking columns: ", this.columns);
-    console.log("Checking rows: ", this.rows);
-    let box1 = [this.rows[0].slice(0, 3), this.rows[1].slice(0, 3), this.rows[2].slice(0, 3)];
-    let box2 = [this.rows[3].slice(0, 3), this.rows[4].slice(0, 3), this.rows[5].slice(0, 3)];
-    let box3 = [this.rows[6].slice(0, 3), this.rows[7].slice(0, 3), this.rows[8].slice(0, 3)];
-
-    let box4 = [this.rows[0].slice(3, 6), this.rows[1].slice(3, 6), this.rows[2].slice(3, 6)];
-    let box5 = [this.rows[3].slice(3, 6), this.rows[4].slice(3, 6), this.rows[5].slice(3, 6)];
-    let box6 = [this.rows[6].slice(3, 6), this.rows[7].slice(3, 6), this.rows[8].slice(3, 6)];
-
-    let box7 = [this.rows[0].slice(6, 9), this.rows[1].slice(6, 9), this.rows[2].slice(6, 9)];
-    let box8 = [this.rows[3].slice(6, 9), this.rows[4].slice(6, 9), this.rows[5].slice(6, 9)];
-    let box9 = [this.rows[6].slice(6, 9), this.rows[7].slice(6, 9), this.rows[8].slice(6, 9)];
-
-    console.log("box1: ", box1);
-    console.log("box2: ", box2);
-    console.log("box3: ", box3);
-
-    console.log("box4: ", box4);
-    console.log("box5: ", box5);
-    console.log("box6: ", box6);
-
-    console.log("box7: ", box7);
-    console.log("box8: ", box8);
-    console.log("box9: ", box9);
-
-  }
-}
-
-module.exports = Board; 
