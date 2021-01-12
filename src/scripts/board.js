@@ -1,60 +1,50 @@
 class Grid {
   constructor() {
-    this.boxes = {
-      1: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      2: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      3: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      4: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      5: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      6: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      7: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      8: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      9: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    };
-    this.rows = {
-      1: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      2: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      3: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      4: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      5: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      6: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      7: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      8: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      9: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    };
-    this.columns = {
-      1: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      2: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      3: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      4: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      5: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      6: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      7: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      8: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      9: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    };
+    this.boxes = {}; 
+    for (let i = 1; i <= 9; i++) {
+      this.boxes[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    }
+    // this.boxes = {
+    //   1: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   2: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   3: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   4: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   5: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   6: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   7: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   8: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   9: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    // };
+    this.rows = {}; 
+    for (let i = 1; i <= 9; i++) {
+      this.rows[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    }
     // this.rows = {
-    //   1: [],
-    //   2: [],
-    //   3: [],
-    //   4: [],
-    //   5: [],
-    //   6: [],
-    //   7: [],
-    //   8: [],
-    //   9: []
-    // }
+    //   1: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   2: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   3: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   4: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   5: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   6: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   7: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   8: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   9: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    // };
+    this.columns = {}; 
+    for (let i = 1; i <= 9; i++) {
+      this.columns[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    }
     // this.columns = {
-    //   1: [],
-    //   2: [],
-    //   3: [],
-    //   4: [],
-    //   5: [],
-    //   6: [],
-    //   7: [],
-    //   8: [],
-    //   9: []
-    // }
+    //   1: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   2: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   3: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   4: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   5: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   6: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   7: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   8: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    //   9: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    // };
 
     this.allBoxes = {}
 
@@ -63,8 +53,8 @@ class Grid {
     }
 
     this.quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': [] }
-    this.quadsArray = ['topleft', 'topmiddle', 'topright', 'midleft', 'midmiddle', 'midright', 'bottomleft', 'bottommiddle', 'bottomright']; 
-
+    // this.quadsArray = ['topleft', 'topmiddle', 'topright', 'midleft', 'midmiddle', 'midright', 'bottomleft', 'bottommiddle', 'bottomright']; 
+    this.quadsArray = Object.keys(this.quads); 
     this.quadrant = document.getElementById('myCanvas'); 
     Object.assign(this.quadrant.style, {
       height: '54vh',
@@ -82,15 +72,13 @@ class Grid {
     this.createCartesian = this.createCartesian.bind(this); 
     this.obtainIDs = this.obtainIDs.bind(this);
 
-    this.val = ''; 
+    // this.val = ''; 
     this.obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
 
-    this.smallBox = this.smallBox.bind(this); 
-    this.render = this.render.bind(this); 
-this.genNums = this.genNums.bind(this);
-this.selectNum = this.selectNum.bind(this); 
+  this.genNums = this.genNums.bind(this);
+  this.selectNum = this.selectNum.bind(this); 
     this.filled = ['.']
-this.print = this.print.bind(this); 
+  this.print = this.print.bind(this); 
   }
 
   print(x,y) {
@@ -118,23 +106,12 @@ this.print = this.print.bind(this);
       if (this.allBoxes[i].length > 1 && i !== boxNum && x!==9 && i%9 === x) {
         this.allBoxes[i].splice(r, 1); 
       } else if (this.allBoxes[i].length > 1 && i !== boxNum && x===9 && i%9 === 0) {
-        // let r = this.wtf[i].indexOf(idk)
-        // console.log(`r: ${r}`);
         this.allBoxes[i].splice(r, 1); 
       }; 
-      // jahsbdkasdkjndksndaljksdnaksndaksndalksdlks;aksdakmsd;lkamsdkmsa;dkm
-      // if (i !== boxNum && y === (Math.ceil(i/9))) {
-      //   r = this.allBoxes[i].indexOf(randomNum);
-      //   console.log(`r: ${r}`); 
-      //   console.log(`randomNum: ${randomNum}`); 
-      //   // console.log(Math.ceil(i/9));
-      //   // alert(Math.ceil(i/9))
-      //   this.allBoxes[i].splice(r,1); 
-      // }
     }; 
 
     for (let j=1; j<=81; j++) {
-      if (j!==boxNum && y === Math.ceil(j/9)) {
+      if (this.allBoxes[j].length > 1 && j!==boxNum && y === Math.ceil(j/9)) {
         console.log(j);
         let r = this.allBoxes[j].indexOf(parseInt(spliced[0]));  
         console.log(this.allBoxes[j].indexOf(parseInt(spliced[0]))); 
@@ -167,10 +144,8 @@ this.print = this.print.bind(this);
 
     // this.print(aX,aY); 
   }
+  
   createCartesian() {
-    // let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
-    // let quadrant = document.getElementById('myCanvas'); 
-
     let x = 0; 
     let y = 0; 
     for (let i = 1; i <= 9; i++) {
@@ -206,7 +181,6 @@ this.print = this.print.bind(this);
           x = 7; 
           quad += 'right'; 
         }
-        // y = Math.ceil(i/3-1)+Math.floor(i/3+1); 
         // let diffX = (j%3)-1; 
         x+=(j-1)%3; 
         // x += diffX;
@@ -240,32 +214,7 @@ this.print = this.print.bind(this);
         }  
         // console.log(quad); 
       }
-    }
-    // for (let y=1; y<=9; y++) {
-    //   for (let x=1; x<=9; x++) {
-    //     let box = document.createElement('div');
-    //     this.quadrant.appendChild(box);
-    //     Object.assign(box.style, {
-    //       height: '5.4vh',
-    //       width: '5.4vw',
-    //       border: '.2vw solid black',
-    //       display: 'flex',
-    //       flexFlow: 'wrap',
-    //       backgroundColor: 'white',
-    //     });
-    //     // let ident = { 'x': x, 'y': y }; 
-    //     let ident = 'x:' + x + ', y:' + y; 
-    //     box.id = ident;    
-    //     console.log(box.id); 
-    //     // box.appendChild(document.createTextNode(box.id));   
-    //     console.log(box.id.split('')[2], box.id.split('')[7]); 
-    //     // console.log(box.id.split('')[7]); 
-    //     console.log(box.id.split('')[7] === '9'); 
-    //     console.log(box.id.split('')[7] === this.obj[9]); 
-    //     console.log(this.obj.indexOf(box.id.split('')[2])); 
-    //     console.log(this.obj.indexOf(box.id.split('')[7])); 
-    //   }
-    // }    
+    }   
   }
   
   obtainIDs() {
@@ -362,64 +311,6 @@ this.print = this.print.bind(this);
         console.log(this.quads);
       }
       // document.getElementById(obj[i]  obj[j]);
-    }
-  }
-
-  smallBox() {
-    let grid = document.getElementById("myCanvas"); 
-    Object.assign(grid.style, {
-      height: '17.4vh',
-      width: '17.4vw',
-      display: 'flex',
-      flexFlow: 'wrap',
-      backgroundColor: 'white',
-      justifyContent: 'center',
-      color: 'black',
-      margin: '70 auto'
-    });
-    
-    let nums = []; 
-    for (let i = 1; i<=9; i++) {
-      let box = document.createElement('div'); 
-      grid.appendChild(box); 
-      Object.assign(box.style, {
-        height: '5.4vh',
-        width: '5.4vw',
-        border: '.2vw solid black',
-        display: 'flex',
-        flexFlow: 'wrap'
-      });
-
-      let num = Math.ceil(Math.random() * 9); 
-      let prob = Math.floor(Math.random() * 2);
-
-      // console.log(`prob: ${prob}`);
-      // if (j%3 ===0) {
-      if (!nums.includes(num) && prob) {
-          box.appendChild(document.createTextNode(num));
-          nums.push(num); 
-      // }
-      } else {
-      //   console.log('eh');
-        let inp = document.createElement('input');
-        inp.type = 'text'; inp.value = '';
-      //   // inp.style = Object.assign(inp.style, cell.style); 
-        inp.style.width = '5.4vw';
-        inp.style.height = '5.4vh';
-        inp.style.backgroundColor = 'white';
-        inp.style.border = '.2vw dotted black';
-        box.appendChild(inp);
-        // cell.appendChild(document.createTextNode(Math.ceil(Math.random()*9)));            
-      //   // cell.appendChild(document.createTextNode(cell.id));
-      }
-    }
-  }
-
-  render() {
-    let sud = document.createElement('div');
-    // sud.appendChild()
-    for (let i = 1; i <= 6; i++) {
-      this.smallBox();
     }
   }
 
@@ -673,10 +564,8 @@ this.print = this.print.bind(this);
 }; 
 
 let g = new Grid();
-// g.smallBox(); 
-// g.render(); 
 g.createCartesian();
-// g.obtainIDs();
+g.obtainIDs();
 let x = Math.ceil(Math.random() * 9);
 let y = Math.ceil(Math.random() * 9); 
 // g.genNums('i actually don\'t know'); 
@@ -684,100 +573,24 @@ let y = Math.ceil(Math.random() * 9);
 // g.print(1,2); 
 // g.print(1,3); 
 // g.print(9,9); 
-for (let i=1; i<=9; i++) {
-  g.print(1,i); 
-}
+// for (let i=1; i<=9; i++) {
+//     g.print(1,i); 
+//     // g.print(9,i); 
+//   }
+// for (let i=1; i<=9; i++) {
+//     g.print(9,i); 
+//     // g.print(9,i); 
+//   }
+  // for (let i=2; i<=9; i++) {
+    //   g.print(i,1); 
+    // }
+// for (let i=1; i<=9; i++) {
+//   for (let j=1; j<=9; j++) {
+//     g.print(i,j); 
+//   }
+// }
 // for (let i=1;i<=9; i++) {
 //   for (let j=1;j<=9; j++) {
 //     g.print(i,j); 
 //   }
 // }
-
-// function newSudoku() {
-  // let grid = document.getElementById("myCanvas");
-  // // grid.style.backgroundColor = 'white'; 
-  // // grid.style.cssText = "display: flex; flexFlow: wrap; width: 54vw; height: 54vh;"
-  // Object.assign(grid.style, {
-  //   height: '54vh',
-  //   width: '54vw',
-  //   display: 'flex',
-  //   flexFlow: 'wrap',
-  //   backgroundColor: 'white',
-  //   justifyContent: 'center',
-  //   color: 'black',
-  //   margin: '70 auto'
-  // });
-
-  // // for (let i = 1; i<=81; i++) {
-  // //   let cell = document.createElement('div'); 
-  // //   // grid.appendChild(document.createTextNode(i)); 
-  // //   cell.appendChild(document.createTextNode(i)); 
-  // //   grid.appendChild(cell); 
-
-  // //   cell.style.width = '5.4vw'; 
-  // //   cell.style.height = '5.4vh'; 
-  // //   if (i%3===0) {
-  // //     cell.style.border = '.2vw solid black'; 
-  // //     // cell.style.borderRight = '.2vw solid black'; 
-  // //     // cell.style.borderBottom = '.2vw solid black'; 
-  // //   } else {
-  // //     cell.style.border = '.2vw dotted black'; 
-  // //   }
-  // // }
-
-
-  // for (let i = 1; i <= 9; i++) {
-  //   console.log(`i: ${i}`);
-  //   let box = document.createElement('div');
-  //   // box.appendChild(document.createTextNode(i)); 
-  //   grid.appendChild(box);
-  //   Object.assign(box.style, {
-  //     height: '17.4vh',
-  //     width: '17.4vw',
-  //     // border: '.2vw solid black',
-  //     border: '.2vw solid black',
-  //     display: 'flex',
-  //     flexFlow: 'wrap'
-  //   });
-  //   // box.style.border = ".2vw solid black";
-  //   box.id = i;
-  //   console.log(`id: # ${i}`);
-
-  //   // box.style.cssText = 'display: flex; flexFlow: wrap';     
-  //   // box.style.display = 'flex';
-  //   // box.style.flexFlow = 'wrap';
-
-
-  //   for (let j = 1; j <= 9; j++) {
-  //     let cell = document.createElement('div');
-  //     // cell.appendChild(document.createTextNode(j));
-  //     box.appendChild(cell);
-  //     cell.style.width = '5.4vw';
-  //     cell.style.height = '5.4vh';
-  //     cell.style.border = '.2vw dotted black';
-  //     cell.id = i + '-' + j;
-  //     let prob = Math.floor(Math.random() * 2);
-  //     console.log(`prob: ${prob}`);
-  //     // if (j%3 ===0) {
-  //     if (prob) {
-  //       cell.appendChild(document.createTextNode(Math.ceil(Math.random() * 9)));
-  //     } else {
-  //       console.log('eh');
-  //       let inp = document.createElement('input');
-  //       inp.type = 'text'; inp.value = '';
-  //       // inp.style = Object.assign(inp.style, cell.style); 
-  //       inp.style.width = '5.4vw';
-  //       inp.style.height = '5.4vh';
-  //       inp.style.backgroundColor = 'white';
-  //       inp.style.border = '.2vw dotted black';
-  //       cell.appendChild(inp);
-  //       // cell.appendChild(document.createTextNode(Math.ceil(Math.random()*9)));            
-  //       // cell.appendChild(document.createTextNode(cell.id));
-  //     }
-  //   }
-  // }
-
-  // document.getElementById('6-1').appendChild(document.createTextNode('  ayyy'));
-// }
-
-// newSudoku(); 
