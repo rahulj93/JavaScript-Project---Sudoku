@@ -94,6 +94,8 @@ this.print = this.print.bind(this);
   }
 
   print(x,y) {
+    let id = 'x:' + x + ', y:' + y; 
+    let el = document.getElementById(id); 
     // let x = Math.ceil(81%9); 
     // let y = Math.ceil(81/9); 
     // let x = 9; 
@@ -113,9 +115,9 @@ this.print = this.print.bind(this);
     for (let i = 1; i<=81; i++) {
       let r = this.allBoxes[i].indexOf(randomNum);
       console.log(`r: ${r}`); 
-      if (i !== boxNum && x!==9 && i%9 === x) {
+      if (this.allBoxes[i].length > 1 && i !== boxNum && x!==9 && i%9 === x) {
         this.allBoxes[i].splice(r, 1); 
-      } else if (i !== boxNum && x===9 && i%9 === 0) {
+      } else if (this.allBoxes[i].length > 1 && i !== boxNum && x===9 && i%9 === 0) {
         // let r = this.wtf[i].indexOf(idk)
         // console.log(`r: ${r}`);
         this.allBoxes[i].splice(r, 1); 
@@ -141,6 +143,8 @@ this.print = this.print.bind(this);
     let aY = Math.ceil(boxNumber/9);   
     console.log(`aX: ${aX}`);
     console.log(`aY: ${aY}`);
+
+    el.appendChild(document.createTextNode(spliced)); 
 
     // this.print(aX,aY); 
   }
@@ -658,8 +662,18 @@ let x = Math.ceil(Math.random() * 9);
 let y = Math.ceil(Math.random() * 9); 
 // g.genNums('i actually don\'t know'); 
 // g.genNums(x,y); 
-g.print(1,2); 
-g.print(9,9); 
+// g.print(1,2); 
+// g.print(1,3); 
+// g.print(9,9); 
+for (let i=1; i<=9; i++) {
+  g.print(1,i); 
+}
+// for (let i=1;i<=9; i++) {
+//   for (let j=1;j<=9; j++) {
+//     g.print(i,j); 
+//   }
+// }
+
 // function newSudoku() {
   // let grid = document.getElementById("myCanvas");
   // // grid.style.backgroundColor = 'white'; 
