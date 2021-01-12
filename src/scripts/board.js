@@ -122,7 +122,26 @@ this.print = this.print.bind(this);
         // console.log(`r: ${r}`);
         this.allBoxes[i].splice(r, 1); 
       }; 
+      // jahsbdkasdkjndksndaljksdnaksndaksndalksdlks;aksdakmsd;lkamsdkmsa;dkm
+      // if (i !== boxNum && y === (Math.ceil(i/9))) {
+      //   r = this.allBoxes[i].indexOf(randomNum);
+      //   console.log(`r: ${r}`); 
+      //   console.log(`randomNum: ${randomNum}`); 
+      //   // console.log(Math.ceil(i/9));
+      //   // alert(Math.ceil(i/9))
+      //   this.allBoxes[i].splice(r,1); 
+      // }
     }; 
+
+    for (let j=1; j<=81; j++) {
+      if (j!==boxNum && y === Math.ceil(j/9)) {
+        console.log(j);
+        let r = this.allBoxes[j].indexOf(parseInt(spliced[0]));  
+        console.log(this.allBoxes[j].indexOf(parseInt(spliced[0]))); 
+        this.allBoxes[j].splice(r, 1); 
+
+      }
+    }
     
     console.log(this.allBoxes); 
     console.log(spliced);
