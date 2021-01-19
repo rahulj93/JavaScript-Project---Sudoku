@@ -67,19 +67,7 @@ class Grid {
     let randompuzzle = Math.ceil(Math.random() * 10);
 
     // let p = JSON.parse(puzzles); 
-    // for (let i = 0; i < 9; i++) {
-    //   for (let j = 0; j < 9; j++) {
-    //     console.log(`${i},${j}: ${puzzles.sudokuPuzzles[1][i][j]}`); 
-
-    //     // if (puzzles.sudokuPuzzles[1][i][j]) {
-    //     //   console.log(puzzles.sudokuPuzzles[1][i][j]); 
-    //     // } else {
-    //     //   console.log('');
-    //     // }
-
-    //   }
-    // }
-    // return; 
+ 
     let rows = {
       1:[],2:[],3:[], 
       4:[],5:[],6:[], 

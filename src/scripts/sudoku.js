@@ -8,10 +8,28 @@ const CanvasBoard = require("./canvas_board");
 // } from './canvas_board'; 
 
 // let elem = document.getElementById("instr");
+let x = 0; 
+function timeNow() {
+  let t = setTimeout(function() {timeNow()}, 1000); 
+}
+function myFunc(x) {
+  x++;    
+  let time = document.getElementById("time");
+  document.getElementById("time").innerHTML = 'Time: ';
+  time.appendChild(document.createTextNode(new Date().getSeconds())); 
+  let t= setTimeout(function() {myFunc(x)}, 1000); 
+  // alert('hello'); 
+}
 
 function newSudoku() {
+  // let x = 0; 
+  let time = document.getElementById("time"); 
+  document.getElementById("time").innerHTML = 'Time: ';
+  // time.appendChild(document.createTextNode('ayyyyy')); 
+  window.clearInterval; 
+  // timeNow(); 
+  setInterval(myFunc(x), 1000); 
   document.getElementById("myCanvas").innerHTML = '';
-
   let g = new Grid();
   g.createCartesian();
   g.templatePuzzles();
