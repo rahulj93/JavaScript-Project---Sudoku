@@ -1,4 +1,5 @@
-const Board = require("./board");
+// const Board = require("./board");
+const Grid = require("./board");
 // const CanvasSudoku = require("./canvas_board"); 
 const CanvasBoard = require("./canvas_board");
 
@@ -8,7 +9,15 @@ const CanvasBoard = require("./canvas_board");
 
 // let elem = document.getElementById("instr");
 
-// function newSudoku() {
+function newSudoku() {
+  document.getElementById("myCanvas").innerHTML = '';
+
+  let g = new Grid();
+  g.createCartesian();
+  g.templatePuzzles();
+  // return;
+  g.obtainIDs();
+  return; 
 //   let grid = document.getElementById("myCanvas");
 //   // grid.style.backgroundColor = 'white'; 
 //   // grid.style.cssText = "display: flex; flexFlow: wrap; width: 54vw; height: 54vh;"
@@ -93,7 +102,7 @@ const CanvasBoard = require("./canvas_board");
 //       }
 
 //       // document.getElementById('6-1').appendChild(document.createTextNode('  ayyy'));
-//     }
+    }
 
 function launchSudoku() {
   let canvas = document.getElementById("myCanvas");
@@ -149,7 +158,7 @@ function launchSudoku() {
 // newSudoku(); 
 let sudoku = document.getElementById("resetBoard");
 // sudoku.onclick = launchSudoku;
-    // sudoku.onclick = newSudoku;
+    sudoku.onclick = newSudoku;
 
 // clearBoard() {
 //   clearRect(0, 0, 540, 540);

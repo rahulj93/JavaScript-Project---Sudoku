@@ -1,3 +1,5 @@
+const puzzles = require("./puzzles"); 
+
 class Grid {
   constructor() {
     this.boxes = {}; 
@@ -58,6 +60,12 @@ class Grid {
   this.selectNum = this.selectNum.bind(this); 
     this.filled = ['.']
   this.print = this.print.bind(this); 
+  this.templatePuzzles = this.templatePuzzles.bind(this); 
+  }
+
+  templatePuzzles() {
+    // let p = JSON.parse(puzzles); 
+    console.log(puzzles.sudokuPuzzles); 
   }
 
   print(x,y) {
@@ -542,11 +550,13 @@ class Grid {
   }
 }; 
 
+module.exports = Grid; 
 let g = new Grid();
 g.createCartesian();
 g.obtainIDs();
 let x = Math.ceil(Math.random() * 9);
 let y = Math.ceil(Math.random() * 9); 
+// console.log(puzzles.sudokuPuzzles[1]);
 // g.genNums('i actually don\'t know'); 
 // g.genNums(x,y); 
 // g.print(1,2); 
