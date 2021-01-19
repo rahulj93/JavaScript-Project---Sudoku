@@ -13,26 +13,52 @@ function timeNow() {
   let t = setTimeout(function() {timeNow()}, 1000); 
 }
 function myFunc(x) {
-  x++;    
+  // x++;    
+  let d = new Date();  
+  let min = d.getMinutes() - x.getMinutes(); 
+  // let sec = d.getSeconds() - x.getSeconds(); 
+  // if (d.getSeconds() < x.getSeconds()) {
+
+  // }
+  // if (d.getSeconds() > x.getSeconds()) {
+  //   sec = d.getSeconds() - x.getSeconds(); 
+  // } else {
+  //   sec += (60 - x.getSeconds()); 
+  // }
+  // } else {
+  //   sec = d.getSeconds(); 
+  // }
   let time = document.getElementById("time");
   document.getElementById("time").innerHTML = 'Time: ';
-  time.appendChild(document.createTextNode(new Date().getSeconds())); 
+  // time.appendChild(document.createTextNode(new Date().getSeconds())); 
+  // time.appendChild(document.createTextNode(d.getMinutes() + ':' + d.getSeconds())); 
+  // console.log('next line'); 
+  // time.appendChild(document.createTextNode(min + ':' + sec)); 
+  // time.appendChild(document.createTextNode(min)); 
+  let elapsedTime = Math.round((d - x) / 1000); 
+  time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':'+(Math.round((d - x) / 1000))%60)); 
+  // console.log(Math.round((d-x)/1000)); 
+  // console.log(x); 
   let t= setTimeout(function() {myFunc(x)}, 1000); 
   // alert('hello'); 
 }
 
 function newSudoku() {
+  let startTime = new Date;
   // let x = 0; 
   let time = document.getElementById("time"); 
   document.getElementById("time").innerHTML = 'Time: ';
   // time.appendChild(document.createTextNode('ayyyyy')); 
   window.clearInterval; 
   // timeNow(); 
-  setInterval(myFunc(x), 1000); 
+  setInterval(myFunc(startTime), 1000); 
   document.getElementById("myCanvas").innerHTML = '';
   let g = new Grid();
   g.createCartesian();
   g.templatePuzzles();
+
+  console.log(startTime.getMinutes() + ":" + startTime.getSeconds());
+
   return;
   g.obtainIDs();
   return; 
