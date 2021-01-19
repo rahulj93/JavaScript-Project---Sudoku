@@ -64,6 +64,8 @@ class Grid {
   }
 
   templatePuzzles() {
+    let randompuzzle = Math.ceil(Math.random() * 10);
+
     // let p = JSON.parse(puzzles); 
     // for (let i = 0; i < 9; i++) {
     //   for (let j = 0; j < 9; j++) {
@@ -85,35 +87,35 @@ class Grid {
     }; 
     for(let i=0; i<3; i++) {
       for (let j = 0; j < 3; j++) {
-        rows[1].push(puzzles.sudokuPuzzles[1][i][j]);
+        rows[1].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
       }
       for (let j = 3; j < 6; j++) {
-        rows[2].push(puzzles.sudokuPuzzles[1][i][j]);
+        rows[2].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
       }
       for (let j = 6; j < 9; j++) {
-        rows[3].push(puzzles.sudokuPuzzles[1][i][j]);
+        rows[3].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
       }
     }
     for(let i=3; i<6; i++) {
       for (let j = 0; j < 3; j++) {
-        rows[4].push(puzzles.sudokuPuzzles[1][i][j]);
+        rows[4].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
       }
       for (let j = 3; j < 6; j++) {
-        rows[5].push(puzzles.sudokuPuzzles[1][i][j]);
+        rows[5].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
       }
       for (let j = 6; j < 9; j++) {
-        rows[6].push(puzzles.sudokuPuzzles[1][i][j]);
+        rows[6].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
       }
     }
     for(let i=6; i<9; i++) {
       for (let j = 0; j < 3; j++) {
-        rows[7].push(puzzles.sudokuPuzzles[1][i][j]);
+        rows[7].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
       }
       for (let j = 3; j < 6; j++) {
-        rows[8].push(puzzles.sudokuPuzzles[1][i][j]);
+        rows[8].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
       }
       for (let j = 6; j < 9; j++) {
-        rows[9].push(puzzles.sudokuPuzzles[1][i][j]);
+        rows[9].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
       }
     }
     console.log(rows);
@@ -634,7 +636,9 @@ class Grid {
 module.exports = Grid; 
 let g = new Grid();
 g.createCartesian();
-g.obtainIDs();
+g.templatePuzzles(); 
+// return; 
+// g.obtainIDs();
 let x = Math.ceil(Math.random() * 9);
 let y = Math.ceil(Math.random() * 9); 
 // console.log(puzzles.sudokuPuzzles[1]);
