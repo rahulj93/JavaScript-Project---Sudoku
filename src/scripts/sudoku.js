@@ -36,7 +36,11 @@ function myFunc(x) {
   // time.appendChild(document.createTextNode(min + ':' + sec)); 
   // time.appendChild(document.createTextNode(min)); 
   let elapsedTime = Math.round((d - x) / 1000); 
-  time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':'+(Math.round((d - x) / 1000))%60)); 
+  if ((Math.round((d - x) / 1000)) % 60 < 10) {
+    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':0'+(Math.round((d - x) / 1000))%60)); 
+  } else {
+    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':'+(Math.round((d - x) / 1000))%60)); 
+  }
   // console.log(Math.round((d-x)/1000)); 
   // console.log(x); 
   let t= setTimeout(function() {myFunc(x)}, 1000); 
