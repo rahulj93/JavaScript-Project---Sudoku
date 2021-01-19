@@ -65,8 +65,89 @@ class Grid {
 
   templatePuzzles() {
     // let p = JSON.parse(puzzles); 
-    console.log(puzzles.sudokuPuzzles); 
-  }
+    // for (let i = 0; i < 9; i++) {
+    //   for (let j = 0; j < 9; j++) {
+    //     console.log(`${i},${j}: ${puzzles.sudokuPuzzles[1][i][j]}`); 
+
+    //     // if (puzzles.sudokuPuzzles[1][i][j]) {
+    //     //   console.log(puzzles.sudokuPuzzles[1][i][j]); 
+    //     // } else {
+    //     //   console.log('');
+    //     // }
+
+    //   }
+    // }
+    // return; 
+    let rows = {
+      1:[],2:[],3:[], 
+      4:[],5:[],6:[], 
+      7:[],8:[],9:[], 
+    }; 
+    for(let i=0; i<3; i++) {
+      for (let j = 0; j < 3; j++) {
+        rows[1].push(puzzles.sudokuPuzzles[1][i][j]);
+      }
+      for (let j = 3; j < 6; j++) {
+        rows[2].push(puzzles.sudokuPuzzles[1][i][j]);
+      }
+      for (let j = 6; j < 9; j++) {
+        rows[3].push(puzzles.sudokuPuzzles[1][i][j]);
+      }
+    }
+    for(let i=3; i<6; i++) {
+      for (let j = 0; j < 3; j++) {
+        rows[4].push(puzzles.sudokuPuzzles[1][i][j]);
+      }
+      for (let j = 3; j < 6; j++) {
+        rows[5].push(puzzles.sudokuPuzzles[1][i][j]);
+      }
+      for (let j = 6; j < 9; j++) {
+        rows[6].push(puzzles.sudokuPuzzles[1][i][j]);
+      }
+    }
+    for(let i=6; i<9; i++) {
+      for (let j = 0; j < 3; j++) {
+        rows[7].push(puzzles.sudokuPuzzles[1][i][j]);
+      }
+      for (let j = 3; j < 6; j++) {
+        rows[8].push(puzzles.sudokuPuzzles[1][i][j]);
+      }
+      for (let j = 6; j < 9; j++) {
+        rows[9].push(puzzles.sudokuPuzzles[1][i][j]);
+      }
+    }
+    console.log(rows);
+    // return; 
+
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        // console.log(this.obj[j], this.obj[i])
+        let x = this.obj[j+1];
+        let y = this.obj[i+1];
+        let ele = document.getElementById('x:' + this.obj[j+1] + ', y:' + this.obj[i+1])
+        // let num = puzzles.sudokuPuzzles[1][i][j]; 
+        let num = rows[i+1][j]; 
+        let id = 'x:' + x + ', y:' + y;
+        quad = ele.className;
+
+        if (num === '.') {
+          let inp = document.createElement('input');
+          inp.type = 'text'; inp.value = '';
+          inp.id = id;
+          inp.className = quad;
+          inp.style.width = '5.4vw';
+          inp.style.height = '5.4vh';
+          inp.style.backgroundColor = document.getElementById(id).style.backgroundColor;
+          inp.style.border = '.2vw dotted black';
+          ele.appendChild(inp);
+          } else {
+            ele.appendChild(document.createTextNode(num));
+          }
+        };
+      }
+      // document.getElementById(obj[i]  obj[j]);
+    }
+  // }
 
   print(x,y) {
     let id = 'x:' + x + ', y:' + y; 

@@ -15,7 +15,7 @@ function newSudoku() {
   let g = new Grid();
   g.createCartesian();
   g.templatePuzzles();
-  // return;
+  return;
   g.obtainIDs();
   return; 
 //   let grid = document.getElementById("myCanvas");
