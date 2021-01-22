@@ -1,249 +1,220 @@
-const Board = require("./board");
+// const Board = require("./board");
+const Grid = require("./board");
+// const CanvasSudoku = require("./canvas_board"); 
+const CanvasBoard = require("./canvas_board");
 
-let canvas = document.getElementById("myCanvas");
-let ctx = canvas.getContext("2d");
+// import {
+//   CanvasBoard as CanvasBoard, CanvasSudoku as CanvasSudoku
+// } from './canvas_board'; 
 
-function generateNum() {
-  let num = Math.ceil(Math.random() * 9);
-  console.log(num);
-  return num;
+// let elem = document.getElementById("instr");
+let x = 0; 
+function timeNow() {
+  let t = setTimeout(function() {timeNow()}, 1000); 
+}
+function myFunc(x) {
+  // x++;    
+  let d = new Date();  
+  let min = d.getMinutes() - x.getMinutes(); 
+  // let sec = d.getSeconds() - x.getSeconds(); 
+  // if (d.getSeconds() < x.getSeconds()) {
+
+  // }
+  // if (d.getSeconds() > x.getSeconds()) {
+  //   sec = d.getSeconds() - x.getSeconds(); 
+  // } else {
+  //   sec += (60 - x.getSeconds()); 
+  // }
+  // } else {
+  //   sec = d.getSeconds(); 
+  // }
+  let time = document.getElementById("time");
+  document.getElementById("time").innerHTML = 'Time: ';
+  // time.appendChild(document.createTextNode(new Date().getSeconds())); 
+  // time.appendChild(document.createTextNode(d.getMinutes() + ':' + d.getSeconds())); 
+  // console.log('next line'); 
+  // time.appendChild(document.createTextNode(min + ':' + sec)); 
+  // time.appendChild(document.createTextNode(min)); 
+  let elapsedTime = Math.round((d - x) / 1000); 
+  if ((Math.round((d - x) / 1000)) % 60 < 10) {
+    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':0'+(Math.round((d - x) / 1000))%60)); 
+  } else {
+    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':'+(Math.round((d - x) / 1000))%60)); 
+  }
+  // console.log(Math.round((d-x)/1000)); 
+  // console.log(x); 
+  let t= setTimeout(function() {myFunc(x)}, 1000); 
+  // alert('hello'); 
 }
 
-// function drawSmallBox(left, right, top, bottom) {
-//   let count = 1;
-//   ctx.beginPath();
-//   // ctx.lineWidth = 10;
+function newSudoku() {
+  let startTime = new Date;
+  // let x = 0; 
+  let time = document.getElementById("time"); 
+  document.getElementById("time").innerHTML = 'Time: ';
+  // time.appendChild(document.createTextNode('ayyyyy')); 
+  window.clearInterval; 
+  // timeNow(); 
+  setInterval(myFunc(startTime), 1000); 
+  document.getElementById("myCanvas").innerHTML = '';
+  let g = new Grid();
+  g.createCartesian();
+  g.templatePuzzles();
 
-//   let row1 = [];
-//   let row2 = [];
-//   let row3 = [];
+  console.log(startTime.getMinutes() + ":" + startTime.getSeconds());
 
-//   ctx.font = "20px Arial";
-//   ctx.strokeStyle = "rgba(0,0,255,0.5)";
-//   for (b = left; b < right; b += 180) {
-//     ctx.stroke();
-//     let box = [];
-//     for (x = b; x < b + 180; x += 60) {
-//       console.log(`column ${count}`); count++;
-//       let col = [];
-//       for (y = top; y < bottom; y += 60) {
-//         ctx.rect(x, y, 60, 60);
-//         let num = generateNum();
-//         if (!col.includes(num) && !box.includes(num)) {
-//           col.push(num); box.push(num);
-//           ctx.font = "150px Arial";
-//           ctx.fillText(num, x + 25, y + 45);
-//         } else {
-//           col.push(""); box.push("");
+  return;
+  g.obtainIDs();
+  return; 
+//   let grid = document.getElementById("myCanvas");
+//   // grid.style.backgroundColor = 'white'; 
+//   // grid.style.cssText = "display: flex; flexFlow: wrap; width: 54vw; height: 54vh;"
+//   Object.assign(grid.style, {
+//     height: '54vh',
+//     width: '54vw',  
+//     display: 'flex', 
+//     flexFlow: 'wrap', 
+//     backgroundColor: 'white',
+//     justifyContent: 'center',
+//     color: 'black', 
+//     margin: '70 auto' 
+//   }); 
+  
+//   // for (let i = 1; i<=81; i++) {
+//   //   let cell = document.createElement('div'); 
+//   //   // grid.appendChild(document.createTextNode(i)); 
+//   //   cell.appendChild(document.createTextNode(i)); 
+//   //   grid.appendChild(cell); 
+    
+//   //   cell.style.width = '5.4vw'; 
+//   //   cell.style.height = '5.4vh'; 
+//   //   if (i%3===0) {
+//   //     cell.style.border = '.2vw solid black'; 
+//   //     // cell.style.borderRight = '.2vw solid black'; 
+//   //     // cell.style.borderBottom = '.2vw solid black'; 
+//   //   } else {
+//   //     cell.style.border = '.2vw dotted black'; 
+//   //   }
+//   // }
+  
+  
+//   for (let i=1; i<=9; i++) {
+//       console.log(`i: ${i}`); 
+//       let box = document.createElement('div'); 
+//       // box.appendChild(document.createTextNode(i)); 
+//       grid.appendChild(box); 
+//       Object.assign(box.style, {
+//         height: '17.4vh', 
+//         width: '17.4vw',
+//         // border: '.2vw solid black',
+//         border: '.2vw solid black',
+//         display: 'flex',
+//         flexFlow: 'wrap'
+//       }); 
+//       // box.style.border = ".2vw solid black";
+//       box.id = i; 
+//       console.log(`id: # ${i}`);     
+
+//       // box.style.cssText = 'display: flex; flexFlow: wrap';     
+//       // box.style.display = 'flex';
+//       // box.style.flexFlow = 'wrap';
+    
+    
+//       for (let j=1; j<=9; j++) {
+//           let cell = document.createElement('div');
+//           // cell.appendChild(document.createTextNode(j));
+//           box.appendChild(cell);  
+//           cell.style.width = '5.4vw'; 
+//           cell.style.height = '5.4vh'; 
+//           cell.style.border = '.2vw dotted black';
+//           cell.id = i + '-' + j; 
+//           let prob = Math.floor(Math.random()*2);
+//           console.log(`prob: ${prob}`);
+//           // if (j%3 ===0) {
+//           if (prob) {
+//             cell.appendChild(document.createTextNode(Math.ceil(Math.random()*9)));            
+//           } else {
+//             console.log('eh'); 
+//             let inp = document.createElement('input'); 
+//             inp.type = 'text'; inp.value= ''; 
+//             // inp.style = Object.assign(inp.style, cell.style); 
+//             inp.style.width = '5.4vw';
+//             inp.style.height = '5.4vh';
+//             inp.style.backgroundColor = 'white'; 
+//             inp.style.border = '.2vw dotted black';
+//             cell.appendChild(inp); 
+//             // cell.appendChild(document.createTextNode(Math.ceil(Math.random()*9)));            
+//             // cell.appendChild(document.createTextNode(cell.id));
+//           }
 //         }
-//         ctx.stroke();
-//         ctx.closePath();
 //       }
 
-//       if (!row1.includes(col[0])) {
-//         row1.push(col[0]);
-//       };
-//       if (!row2.includes(col[1])) {
-//         row2.push(col[1]);
-//       };
-//       if (!row3.includes(col[2])) {
-//         row3.push(col[2]);
-//       };
-//     }
-//     console.log(`Row 1: ${row1}`);
-//     console.log(`Row 2: ${row2}`);
-//     console.log(`Row 3: ${row3}`);
-//     // console.log(`Box: ${box}`);
-//     console.log(`box between left, ${left}, and right, ${right}, complete! with: [${box}]`);
-//   }
-// }
-// function drawLargeBox() {
-//   for (left = 0; left < 540; left += 180) {
-//     drawSmallBox(left, left + 180, 0, 180);
-//     drawSmallBox(left, left + 180, 180, 360);
-//     drawSmallBox(left, left + 180, 360, 540);
-//     // console.log(drawSmallBox.row1)
-//   }
-// };
-
-
-
-function parsify(arr) {
-  let obj = {};
-  arr.forEach(el => {
-    obj[el] = true;
-  })
-  newArr = [];
-  Object.keys(obj).forEach(key => {
-    key.split(',').forEach(el => {
-      newArr.push(parseInt(el));
-    })
-  })
-  return newArr;
-}
-
-function drawRect() {
-
-  let count = 1;
-  let rows = { 1: row1 = [], 2: row2 = [], 3: row3 = [], 4: row4 = [], 5: row5 = [], 6: row6 = [], 7: row7 = [], 8: row8 = [], 9: row9 = [] };
-  let columns = { 1: column1 = [], 2: column2 = [], 3: column3 = [], 4: column4 = [], 5: column5 = [], 6: column6 = [], 7: column7 = [], 8: column8 = [], 9: column9 = [] }
-  // let cols = { 1: col1=[], 2: col2=[], 3: col3=[], 4: col4=[], 5: col5=[], 6: col6=[], 7: col7=[], 8: col8=[], 9: col9=[] };
-
-  let c = 0;
-
-  ctx.beginPath();
-
-  for (large = 0; large < 540; large += 180) {
-    console.log('W    T     F');
-    // this is the entire left side 3 boxes down: 
-
-
-    for (b = 0; b < 180; b += 180) {
-      ctx.stroke();
-      let box = [];
-
-      // this is one box: 
-
-      let checkpoint = 0;
-
-      for (x = b; x < b + 540; x += 60) {
-        console.log(`column ${count}`); count++;
-        let col = [];
-
-        // this goes across the x axis 3 (or 9 depending on the x limit) spaces and generates each little column in the smallbox. 
-        checkpoint++;
-
-        for (y = large; y < (large + 180); y += 60) {
-
-          // this goes down the y axis (one 3x3 box at a time) and adds little squares to canvas and nums to the col to be added to the smallbox. 
-
-          // I need to add the cols to a larger column and check every time I go to the next box if the col from the previous box has the nums. be careful about adding to column1, column2, or column3. 
-
-          ctx.rect(x, y, 60, 60);
-          ctx.stroke();
-
-          let num = generateNum();
-          let bool = false;
-
-
-          if (!columns[checkpoint].flat().includes(num)) {
-            bool = true;
-          };
-
-          if (!box.includes(num) && bool) {
-            col.push(num); box.push(num);
-            ctx.fillText(num, x + 25, y + 45);
-          } else {
-            col.push(0); box.push(0);
-          }
-
-
-          ctx.closePath();
-        }
-        columns[checkpoint].push(col);
-      }
-      console.log(`Box: ${box}`);
+//       // document.getElementById('6-1').appendChild(document.createTextNode('  ayyy'));
     }
-  }
 
-  let cols = { 1: col1 = [], 2: col2 = [], 3: col3 = [], 4: col4 = [], 5: col5 = [], 6: col6 = [], 7: col7 = [], 8: col8 = [], 9: col9 = [] };
-
-  for (i = 1; i <= 9; i++) {
-    cols[i] = parsify(columns[i]);
-  };
-
-  for (i = 1; i <= 9; i++) {
-    // console.log(`col ${i}: ${cols[i]}`);
-    console.log(`column ${i}: ${columns[i]}`);
-  }
-
-  // let rows = { 1: row1, 2: row2, 3: row3, 4: row4, 5: row5, 6: row6, 7: row7, 8: row8, 9: row9 };
-
-  for (i = 1; i <= 9; i++) {
-    for (j = 1; j <= 9; j++) {
-      rows[i].push(cols[j][i - 1]);
-    }
-  };
-
-  for (i = 1; i <= 9; i++) {
-    console.log(`row ${i}: ${rows[i]}`);
-  }
-
-}
-
-// drawRect();
-
-
-    // drawLargeBox();
-
-    // drawSmallBox(0, 180, 0, 180);
-
-
-    // drawSmallBox();
-    // Sudoku.drawLargeBox;
-    // setInterval(drawRect, 40);
-
-let sudoku = document.getElementById("resetBoard"); 
-sudoku.onclick = launchSudoku; 
-    
-
-
-
-// clearBoard() {
-//   clearRect(0, 0, 540, 540);
-// }
-
-function launchSudoku () {
-  // let canvas = document.getElementById("myCanvas");
-  // let ctx = canvas.getContext("2d");
+function launchSudoku() {
+  let canvas = document.getElementById("myCanvas");
+  let ctx = canvas.getContext("2d");
   // ctx.clearBoard();
   // ctx.beginPath();
   ctx.clearRect(0, 0, 540, 540);
   // ctx.closePath();
 
-  alert("New Board! ");
-  let b = new Board(canvas,ctx);
+  // alert("New Board! ");
+  let b = new CanvasBoard(canvas, ctx);
   b.generateNum();
-  
-  
+
+
   // b.drawBall();
   b.drawBoxes();
   // b.drawBoard();
-  b.placeNums(180,180);
-  
-  b.placeNums(0,0);
-  b.placeNums(360,360);
-  
-  b.placeNums(0,360);
-  b.placeNums(360,0);
-  
-  
-  
-  b.placeNums(0,180);
-  b.placeNums(180,0);
-  
-  
-  b.placeNums(180,360);
-  b.placeNums(360,180);
-  
-  
+  b.placeNums(180, 180);
+
+  b.placeNums(0, 0);
+  b.placeNums(360, 360);
+
+  b.placeNums(0, 360);
+  b.placeNums(360, 0);
+
+
+
+  b.placeNums(0, 180);
+  b.placeNums(180, 0);
+
+
+  b.placeNums(180, 360);
+  b.placeNums(360, 180);
+
+
   b.checkValues();
-  
-  
-  
+
+
+
   // b.genRows();
-  
+
   // b.placeNums(0,0);
-  
+
   // b.placeNums(180, 180);
   // b.placeNums(0, 180);
   // b.placeNums(0, 360);
   // b.placeNums(180, 0);
-  
+
   b.drawOutline();
 
 }
 
+// newSudoku(); 
+let sudoku = document.getElementById("resetBoard");
+// sudoku.onclick = launchSudoku;
+    sudoku.onclick = newSudoku;
+
+// clearBoard() {
+//   clearRect(0, 0, 540, 540);
+// }
 
 // document.getElementById("resetBoard").onclick = launchSudoku(); 
- 
+// let canvas = document.getElementById("myCanvas");
+// let ctx = canvas.getContext("2d");
+// let b = new Board(canvas, ctx); 
+// b.generateNum(); 
+// b.drawBoxes(); 
