@@ -42,7 +42,7 @@ class Grid {
       width: '54vw',
       display: 'flex',
       flexFlow: 'wrap',
-      backgroundColor: 'white',
+      // backgroundColor: 'white',
       justifyContent: 'center',
       // justifyContent: 'space-around',
       color: 'black',
@@ -128,7 +128,7 @@ class Grid {
           inp.style.width = '5.4vw';
           inp.style.height = '5.4vh';
           inp.style.backgroundColor = document.getElementById(id).style.backgroundColor;
-          inp.style.border = '.2vw dotted black';
+          // inp.style.border = '.2vw dotted black';
           ele.appendChild(inp);
           } else {
             ele.appendChild(document.createTextNode(num));
@@ -257,7 +257,8 @@ class Grid {
         box.appendChild(cell);
         cell.style.width = '5.4vw';
         cell.style.height = '5.4vh';
-        cell.style.border = '.2vw dotted black';
+        // cell.style.border = '.2vw dotted black';
+        cell.style.border = '.2vw solid gray';
         // cell.id = i + '-' + j;
         let ident = 'x:' + x + ', y:' + y; 
         cell.id = ident; 
@@ -269,6 +270,7 @@ class Grid {
           cell.style.backgroundColor = 'white'; 
         } else {
           cell.style.backgroundColor = 'tan'; 
+          // cell.style.backgroundColor = 'white'; 
         }  
         // console.log(quad); 
       }
@@ -630,7 +632,6 @@ g.templatePuzzles();
 let x = Math.ceil(Math.random() * 9);
 let y = Math.ceil(Math.random() * 9); 
 // console.log(puzzles.sudokuPuzzles[1]);
-// g.genNums('i actually don\'t know'); 
 // g.genNums(x,y); 
 // g.print(1,2); 
 // g.print(1,3); 
