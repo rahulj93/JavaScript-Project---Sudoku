@@ -12,50 +12,30 @@ let x = 0;
 function timeNow() {
   let t = setTimeout(function() {timeNow()}, 1000); 
 }
-function myFunc(x) {
-  // x++;    
+let t; 
+function myFunc(time, x) {
   let d = new Date();  
-  let min = d.getMinutes() - x.getMinutes(); 
+  // let min = d.getMinutes() - x.getMinutes(); 
   // let sec = d.getSeconds() - x.getSeconds(); 
-  // if (d.getSeconds() < x.getSeconds()) {
-
-  // }
-  // if (d.getSeconds() > x.getSeconds()) {
-  //   sec = d.getSeconds() - x.getSeconds(); 
-  // } else {
-  //   sec += (60 - x.getSeconds()); 
-  // }
-  // } else {
-  //   sec = d.getSeconds(); 
-  // }
-  let time = document.getElementById("time");
-  document.getElementById("time").innerHTML = 'Time: ';
-  // time.appendChild(document.createTextNode(new Date().getSeconds())); 
-  // time.appendChild(document.createTextNode(d.getMinutes() + ':' + d.getSeconds())); 
-  // console.log('next line'); 
-  // time.appendChild(document.createTextNode(min + ':' + sec)); 
-  // time.appendChild(document.createTextNode(min)); 
+  time.innerHTML = 'Time: ';
   let elapsedTime = Math.round((d - x) / 1000); 
-  if ((Math.round((d - x) / 1000)) % 60 < 10) {
-    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':0'+(Math.round((d - x) / 1000))%60)); 
+  if (elapsedTime % 60 < 10) { 
+    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':0'+(elapsedTime%60))); 
   } else {
-    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':'+(Math.round((d - x) / 1000))%60)); 
+    time.appendChild(document.createTextNode(Math.floor(elapsedTime / 60) + ':' + (elapsedTime % 60)));  
   }
-  // console.log(Math.round((d-x)/1000)); 
-  // console.log(x); 
-  let t= setTimeout(function() {myFunc(x)}, 1000); 
-  // alert('hello'); 
+  t= setTimeout(function() {myFunc(time, x)}, 1000); 
 }
 
 function newSudoku() {
+  clearTimeout(t); 
   let startTime = new Date;
   // let x = 0; 
   let time = document.getElementById("time"); 
-  document.getElementById("time").innerHTML = 'Time: ';
-  // time.appendChild(document.createTextNode('ayyyyy')); 
-  window.clearInterval; 
+  // window.clearInterval; 
   // timeNow(); 
-  setInterval(myFunc(startTime), 1000); 
+  myFunc(time, startTime); 
+  // setInterval(myFunc(startTime), 1000); 
   document.getElementById("myCanvas").innerHTML = '';
   let g = new Grid();
   g.createCartesian();
