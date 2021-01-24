@@ -1,7 +1,19 @@
 const puzzles = require("./puzzles"); 
-
+const puzzleSolutions = require("./puzzle_solutions"); 
 class Grid {
   constructor() {
+    this.templateRows = {
+      1: [], 2: [], 3: [],
+      4: [], 5: [], 6: [],
+      7: [], 8: [], 9: [],
+    }; 
+    this.rowSolutions = {
+      1: [], 2: [], 3: [],
+      4: [], 5: [], 6: [],
+      7: [], 8: [], 9: [],
+    }; 
+
+
     this.boxes = {}; 
     for (let i = 1; i <= 9; i++) {
       this.boxes[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -63,50 +75,62 @@ class Grid {
   this.templatePuzzles = this.templatePuzzles.bind(this); 
   }
 
+  transposeTemplate() {
+
+  }
+
+  renderTemplate() {
+
+  }
+
   templatePuzzles() {
+  // templatePuzzles(file,puzzle) {
     let randompuzzle = Math.ceil(Math.random() * 10);
 
-    // let p = JSON.parse(puzzles); 
- 
-    let rows = {
-      1:[],2:[],3:[], 
-      4:[],5:[],6:[], 
-      7:[],8:[],9:[], 
-    }; 
     for(let i=0; i<3; i++) {
       for (let j = 0; j < 3; j++) {
-        rows[1].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.templateRows[1].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.rowSolutions[1].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
       for (let j = 3; j < 6; j++) {
-        rows[2].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.templateRows[2].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.rowSolutions[2].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
       for (let j = 6; j < 9; j++) {
-        rows[3].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.templateRows[3].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.rowSolutions[3].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
     }
     for(let i=3; i<6; i++) {
       for (let j = 0; j < 3; j++) {
-        rows[4].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.templateRows[4].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.rowSolutions[4].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
       for (let j = 3; j < 6; j++) {
-        rows[5].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.templateRows[5].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.rowSolutions[5].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
       for (let j = 6; j < 9; j++) {
-        rows[6].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.templateRows[6].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.rowSolutions[6].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
     }
     for(let i=6; i<9; i++) {
       for (let j = 0; j < 3; j++) {
-        rows[7].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.templateRows[7].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.rowSolutions[7].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
       for (let j = 3; j < 6; j++) {
-        rows[8].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.templateRows[8].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.rowSolutions[8].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
       for (let j = 6; j < 9; j++) {
-        rows[9].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.templateRows[9].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
+        this.rowSolutions[9].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
     }
-    console.log(rows);
+    console.log(this.templateRows);
+    console.log(this.rowSolutions);
     // return; 
 
     for (let i = 0; i < 9; i++) {
@@ -116,7 +140,18 @@ class Grid {
         let y = this.obj[i+1];
         let ele = document.getElementById('x:' + this.obj[j+1] + ', y:' + this.obj[i+1])
         // let num = puzzles.sudokuPuzzles[1][i][j]; 
-        let num = rows[i+1][j]; 
+        // let num = rows[i+1][j]; 
+        let num = this.templateRows[i+1][j]; 
+        // let num = this.rowSolutions[i+1][j]; 
+        // let bool = (this.templateRows[i+1][j] === this.rowSolutions[i+1][j]); 
+        // if (!bool) {
+        //   console.log(num);
+        //   console.log(bool);
+        //   return; 
+        // } else {
+        //   console.log(bool);
+        // }
+        // return; 
         let id = 'x:' + x + ', y:' + y;
         quad = ele.className;
 
@@ -129,7 +164,32 @@ class Grid {
           inp.style.height = '5.4vh';
           inp.style.backgroundColor = document.getElementById(id).style.backgroundColor;
           // inp.style.border = '.2vw dotted black';
+          let val = 'no' 
+          let sol = this.rowSolutions; 
           ele.appendChild(inp);
+          inp.onchange = function (e) {
+            e.preventDefault();
+            let int = parseInt(e.target.value, 10); 
+            // console.log(e.toString());
+            console.log(sol);
+            // console.log(this.rowSolutions); 
+            if (int === sol[i+1][j]) {
+            // if (int === this.rowSolutions[i+1][j]) {
+            // if (int === 1) {
+              // if (e.target.value % 2 === 0) {
+              inp.value = e.target.value;
+              // console.log(this.val); 
+              console.log(val);
+              // this.val = e.target.value; 
+              val = e.target.value;
+              // console.log(e.target.value); 
+              // console.log(this.val); 
+              console.log(val);
+            } else {
+              alert('try again');
+              inp.value = '';
+            }
+          } 
           } else {
             ele.appendChild(document.createTextNode(num));
           }

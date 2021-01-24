@@ -12,50 +12,30 @@ let x = 0;
 function timeNow() {
   let t = setTimeout(function() {timeNow()}, 1000); 
 }
-function myFunc(x) {
-  // x++;    
+let t; 
+function myFunc(time, x) {
   let d = new Date();  
-  let min = d.getMinutes() - x.getMinutes(); 
+  // let min = d.getMinutes() - x.getMinutes(); 
   // let sec = d.getSeconds() - x.getSeconds(); 
-  // if (d.getSeconds() < x.getSeconds()) {
-
-  // }
-  // if (d.getSeconds() > x.getSeconds()) {
-  //   sec = d.getSeconds() - x.getSeconds(); 
-  // } else {
-  //   sec += (60 - x.getSeconds()); 
-  // }
-  // } else {
-  //   sec = d.getSeconds(); 
-  // }
-  let time = document.getElementById("time");
-  document.getElementById("time").innerHTML = 'Time: ';
-  // time.appendChild(document.createTextNode(new Date().getSeconds())); 
-  // time.appendChild(document.createTextNode(d.getMinutes() + ':' + d.getSeconds())); 
-  // console.log('next line'); 
-  // time.appendChild(document.createTextNode(min + ':' + sec)); 
-  // time.appendChild(document.createTextNode(min)); 
+  time.innerHTML = 'Time: ';
   let elapsedTime = Math.round((d - x) / 1000); 
-  if ((Math.round((d - x) / 1000)) % 60 < 10) {
-    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':0'+(Math.round((d - x) / 1000))%60)); 
+  if (elapsedTime % 60 < 10) { 
+    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':0'+(elapsedTime%60))); 
   } else {
-    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':'+(Math.round((d - x) / 1000))%60)); 
+    time.appendChild(document.createTextNode(Math.floor(elapsedTime / 60) + ':' + (elapsedTime % 60)));  
   }
-  // console.log(Math.round((d-x)/1000)); 
-  // console.log(x); 
-  let t= setTimeout(function() {myFunc(x)}, 1000); 
-  // alert('hello'); 
+  t= setTimeout(function() {myFunc(time, x)}, 1000); 
 }
 
 function newSudoku() {
+  clearTimeout(t); 
   let startTime = new Date;
   // let x = 0; 
   let time = document.getElementById("time"); 
-  document.getElementById("time").innerHTML = 'Time: ';
-  // time.appendChild(document.createTextNode('ayyyyy')); 
-  window.clearInterval; 
+  // window.clearInterval; 
   // timeNow(); 
-  setInterval(myFunc(startTime), 1000); 
+  myFunc(time, startTime); 
+  // setInterval(myFunc(startTime), 1000); 
   document.getElementById("myCanvas").innerHTML = '';
   let g = new Grid();
   g.createCartesian();
@@ -65,92 +45,10 @@ function newSudoku() {
 
   return;
   g.obtainIDs();
-  return; 
-//   let grid = document.getElementById("myCanvas");
-//   // grid.style.backgroundColor = 'white'; 
-//   // grid.style.cssText = "display: flex; flexFlow: wrap; width: 54vw; height: 54vh;"
-//   Object.assign(grid.style, {
-//     height: '54vh',
-//     width: '54vw',  
-//     display: 'flex', 
-//     flexFlow: 'wrap', 
-//     backgroundColor: 'white',
-//     justifyContent: 'center',
-//     color: 'black', 
-//     margin: '70 auto' 
-//   }); 
-  
-//   // for (let i = 1; i<=81; i++) {
-//   //   let cell = document.createElement('div'); 
-//   //   // grid.appendChild(document.createTextNode(i)); 
-//   //   cell.appendChild(document.createTextNode(i)); 
-//   //   grid.appendChild(cell); 
-    
-//   //   cell.style.width = '5.4vw'; 
-//   //   cell.style.height = '5.4vh'; 
-//   //   if (i%3===0) {
-//   //     cell.style.border = '.2vw solid black'; 
-//   //     // cell.style.borderRight = '.2vw solid black'; 
-//   //     // cell.style.borderBottom = '.2vw solid black'; 
-//   //   } else {
-//   //     cell.style.border = '.2vw dotted black'; 
-//   //   }
-//   // }
-  
-  
-//   for (let i=1; i<=9; i++) {
-//       console.log(`i: ${i}`); 
-//       let box = document.createElement('div'); 
-//       // box.appendChild(document.createTextNode(i)); 
-//       grid.appendChild(box); 
-//       Object.assign(box.style, {
-//         height: '17.4vh', 
-//         width: '17.4vw',
-//         // border: '.2vw solid black',
-//         border: '.2vw solid black',
-//         display: 'flex',
-//         flexFlow: 'wrap'
-//       }); 
-//       // box.style.border = ".2vw solid black";
-//       box.id = i; 
-//       console.log(`id: # ${i}`);     
-
-//       // box.style.cssText = 'display: flex; flexFlow: wrap';     
-//       // box.style.display = 'flex';
-//       // box.style.flexFlow = 'wrap';
-    
-    
-//       for (let j=1; j<=9; j++) {
-//           let cell = document.createElement('div');
-//           // cell.appendChild(document.createTextNode(j));
-//           box.appendChild(cell);  
-//           cell.style.width = '5.4vw'; 
-//           cell.style.height = '5.4vh'; 
-//           cell.style.border = '.2vw dotted black';
-//           cell.id = i + '-' + j; 
-//           let prob = Math.floor(Math.random()*2);
-//           console.log(`prob: ${prob}`);
-//           // if (j%3 ===0) {
-//           if (prob) {
-//             cell.appendChild(document.createTextNode(Math.ceil(Math.random()*9)));            
-//           } else {
-//             console.log('eh'); 
-//             let inp = document.createElement('input'); 
-//             inp.type = 'text'; inp.value= ''; 
-//             // inp.style = Object.assign(inp.style, cell.style); 
-//             inp.style.width = '5.4vw';
-//             inp.style.height = '5.4vh';
-//             inp.style.backgroundColor = 'white'; 
-//             inp.style.border = '.2vw dotted black';
-//             cell.appendChild(inp); 
-//             // cell.appendChild(document.createTextNode(Math.ceil(Math.random()*9)));            
-//             // cell.appendChild(document.createTextNode(cell.id));
-//           }
-//         }
-//       }
-
-//       // document.getElementById('6-1').appendChild(document.createTextNode('  ayyy'));
-    }
+      // box.style.cssText = 'display: flex; flexFlow: wrap';     
+      // box.style.display = 'flex';
+      // box.style.flexFlow = 'wrap';
+}
 
 function launchSudoku() {
   let canvas = document.getElementById("myCanvas");
@@ -188,8 +86,6 @@ function launchSudoku() {
 
   b.checkValues();
 
-
-
   // b.genRows();
 
   // b.placeNums(0,0);
@@ -207,10 +103,6 @@ function launchSudoku() {
 let sudoku = document.getElementById("resetBoard");
 // sudoku.onclick = launchSudoku;
     sudoku.onclick = newSudoku;
-
-// clearBoard() {
-//   clearRect(0, 0, 540, 540);
-// }
 
 // document.getElementById("resetBoard").onclick = launchSudoku(); 
 // let canvas = document.getElementById("myCanvas");
