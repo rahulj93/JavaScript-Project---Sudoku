@@ -12,6 +12,11 @@ class Grid {
       4: [], 5: [], 6: [],
       7: [], 8: [], 9: [],
     }; 
+    this.updatedRows = {
+      1: [], 2: [], 3: [],
+      4: [], 5: [], 6: [],
+      7: [], 8: [], 9: [],
+    }
 
 
     this.boxes = {}; 
@@ -131,6 +136,7 @@ class Grid {
     }
     console.log(this.templateRows);
     console.log(this.rowSolutions);
+    this.updatedRows = this.templateRows;
     // return; 
 
     for (let i = 0; i < 9; i++) {
@@ -165,6 +171,7 @@ class Grid {
           inp.style.backgroundColor = document.getElementById(id).style.backgroundColor;
           // inp.style.border = '.2vw dotted black';
           let val = 'no' 
+          let updatedRows = this.updatedRows; 
           let sol = this.rowSolutions; 
           ele.appendChild(inp);
           inp.onchange = function (e) {
@@ -185,9 +192,21 @@ class Grid {
               // console.log(e.target.value); 
               // console.log(this.val); 
               console.log(val);
+              updatedRows[i+1][j] = parseInt(val);
+              console.log(updatedRows === sol);
+
+              console.log(updatedRows); 
             } else {
               alert('try again');
               inp.value = '';
+            }
+            let strUpdatedRows = JSON.stringify(updatedRows); 
+            let strSol = JSON.stringify(sol); 
+            if (strUpdatedRows === strSol) {
+              alert('game over');
+              // console.log('game over'); 
+              // console.log(sol); 
+              // console.log(updatedRows); 
             }
           } 
           } else {
