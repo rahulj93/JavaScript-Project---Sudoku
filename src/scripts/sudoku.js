@@ -27,7 +27,8 @@ function myFunc(time, x) {
   t= setTimeout(function() {myFunc(time, x)}, 1000); 
 }
 
-function newSudoku() {
+// export default function newSudoku() {
+  function newSudoku() {
   clearTimeout(t); 
   let startTime = new Date;
   // let x = 0; 
@@ -110,3 +111,11 @@ let sudoku = document.getElementById("resetBoard");
 // let b = new Board(canvas, ctx); 
 // b.generateNum(); 
 // b.drawBoxes(); 
+
+export default function testing() {
+  alert('test!'); 
+}
+
+// module.exports = testing; 
+
+document.getElementById('startBoard').onclick = newSudoku; 
