@@ -61,9 +61,10 @@ class Grid {
       flexFlow: 'wrap',
       // backgroundColor: 'white',
       justifyContent: 'center',
+      alignContent: 'center', 
       // justifyContent: 'space-around',
       color: 'black',
-      margin: '70 auto'
+      // margin: '70 auto'
     });
     // this.box.style = {}; 
     // this.cell.style = {}; 
@@ -203,6 +204,8 @@ class Grid {
             let strUpdatedRows = JSON.stringify(updatedRows); 
             let strSol = JSON.stringify(sol); 
             if (strUpdatedRows === strSol) {
+              document.getElementById('myCanvas').style.background = 'white'; 
+              document.getElementById('myCanvas').innerHTML = 'GAME OVER!'
               alert('game over');
               // console.log('game over'); 
               // console.log(sol); 
@@ -212,6 +215,9 @@ class Grid {
           } else {
             ele.appendChild(document.createTextNode(num));
           }
+          ele.style.display = 'flex'; 
+          ele.style.left = '50%'; 
+          ele.style.top = '50%';
         };
       }
       // document.getElementById(obj[i]  obj[j]);
@@ -283,6 +289,7 @@ class Grid {
   }
   
   createCartesian() {
+    this.quadrant.style.backgroundColor = 'black'; 
     let x = 0; 
     let y = 0; 
     for (let i = 1; i <= 9; i++) {
@@ -293,7 +300,8 @@ class Grid {
         width: '17.4vw',
         border: '.2vw solid black',
         display: 'flex',
-        flexFlow: 'wrap'
+        flexFlow: 'wrap',
+        justifyContent: 'center'
       });
       
       for (let j = 1; j <= 9; j++) {
@@ -337,7 +345,7 @@ class Grid {
         cell.style.width = '5.4vw';
         cell.style.height = '5.4vh';
         // cell.style.border = '.2vw dotted black';
-        cell.style.border = '.2vw solid gray';
+        cell.style.border = '.1vw solid gray';
         // cell.id = i + '-' + j;
         let ident = 'x:' + x + ', y:' + y; 
         cell.id = ident; 
@@ -349,7 +357,7 @@ class Grid {
           cell.style.backgroundColor = 'white'; 
         } else {
           cell.style.backgroundColor = 'tan'; 
-          // cell.style.backgroundColor = 'white'; 
+          cell.style.backgroundColor = 'white'; 
         }  
         // console.log(quad); 
       }
@@ -703,9 +711,35 @@ class Grid {
 }; 
 
 module.exports = Grid; 
+
+// const Sudoku = require('./sudoku'); 
+// const newSudoku = require('./sudoku').newSudoku;  
+// const testing = require('./sudoku').testing;  
+// import newSudoku from './sudoku'; 
+// import testing from './sudoku'; 
+
+
+document.getElementById('myCanvas').style.width = '54vw'; 
+document.getElementById('myCanvas').style.textAlign = 'left'; 
+// document.getElementById('myCanvas').style.display = 'flex'; 
+// document.getElementById('myCanvas').appendChild(document.createTextNode('Welcome to Sudoku  '));
+// let list = document.createElement('ol'); 
+// list.appendChild(document.createElement('li')).innerHTML = 'Fill in rows and columns with numbers 1-9'; 
+// list.appendChild(document.createElement('li')).innerHTML = 'Fill in 3x3 boxes with numbers 1-9'; 
+// document.getElementById('myCanvas').appendChild(list);
+
+let initialize = document.createElement('button'); 
+document.getElementById('myCanvas').appendChild(initialize);
+initialize.style.height = '4vh'; 
+initialize.style.width = '20vw'; 
+initialize.innerHTML = 'Start';
+initialize.id = 'startBoard'; 
+// initialize.onclick = Sudoku.newSudoku;
+// initialize.onclick = testing; 
+
 let g = new Grid();
-g.createCartesian();
-g.templatePuzzles(); 
+// g.createCartesian();
+// g.templatePuzzles(); 
 // return; 
 // g.obtainIDs();
 let x = Math.ceil(Math.random() * 9);
