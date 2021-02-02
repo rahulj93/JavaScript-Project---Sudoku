@@ -2,7 +2,15 @@
 const Grid = require("./board");
 // const CanvasSudoku = require("./canvas_board"); 
 const CanvasBoard = require("./canvas_board");
+const Timer = require("./timer"); 
 
+let begin; 
+function go() {
+  let ti = new Timer(); 
+  begin = setInterval(function() {ti.start(), 1000}); 
+  begin; 
+}
+go(); 
 // import {
 //   CanvasBoard as CanvasBoard, CanvasSudoku as CanvasSudoku
 // } from './canvas_board'; 
@@ -29,20 +37,23 @@ function myFunc(time, x) {
 
 // export default function newSudoku() {
   function newSudoku() {
-  clearTimeout(t); 
-  let startTime = new Date;
-  // let x = 0; 
-  let time = document.getElementById("time"); 
-  // window.clearInterval; 
-  // timeNow(); 
-  myFunc(time, startTime); 
-  // setInterval(myFunc(startTime), 1000); 
+  // clearTimeout(t); 
+  // let startTime = new Date;
+  // // let x = 0; 
+  // let time = document.getElementById("time"); 
+  // // window.clearInterval; 
+  // // timeNow(); 
+  // myFunc(time, startTime); 
+  // // setInterval(myFunc(startTime), 1000); 
+    clearInterval(begin); 
+go(); 
+
   document.getElementById("myCanvas").innerHTML = '';
   let g = new Grid();
   g.createCartesian();
   g.templatePuzzles();
 
-  console.log(startTime.getMinutes() + ":" + startTime.getSeconds());
+  // console.log(startTime.getMinutes() + ":" + startTime.getSeconds());
 
   return;
   g.obtainIDs();
