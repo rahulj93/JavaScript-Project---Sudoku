@@ -18,6 +18,7 @@ class Grid {
       7: [], 8: [], 9: [],
     }
 
+    this.emptyCount = 0; 
 
     this.boxes = {}; 
     for (let i = 1; i <= 9; i++) {
@@ -34,21 +35,21 @@ class Grid {
     //   8: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     //   9: [1, 2, 3, 4, 5, 6, 7, 8, 9]
     // };
-    this.rows = {}; 
-    for (let i = 1; i <= 9; i++) {
-      this.rows[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    }
+    // this.rows = {}; 
+    // for (let i = 1; i <= 9; i++) {
+    //   this.rows[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // }
     
-    this.columns = {}; 
-    for (let i = 1; i <= 9; i++) {
-      this.columns[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    }
+    // this.columns = {}; 
+    // for (let i = 1; i <= 9; i++) {
+    //   this.columns[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    // }
 
-    this.allBoxes = {}
+    // this.allBoxes = {}
 
-    for (let i = 1; i<=81; i++) {
-      this.allBoxes[i] = [1,2,3,4,5,6,7,8,9]; 
-    }
+    // for (let i = 1; i<=81; i++) {
+    //   this.allBoxes[i] = [1,2,3,4,5,6,7,8,9]; 
+    // }
 
     this.quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': [] }
     // this.quadsArray = ['topleft', 'topmiddle', 'topright', 'midleft', 'midmiddle', 'midright', 'bottomleft', 'bottommiddle', 'bottomright']; 
@@ -78,22 +79,16 @@ class Grid {
   this.selectNum = this.selectNum.bind(this); 
     this.filled = ['.']
   this.print = this.print.bind(this); 
-  this.templatePuzzles = this.templatePuzzles.bind(this); 
+  // this.templatePuzzles = this.templatePuzzles.bind(this); 
+  this.transposeTemplate = this.transposeTemplate.bind(this); 
+  this.renderTemplate = this.renderTemplate.bind(this); 
+  this.score = 0; 
   }
 
   transposeTemplate() {
-
-  }
-
-  renderTemplate() {
-
-  }
-
-  templatePuzzles() {
-  // templatePuzzles(file,puzzle) {
     let randompuzzle = Math.ceil(Math.random() * 10);
 
-    for(let i=0; i<3; i++) {
+    for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 3; j++) {
         this.templateRows[1].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
         this.rowSolutions[1].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
@@ -107,7 +102,7 @@ class Grid {
         this.rowSolutions[3].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
     }
-    for(let i=3; i<6; i++) {
+    for (let i = 3; i < 6; i++) {
       for (let j = 0; j < 3; j++) {
         this.templateRows[4].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
         this.rowSolutions[4].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
@@ -121,7 +116,7 @@ class Grid {
         this.rowSolutions[6].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
     }
-    for(let i=6; i<9; i++) {
+    for (let i = 6; i < 9; i++) {
       for (let j = 0; j < 3; j++) {
         this.templateRows[7].push(puzzles.sudokuPuzzles[randompuzzle][i][j]);
         this.rowSolutions[7].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
@@ -138,31 +133,23 @@ class Grid {
     console.log(this.templateRows);
     console.log(this.rowSolutions);
     this.updatedRows = this.templateRows;
-    // return; 
+    // return;
+  }
 
+  renderTemplate() {
+    this.transposeTemplate(); 
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
-        // console.log(this.obj[j], this.obj[i])
-        let x = this.obj[j+1];
-        let y = this.obj[i+1];
-        let ele = document.getElementById('x:' + this.obj[j+1] + ', y:' + this.obj[i+1])
-        // let num = puzzles.sudokuPuzzles[1][i][j]; 
-        // let num = rows[i+1][j]; 
-        let num = this.templateRows[i+1][j]; 
-        // let num = this.rowSolutions[i+1][j]; 
-        // let bool = (this.templateRows[i+1][j] === this.rowSolutions[i+1][j]); 
-        // if (!bool) {
-        //   console.log(num);
-        //   console.log(bool);
-        //   return; 
-        // } else {
-        //   console.log(bool);
-        // }
-        // return; 
+        let x = this.obj[j + 1];
+        let y = this.obj[i + 1];
+        let ele = document.getElementById('x:' + this.obj[j + 1] + ', y:' + this.obj[i + 1])
+        let num = this.templateRows[i + 1][j];
+ 
         let id = 'x:' + x + ', y:' + y;
         quad = ele.className;
 
         if (num === '.') {
+          this.emptyCount += 1; 
           let inp = document.createElement('input');
           inp.type = 'text'; inp.value = '';
           inp.id = id;
@@ -171,20 +158,29 @@ class Grid {
           inp.style.height = '5.4vh';
           inp.style.backgroundColor = document.getElementById(id).style.backgroundColor;
           // inp.style.border = '.2vw dotted black';
-          let val = 'no' 
-          let updatedRows = this.updatedRows; 
-          let sol = this.rowSolutions; 
+          let val = 'no'
+          let updatedRows = this.updatedRows;
+          let sol = this.rowSolutions;
+          let score = this.score; 
+          let emptyCount = this.emptyCount; 
+          document.getElementById('score').innerHTML = 0; 
+
           ele.appendChild(inp);
           inp.onchange = function (e) {
             e.preventDefault();
-            let int = parseInt(e.target.value, 10); 
+            let int = parseInt(e.target.value, 10);
             // console.log(e.toString());
             console.log(sol);
             // console.log(this.rowSolutions); 
-            if (int === sol[i+1][j]) {
-            // if (int === this.rowSolutions[i+1][j]) {
-            // if (int === 1) {
+            if (int === sol[i + 1][j]) {
+              // if (int === this.rowSolutions[i+1][j]) {
+              // if (int === 1) {
               // if (e.target.value % 2 === 0) {
+                // this.score += 1; 
+              document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) + 1; 
+                 //  appendChild(document.createTextNode(score)); 
+              inp.style.backgroundColor = document.getElementById(id).style.backgroundColor; 
+
               inp.value = e.target.value;
               // console.log(this.val); 
               console.log(val);
@@ -193,36 +189,38 @@ class Grid {
               // console.log(e.target.value); 
               // console.log(this.val); 
               console.log(val);
-              updatedRows[i+1][j] = parseInt(val);
+              updatedRows[i + 1][j] = parseInt(val);
               console.log(updatedRows === sol);
 
-              console.log(updatedRows); 
+              console.log(updatedRows);
             } else {
-              alert('try again');
-              inp.value = '';
+              document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) - 2; 
+
+              // alert('try again');
+              // inp.value = '';
+              inp.style.backgroundColor = 'red'; 
             }
-            let strUpdatedRows = JSON.stringify(updatedRows); 
-            let strSol = JSON.stringify(sol); 
+            let strUpdatedRows = JSON.stringify(updatedRows);
+            let strSol = JSON.stringify(sol);
             if (strUpdatedRows === strSol) {
-              document.getElementById('myCanvas').style.background = 'white'; 
-              document.getElementById('myCanvas').innerHTML = 'GAME OVER!'
-              alert('game over');
-              // console.log('game over'); 
-              // console.log(sol); 
-              // console.log(updatedRows); 
+              alert(emptyCount); 
+              let scored = (parseInt(document.getElementById('score').innerHTML) / emptyCount) * 100
+              document.getElementById('myCanvas').style.background = 'white';
+              document.getElementById('myCanvas').innerHTML = 'GAME OVER!  Final Score: '
+              document.getElementById('myCanvas').appendChild(document.createTextNode(Math.ceil(scored))); 
+              document.getElementById('myCanvas').appendChild(document.createTextNode('%')); 
+              alert('game over'); 
             }
-          } 
-          } else {
-            ele.appendChild(document.createTextNode(num));
           }
-          ele.style.display = 'flex'; 
-          ele.style.left = '50%'; 
-          ele.style.top = '50%';
-        };
-      }
-      // document.getElementById(obj[i]  obj[j]);
+        } else {
+          ele.appendChild(document.createTextNode(num));
+        }
+        ele.style.display = 'flex';
+        ele.style.left = '50%';
+        ele.style.top = '50%';
+      };
     }
-  // }
+  }
 
   print(x,y) {
     let id = 'x:' + x + ', y:' + y; 

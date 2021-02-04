@@ -10,7 +10,7 @@ function go() {
   begin = setInterval(function() {ti.start(), 1000}); 
   begin; 
 }
-go(); 
+// go(); 
 // import {
 //   CanvasBoard as CanvasBoard, CanvasSudoku as CanvasSudoku
 // } from './canvas_board'; 
@@ -46,11 +46,14 @@ function myFunc(time, x) {
   // myFunc(time, startTime); 
   // // setInterval(myFunc(startTime), 1000); 
     clearInterval(begin); 
-go(); 
+  go(); 
 
   document.getElementById("myCanvas").innerHTML = '';
   let g = new Grid();
   g.createCartesian();
+  // g.transposeTemplate(); 
+  g.renderTemplate(); 
+  return; 
   g.templatePuzzles();
 
   // console.log(startTime.getMinutes() + ":" + startTime.getSeconds());
