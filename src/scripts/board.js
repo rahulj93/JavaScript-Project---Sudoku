@@ -24,32 +24,6 @@ class Grid {
     for (let i = 1; i <= 9; i++) {
       this.boxes[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     }
-    // this.boxes = {
-    //   1: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    //   2: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    //   3: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    //   4: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    //   5: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    //   6: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    //   7: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    //   8: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    //   9: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-    // };
-    // this.rows = {}; 
-    // for (let i = 1; i <= 9; i++) {
-    //   this.rows[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    // }
-    
-    // this.columns = {}; 
-    // for (let i = 1; i <= 9; i++) {
-    //   this.columns[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    // }
-
-    // this.allBoxes = {}
-
-    // for (let i = 1; i<=81; i++) {
-    //   this.allBoxes[i] = [1,2,3,4,5,6,7,8,9]; 
-    // }
 
     this.quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': [] }
     // this.quadsArray = ['topleft', 'topmiddle', 'topright', 'midleft', 'midmiddle', 'midright', 'bottomleft', 'bottommiddle', 'bottomright']; 
@@ -74,12 +48,7 @@ class Grid {
 
     // this.val = ''; 
     this.obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
-
-  // this.genNums = this.genNums.bind(this);
-  // this.selectNum = this.selectNum.bind(this); 
     this.filled = ['.']
-  // this.print = this.print.bind(this); 
-  // this.templatePuzzles = this.templatePuzzles.bind(this); 
   this.transposeTemplate = this.transposeTemplate.bind(this); 
   this.renderTemplate = this.renderTemplate.bind(this); 
   this.score = 0; 
@@ -219,6 +188,9 @@ class Grid {
           }
         } else {
           ele.appendChild(document.createTextNode(num));
+          ele.style.alignItems = 'center';
+          ele.style.fontWeight = 'bold';
+          // ele.style.justifyContent = 'center';
         }
         ele.style.display = 'flex';
         ele.style.left = '50%';
@@ -226,70 +198,6 @@ class Grid {
       };
     }
   }
-
-  // print(x,y) {
-  //   let id = 'x:' + x + ', y:' + y; 
-  //   let el = document.getElementById(id); 
-  //   // let x = Math.ceil(81%9); 
-  //   // let y = Math.ceil(81/9); 
-  //   // let x = 9; 
-  //   // let y = 9; 
-  //   let boxNum = (9*(y-1)) + x;  
-  //   if (this.allBoxes[boxNum].length === 0) {
-  //     return; 
-  //   }
-  //   let randomNum = Math.floor(Math.random() * this.allBoxes[boxNum].length)
-  //   let r1 = this.allBoxes[boxNum].indexOf(randomNum)
-  //   console.log(`r1: ${r1}`);
-
-  //   // let idk = this.wtf[boxNum].splice(Math.floor(Math.random()*this.wtf[boxNum].length), 1); 
-  //   let spliced = this.allBoxes[boxNum].splice(r1, 1); 
-  //   this.allBoxes[boxNum] = spliced;
-
-  //   for (let i = 1; i<=81; i++) {
-  //     let r = this.allBoxes[i].indexOf(randomNum);
-  //     console.log(`r: ${r}`); 
-  //     if (this.allBoxes[i].length > 1 && i !== boxNum && x!==9 && i%9 === x) {
-  //       this.allBoxes[i].splice(r, 1); 
-  //     } else if (this.allBoxes[i].length > 1 && i !== boxNum && x===9 && i%9 === 0) {
-  //       this.allBoxes[i].splice(r, 1); 
-  //     }; 
-  //   }; 
-
-  //   for (let j=1; j<=81; j++) {
-  //     if (this.allBoxes[j].length > 1 && j!==boxNum && y === Math.ceil(j/9)) {
-  //       console.log(j);
-  //       let r = this.allBoxes[j].indexOf(parseInt(spliced[0]));  
-  //       console.log(this.allBoxes[j].indexOf(parseInt(spliced[0]))); 
-  //       this.allBoxes[j].splice(r, 1); 
-
-  //     }
-  //   }
-    
-  //   console.log(this.allBoxes); 
-  //   console.log(spliced);
-  //   console.log(boxNum); 
-  //   let lengths = []; 
-  //   Object.keys(this.allBoxes).forEach((k) => {
-  //     lengths.push(this.allBoxes[k].length); 
-  //   })
-  //   console.log(lengths[boxNum-1]); 
-  //   let boxNumber = lengths.indexOf(Math.min.apply(Math, lengths)) + 1; 
-  //   // console.log(`boxnumber: ${lengths.indexOf(Math.min.apply(Math, lengths))+1}`); 
-  //   console.log(`boxnumber: ${boxNumber}`); 
-
-  //   let aX = boxNumber%9; 
-  //   if (aX === 0) {
-  //     aX = 9; 
-  //   }
-  //   let aY = Math.ceil(boxNumber/9);   
-  //   console.log(`aX: ${aX}`);
-  //   console.log(`aY: ${aY}`);
-
-  //   el.appendChild(document.createTextNode(spliced)); 
-
-  //   // this.print(aX,aY); 
-  // }
   
   createCartesian() {
     this.quadrant.style.backgroundColor = 'black'; 
@@ -460,276 +368,16 @@ class Grid {
         console.log(quad);
         console.log(this.quads);
       }
-      // document.getElementById(obj[i]  obj[j]);
     }
   }
 
-  // selectNum(x,y, boxNumber) {
-  //   // let bool = true; 
-  //   // let num = Math.ceil(Math.random() * 9)
-  //   // let el = document.getElementById(id); 
-  //   if (this.boxes[boxNumber].length === 1) {
-  //     return this.boxes[boxNumber][0]; 
-  //   }
-  //   // let boxNumber = this.quadsArray.indexOf(el.className) + 1; 
-  //   let num = Math.ceil(Math.random() * (this.boxes[boxNumber].length - 1))
-  //   // if (!this.boxes[boxNumber].includes(num)) {
-  //   //   bool = false; 
-  //   // }
-
-  //   // let num = Math.ceil(Math.random() * 9)
-  //   if (!this.columns[x].includes(num) || !this.rows[y].includes(num)) {
-  //     this.selectNum(x,y, boxNumber); 
-  //   }
-  //   return num; 
-  // }
-
-  // genNums(idk) {
-  // genNums(x,y) {
-  //   if (this.columns[x].length < 1) { 
-  //     x = Math.ceil(Math.random() * 9); 
-  //   };
-  //   // if (this.rows[y].length < 1) { 
-  //   //   y = Math.ceil(Math.random() * 9); 
-  //   // };
-
-  //   // if (x>9) {
-  //   //   // x = 1; 
-  //   //   x = Math.ceil(Math.random() * 9); 
-  //   //   // y += 1;  
-  //   // }
-  //   if (y>9) {
-  //   //   // y = 1; 
-  //     y = Math.ceil(Math.random() * 9); 
-  //   //   // x += 1; 
-  //   }
-  //   // console.log(idk); 
-  //   // pick any random x and any random y and place random num from 1 - 9. 
-  //   // don't block rows, columns, boxes. 
-  //   // repeat until board is full. 
-  //   // let str = '0123456789'; 
-  //   // if (this.filled.length === 1) {
-  //   //   for (let i=1; i<=9; i++) {
-  //   //     for (let j=1; j<=9; j++) {
-  //   //       let id = 'x:' + i + ', y:' + j; 
-  //   //       let el = document.getElementById(id); 
-  //   //       el.appendChild(document.createTextNode(str)); 
-  //   //     }
-  //   //   }; 
-  //   // }
-  //   // if (this.filled.length === 82) {
-  //   //   console.log('full board!')
-  //   //   return; 
-  //   // }; 
-  //   // let x = Math.ceil(Math.random()*9); 
-  //   // let y = Math.ceil(Math.random() * 9); 
-  //   // let id = 'x:' + x + ', y:' + y; 
-  //   // let el = document.getElementById(id); 
-  //   // let stri = el.childNodes[0]; 
-  //   // console.log(stri); 
-
-  //   // let num = Math.ceil(Math.random() * 9); 
-  //   // let bool = true;
-    
-  //   // if (this.quads[el.className].includes(num)) {
-  //   //   bool = false; 
-  //   // }
-
-  //   // if (this.rows[x].includes(num)) {
-  //   //   bool = false; 
-  //   // }
-
-  //   // if (this.columns[y].includes(num)) {
-  //   //   bool = false; 
-  //   // }
-
-  //   // if (bool) {
-  //   //   let arr = str.split(''); 
-  //   //   arr[num] = '.'; 
-  //   //   str = arr.join('');  
-  //   //   console.log(str);
-  //   //   // for (let i=1; i<=9; i++) {
-  //   //   //   let id = 'x:' + x + ', y:' + i;
-  //   //   //   let el = document.getElementById(id); 
-  //   //   //   el.removeChild(el.childNodes[0]); 
-  //   //   //   el.appendChild(document.createTextNode(str));
-  //   //   // } 
-  //   //   // for (let i=1; i<=9; i++) {
-  //   //   //   let id = 'x:' + i + ', y:' + y;
-  //   //   //   let el = document.getElementById(id); 
-  //   //   //   el.removeChild(el.childNodes[0]); 
-  //   //   //   el.appendChild(document.createTextNode(str));
-  //   //   // } 
-  //   //   this.quads[el.className].push(num);
-  //   //   this.rows[x].push(num);
-  //   //   this.columns[y].push(num); 
-  //   //   el.removeChild(el.childNodes[0]);
-  //   //   el.appendChild(document.createTextNode(num));
-  //   //   this.filled.push(id); 
-  //   // }
-  //   // // str.split('')[num] = '-'; 
-  //   // // if (el.childNodes[0][num] === '.') {
-  //   // //   this.genNums(); 
-  //   // // } 
-
-  //   // this.genNums(); 
-
-  //   // // return; 
-
-  //   // // console.log(x+',' + y);
-  //   // // console.log(num); 
-  //   // // console.log(str);
-
-  //   // return; 
-  //   let rows = Object.values(this.rows); 
-  //   // let cols = Object.values(this.columns); 
-  //   console.log(rows); 
-  //   // let y = 1; 
-  //   // for (let i=0; i<8; i++) {
-  //   //   if (rows[i+1].length <= rows[i].length) { 
-  //   //     y = i+1; 
-  //   //   } else {
-  //   //     y = i;
-  //   //   }
-  //   // }
-  //   // let x = 0; 
-  //   // for (let i=0; i<8; i++) {
-  //   //   if (cols[i+1].length <= cols[i].length) { 
-  //   //     x = i+1; 
-  //   //   } else {
-  //   //     x = i;
-  //   //   }
-  //   // }
-  //   // console.log(x); 
-  //   // let x = Math.ceil(Math.random()*9); 
-  //   // let y = Math.ceil(Math.random() * 9); 
-  //   let id = 'x:' + x + ', y:' + y; 
-  //   console.log(this.filled);
-  //   console.log(this.quads);
-
-  //   if (this.filled.length === 82) {
-  //     console.log('full board!')
-  //     return; 
-  //   }; 
-  //   let bool = true; 
-  //   let el = document.getElementById(id); 
-  //       let boxNumber = this.quadsArray.indexOf(el.className) + 1; 
-
-        
-  //       let num = Math.ceil(Math.random() * 9);
-        
-  //       if (this.filled.includes(id)) {
-  //         bool = false; 
-  //       }; 
-  //   if (!this.boxes[boxNumber].includes(num)) {
-  //     bool = false; 
-  //   }
-  //   let arrBox = []; 
-  //   // Object.keys(this.boxes).forEach((k) => {
-  //   //   arrBox.push(this.boxes[k].length); 
-  //   // });
-  //   // console.log(`arrBox: ${arrBox}`);  
-  //   let arrRow = []; 
-  //   // Object.keys(this.rows).forEach((k) => {
-  //   //   arrRow.push(this.rows[k].length); 
-  //   // });
-  //   // console.log(`arrRow: ${arrRow}`);  
-  //   let arrCol = []; 
-  //   // Object.keys(this.columns).forEach((k) => {
-  //   //   arrCol.push(this.columns[k].length); 
-  //   // });
-  //   // console.log(`arrCol: ${arrCol}`);  
-
-  //   // let smallest = Math.min.apply(Math, arr); 
-  //   // if (this.quads[el.className].includes(num)) {
-  //   //   bool = false; 
-  //   // }; 
-  //   if (!this.rows[y].includes(num)) {
-  //     bool = false; 
-  //   };
-  //   if (!this.columns[x].includes(num)) {
-  //     bool = false; 
-  //   };
-
-  //     if (bool) {
-  //       // let num = this.selectNum(x, y, boxNumber);
-  //       // let el = document.getElementById(id); 
-  //       // el.appendChild(document.createTextNode(x+', '+y))
-  //       console.log(el.className); 
-  //       // let num = Math.ceil(Math.random() * 9)
-  //       // this.quads[el.className].push(num); 
-  //       el.appendChild(document.createTextNode(num))
-  //       this.filled.push(id); 
-  //       console.log(this.filled);
-  //       // this.quads[el.className].push(num); 
-  //       // this.rows[x].push(num); 
-  //       // this.columns[y].push(num); 
-  //       this.boxes[boxNumber].splice(this.boxes[boxNumber].indexOf(num), 1); 
-  //       this.rows[y].splice(this.rows[y].indexOf(num), 1); 
-  //       this.columns[x].splice(this.columns[x].indexOf(num), 1); 
-  //       console.log(this.boxes);
-  //       console.log(this.rows);
-  //       console.log(this.columns);
-  //     }
-
-  //     console.log(this.quadsArray.indexOf(el.className)+1); 
-
-  //     // if (x>9) {
-  //     //   // x = 1; 
-  //     //   x = Math.ceil(Math.random() * 9); 
-  //     //   // this.genNums(x, y+1); 
-  //     // // }      
-  //     // } else if (y>9) {
-  //     // //   // y = 1; 
-  //     //   y = Math.ceil(Math.random() * 9); 
-  //     // //   this.genNums(x+1, y); 
-  //     // // } else {
-  //     // //   this.genNums(x+1,y+1); 
-  //     // }
-  //     // for (let i = x; i <=9; i++) {
-  //     //   this.genNums(i, y); 
-  //     // } 
-  //     // for (let j=y; j<=9; j++) {
-  //     //   this.genNums(x, j); 
-  //     // }
-  //   Object.keys(this.boxes).forEach((k) => {
-  //     arrBox.push(this.boxes[k].length);
-  //   });
-  //   console.log(`arrBox: ${arrBox}`);  
-  //   Object.keys(this.rows).forEach((k) => {
-  //     arrRow.push(this.rows[k].length); 
-  //   });
-  //   console.log(`arrRow: ${arrRow}`);  
-  //   Object.keys(this.columns).forEach((k) => {
-  //     arrCol.push(this.columns[k].length); 
-  //   });
-  //   console.log(`arrCol: ${arrCol}`);  
-  //     x = arrCol.indexOf(Math.min.apply(Math,arrCol))+1; 
-  //     // y = arrRow.indexOf(Math.min.apply(Math,arrRow))+1; 
-  //     console.log(`x: ${x} and y: ${y}`); 
-  //   // this.genNums(x+1, y+1); 
-  //   this.genNums(x, y+1); 
-    
-  // }
 }; 
 
 module.exports = Grid; 
 
-// const Sudoku = require('./sudoku'); 
-// const newSudoku = require('./sudoku').newSudoku;  
-// const testing = require('./sudoku').testing;  
-// import newSudoku from './sudoku'; 
-// import testing from './sudoku'; 
-
-
 document.getElementById('myCanvas').style.width = '54vw'; 
 document.getElementById('myCanvas').style.textAlign = 'left'; 
-// document.getElementById('myCanvas').style.display = 'flex'; 
-// document.getElementById('myCanvas').appendChild(document.createTextNode('Welcome to Sudoku  '));
-// let list = document.createElement('ol'); 
-// list.appendChild(document.createElement('li')).innerHTML = 'Fill in rows and columns with numbers 1-9'; 
-// list.appendChild(document.createElement('li')).innerHTML = 'Fill in 3x3 boxes with numbers 1-9'; 
-// document.getElementById('myCanvas').appendChild(list);
+
 
 let initialize = document.createElement('button'); 
 document.getElementById('myCanvas').appendChild(initialize);
@@ -740,36 +388,4 @@ initialize.id = 'startBoard';
 // initialize.onclick = Sudoku.newSudoku;
 // initialize.onclick = testing; 
 
-let g = new Grid();
-// g.createCartesian();
-// g.templatePuzzles(); 
-// return; 
-// g.obtainIDs();
-let x = Math.ceil(Math.random() * 9);
-let y = Math.ceil(Math.random() * 9); 
-// console.log(puzzles.sudokuPuzzles[1]);
-// g.genNums(x,y); 
-// g.print(1,2); 
-// g.print(1,3); 
-// g.print(9,9); 
-// for (let i=1; i<=9; i++) {
-//     g.print(1,i); 
-//     // g.print(9,i); 
-//   }
-// for (let i=1; i<=9; i++) {
-//     g.print(9,i); 
-//     // g.print(9,i); 
-//   }
-  // for (let i=2; i<=9; i++) {
-    //   g.print(i,1); 
-    // }
-// for (let i=1; i<=9; i++) {
-//   for (let j=1; j<=9; j++) {
-//     g.print(i,j); 
-//   }
-// }
-// for (let i=1;i<=9; i++) {
-//   for (let j=1;j<=9; j++) {
-//     g.print(i,j); 
-//   }
-// }
+let g = new Grid(); 
