@@ -1,17 +1,21 @@
 <html>
   <head>
     <meta charset="utf-8" /> 
-    <title>Sudoku</title>
+    <title>JSudoku</title>
     <!-- <h1>Sudoku</h1> -->
     <!-- <link type="text/scss" href="./src/styles/index.scss" rel="stylesheet/scss"> -->
     <link type="text/css" rel="stylesheet" href="./dist/main.css" />
     <!-- <script type="text/javascript" src="./index.js"></script> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/favicon_io/site.webmanifest">
   </head>
   <body>
 
     <div class="topPanel">
       <h2> 
-        Sudoku  
+        JSudoku  
       </h2> 
       <p>
         Developed by Rahul Jain  
@@ -26,19 +30,12 @@
 
   <div id="instr" class="sidePanel">
     <!-- <h1>Sudoku</h1> -->
-    <!-- <h3>Meet the Developer</h3> -->
-    <!-- <a href="https://github.com/rahulj93/JavaScript-Project---Sudoku">GitHub</a>
-    <br></br> -->
-    <!-- <a href="https://www.linkedin.com/in/rahul-jain-ny">LinkedIn</a>
-    <br></br>
-    <a href="https://rahulj93.github.io/">Personal Site</a>
-    <h3>Explore the Code Repository</h3>
-    <a href="https://github.com/rahulj93/JavaScript-Project---Sudoku">GitHub</a> -->
-        <h2>Instructions</h2>
-        <ol>
-          <li>Fill in rows and columns with numbers 1-9</li>
-          <li>Fill in 3x3 boxes with numbers 1-9</li>
-        </ol>
+      <h2>Instructions</h2>
+            <p>The board is partially completed. Click on the empty boxes to add the missing numbers. Once you've typed a number into a box, click on any space outside of the box and the score will update.</p>
+      <!-- <ol>
+        <li>Fill in each row and each column with the numbers 1 through 9. </li>
+        <li>Fill in each 3x3 box with numbers 1-9. </li>
+      </ol>  -->
     <!-- <button id="resetBoard">Reset Board</button> -->
   </div>
   
@@ -56,10 +53,22 @@
       </ol> -->
     <h2>Stats</h2>
     <!-- <br></br> -->
-    <p id="score">Score: </p>
+    <p>Score: </p>
+    <p id="score"> </p>
     <p id="time">Time: </p>
     <!-- <button id="resetBoard" onclick="launchSudoku()">Reset Board</button> -->
     <button id="resetBoard">New Board</button>
+  </div>
+  <div class="bottomPanel">
+    <h2>Rules</h2>
+    <ul>
+      <li> Each 3x3 box, each row, and each column should be filled with the numbers 1-9 without repeating any number more
+        than once.</li>
+      <li> Every pattern has a unique solution.</li>
+      <li> Each correct input is worth 1 point.</li>
+      <li> Each incorrect input results in a loss of 2 points.</li>
+      <!-- <li>Each incorrect input results in a loss of 2 points. </li> -->
+    </ul>
   </div>
   
   <div>
