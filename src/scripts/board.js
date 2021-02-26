@@ -22,9 +22,9 @@ class Grid {
     this.score = 0; 
     this.currentId = 0; 
 
-    this.quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': [] }
+    // this.quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': [] }
     // this.quadsArray = ['topleft', 'topmiddle', 'topright', 'midleft', 'midmiddle', 'midright', 'bottomleft', 'bottommiddle', 'bottomright']; 
-    this.quadsArray = Object.keys(this.quads); 
+    // this.quadsArray = Object.keys(this.quads); 
     this.quadrant = document.getElementById('myCanvas'); 
     Object.assign(this.quadrant.style, {
       height: '54vh',
@@ -40,11 +40,11 @@ class Grid {
     });
     // this.box.style = {}; 
     // this.cell.style = {}; 
-    this.createCartesian = this.createCartesian.bind(this); 
-
+    
     // this.val = ''; 
     this.obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
-    this.filled = ['.']
+    // this.filled = ['.']
+    this.createCartesian = this.createCartesian.bind(this); 
     this.transposeTemplate = this.transposeTemplate.bind(this); 
     this.renderTemplate = this.renderTemplate.bind(this); 
     this.updateCell = this.updateCell.bind(this); 
@@ -95,7 +95,7 @@ class Grid {
         this.rowSolutions[9].push(puzzleSolutions.sudokuPuzzleSolutions[randompuzzle][i][j]);
       }
     }
-    console.log(this.templateRows);
+    // console.log(this.templateRows);
     console.log(this.rowSolutions);
     this.updatedRows = this.templateRows;
     // return;
