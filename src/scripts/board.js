@@ -96,7 +96,7 @@ class Grid {
       }
     }
     // console.log(this.templateRows);
-    console.log(this.rowSolutions);
+    // console.log(this.rowSolutions);
     this.updatedRows = this.templateRows;
     // return;
   }
