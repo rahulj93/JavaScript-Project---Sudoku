@@ -19,6 +19,7 @@ class Grid {
     }
 
     this.emptyCount = 0; 
+    this.score = 0; 
     this.currentId = 0; 
 
     this.quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': [] }
@@ -40,15 +41,13 @@ class Grid {
     // this.box.style = {}; 
     // this.cell.style = {}; 
     this.createCartesian = this.createCartesian.bind(this); 
-    this.obtainIDs = this.obtainIDs.bind(this);
 
     // this.val = ''; 
     this.obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
     this.filled = ['.']
-  this.transposeTemplate = this.transposeTemplate.bind(this); 
-  this.renderTemplate = this.renderTemplate.bind(this); 
-  this.score = 0; 
-  this.updateCell = this.updateCell.bind(this); 
+    this.transposeTemplate = this.transposeTemplate.bind(this); 
+    this.renderTemplate = this.renderTemplate.bind(this); 
+    this.updateCell = this.updateCell.bind(this); 
   }
 
   transposeTemplate() {
@@ -107,7 +106,7 @@ class Grid {
     let inputEls = document.getElementsByTagName('input'); 
     let inp = inputEls.namedItem(this.currentId); 
 
-    console.log(this.currentId);
+    // console.log(this.currentId);
     let x = parseInt(this.currentId[2]); 
     let y = parseInt(this.currentId[7]); 
     let i = y; 
@@ -117,19 +116,20 @@ class Grid {
     // console.log(int); 
     // console.log(int === this.rowSolutions[i][j]); 
     if (int === this.rowSolutions[i][j]) {
+      // inp.value = e.target.value;
       this.score +=1; 
       // document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) + 1; 
       document.getElementById('score').innerHTML = this.score + '/ ' + this.emptyCount; 
       this.updatedRows[i][j] = parseInt(e.target.value);
-      console.log(this.updatedRows);
-      console.log(inp); 
+      // console.log(this.updatedRows);
+      // console.log(inp); 
       // console.log(inputEls.namedItem(this.currentId));
       inp.style.backgroundColor = document.getElementById(this.currentId).style.backgroundColor; 
-      // inputEls.getElementById(this.currentId).style.backgroundColor = 'black';
     } else if (!int) {
       inp.style.backgroundColor = document.getElementById(this.currentId).style.backgroundColor;
     } else {
       this.score -= 2; 
+      // inp.value = ''; 
       // document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) - 2; 
       document.getElementById('score').innerHTML = this.score + '/ ' + this.emptyCount; 
       inp.style.backgroundColor = 'red'; 
@@ -139,10 +139,12 @@ class Grid {
     // let strSol = JSON.stringify(this.rowSolutions);
     // if (strUpdatedRows === strSol) {
     if (JSON.stringify(this.updatedRows) === JSON.stringify(this.rowSolutions)) {
+      // alert(`total empty spaces: ${emptyCount}`); 
       // let scored = (parseInt(document.getElementById('score').innerHTML) / this.emptyCount) * 100
       let scored = (this.score / this.emptyCount) * 100; 
+      let totalTime = document.getElementById('time').innerHTML;
       document.getElementById('myCanvas').style.background = 'white';
-      document.getElementById('myCanvas').innerHTML = 'GAME OVER!  Final Score: ' + Math.ceil(scored)  + '%'; 
+      document.getElementById('myCanvas').innerHTML = 'GAME OVER!' + '<br />' + '<br />' + 'Final Score: ' + Math.ceil(scored) + ' %' + '<br />' + '<br />' + 'Total ' + totalTime; 
       alert('game over');
     }
   }
@@ -172,9 +174,7 @@ class Grid {
           // inp.style.border = '.2vw dotted black';
           // let val = 'no'
           let updatedRows = this.updatedRows;
-          let sol = this.rowSolutions;
-          let score = this.score; 
-          let emptyCount = this.emptyCount; 
+          let sol = this.rowSolutions;  
           document.getElementById('score').innerHTML = 0; 
           inp.addEventListener('input', ()=> {
             this.currentId = inp.id; 
@@ -185,39 +185,7 @@ class Grid {
           
           // inp.onchange = function (e) {
           //   e.preventDefault();
-          //   let int = parseInt(e.target.value, 10);
-          //   if (int === sol[i + 1][j]) {
-          //     document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) + 1; 
-          //     // document.getElementById('score').appendChild(document.createTextNode('/')); 
-          //     // document.getElementById('score').appendChild(document.createTextNode(emptyCount));  
-          //     inp.style.backgroundColor = document.getElementById(id).style.backgroundColor; 
-
-          //     inp.value = e.target.value;
-          //     // this.val = e.target.value; 
-          //     // val = e.target.value;
-
-          //     // updatedRows[i + 1][j] = parseInt(val);
-          //     updatedRows[i + 1][j] = parseInt(e.target.value);
-          //     console.log(updatedRows === sol);
-          //   } else if (!int) {
-          //     inp.style.backgroundColor = document.getElementById(id).style.backgroundColor; 
-
-          //   } else {
-          //     document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) - 2; 
-          //     // inp.value = '';
-          //     inp.style.backgroundColor = 'red'; 
-          //   }
-          //   let strUpdatedRows = JSON.stringify(updatedRows);
-          //   let strSol = JSON.stringify(sol);
-          //   if (strUpdatedRows === strSol) {
-          //     // alert(`total empty spaces: ${emptyCount}`); 
-          //     let scored = (parseInt(document.getElementById('score').innerHTML) / emptyCount) * 100
-          //     document.getElementById('myCanvas').style.background = 'white';
-          //     document.getElementById('myCanvas').innerHTML = 'GAME OVER!  Final Score: '
-          //     document.getElementById('myCanvas').appendChild(document.createTextNode(Math.ceil(scored))); 
-          //     document.getElementById('myCanvas').appendChild(document.createTextNode('%')); 
-          //     // alert('game over'); 
-          //   }
+          //   let int = parseInt(e.target.value, 10)
           // }
         } else {
           ele.appendChild(document.createTextNode(num));
@@ -249,27 +217,35 @@ class Grid {
       });
       
       for (let j = 1; j <= 9; j++) {
-        let quad = ''; 
-        if (i<=3) {
-          y = 1; 
-          quad += 'top';  
-        } else if (i>3 && i<=6) {
-          y = 4; 
-          quad += 'mid';  
-        } else {
-          y = 7; 
-          quad += 'bottom';  
-        }
-        if (i%3 === 1) {
-          x = 1; 
-          quad += 'left';  
-        } else if (i%3 === 2) {
-          x = 4; 
-          quad += 'middle'; 
-        } else if (i%3 ===0) {
-          x = 7; 
-          quad += 'right'; 
-        }
+        // let quad = ''; 
+        if (i<=3)y = 1; 
+        else if (i>3 && i<=6) y = 4; 
+        else y = 7; 
+  
+        if (i%3 === 1) x = 1; 
+        else if (i%3 === 2) x = 4;  
+        else if (i%3 ===0) x = 7; 
+      
+        // if (i<=3) {
+        //   y = 1; 
+        //   quad += 'top';  
+        // } else if (i>3 && i<=6) {
+        //   y = 4; 
+        //   quad += 'mid';  
+        // } else {
+        //   y = 7; 
+        //   quad += 'bottom';  
+        // }
+        // if (i%3 === 1) {
+        //   x = 1; 
+        //   quad += 'left';  
+        // } else if (i%3 === 2) {
+        //   x = 4; 
+        //   quad += 'middle'; 
+        // } else if (i%3 ===0) {
+        //   x = 7; 
+        //   quad += 'right'; 
+        // }
         // let diffX = (j%3)-1; 
         x+=(j-1)%3; 
         // x += diffX;
@@ -293,117 +269,12 @@ class Grid {
         // cell.id = i + '-' + j;
         let ident = 'x:' + x + ', y:' + y; 
         cell.id = ident; 
-        console.log(cell.id); 
-        // cell.appendChild(document.createTextNode(x + ',' + y));   
-        // cell.appendChild(document.createTextNode(y));   
-        cell.className = quad; 
-        if (this.quadsArray.indexOf(quad) % 2 === 0) {
-          cell.style.backgroundColor = 'white'; 
-        } else {
-          cell.style.backgroundColor = 'tan'; 
-          cell.style.backgroundColor = 'white'; 
-        }  
-        // console.log(quad); 
+        // console.log(cell.id); 
+        cell.style.backgroundColor = 'white'; 
+
       }
     }   
   }
-  
-  obtainIDs() {
-    // let obj = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']; 
-    // let quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': []}
-    let rows = [[],[],[],[],[],[],[],[],[]]; 
-    let cols = [[],[],[],[],[],[],[],[],[]]; 
-    let quad = ''; 
-
-    for (let i =1; i<=9; i++) {
-      for (let j=1; j<=9; j++) {
-        console.log(this.obj[j], this.obj[i])
-        let x = this.obj[j]; 
-        let y = this.obj[i]; 
-        let ele = document.getElementById('x:' + this.obj[j] + ', y:' + this.obj[i])
-        // ele.appendChild(document.createTextNode(obj[j] + ',' + obj[i]))
-        console.log(`rows: ${this.rows}`);
-        let num = Math.ceil(Math.random() * 9);
-        console.log(`num: ${num}`); 
-        let id = 'x:' + x + ', y:' + y; 
-        quad = ele.className; 
-
-        // Object.keys(quads).forEach((box, i) => {
-        //   if (box === quad && i%2 === 0) {
-        //     document.getElementById(id).style.backgroundColor = 'white';
-        //   } else if (box === quad && i%2 !== 0) {
-        //     // document.getElementById(id).style.backgroundColor = 'lightgray';
-        //     document.getElementById(id).style.backgroundColor = 'tan';
-        //   }
-        // })
-
-        let bool = true;  
-        let diceRoll = false;
-        let coin = Math.ceil(Math.random() * 6);
-        if (coin < 2) {
-          diceRoll = true;
-        }
-        if (rows[y-1].includes(num) || cols[x-1].includes(num)) {
-          bool = false; 
-        }  
-
-        if (bool && !this.quads[quad].includes(num)) {
-          this.quads[quad].push(num);
-          ele.appendChild(document.createTextNode(num)); 
-          rows[y - 1].push(num);
-          cols[x - 1].push(num);
-        } else {
-          rows[y - 1].push('');
-          cols[x - 1].push('');
-
-          let inp = document.createElement('input');
-          inp.type = 'text'; inp.value = '';
-          inp.id = id; 
-          inp.className = quad; 
-          inp.style.width = '5.4vw';
-          inp.style.height = '5.4vh';
-          // inp.style.backgroundColor = 'white';
-          inp.style.backgroundColor = document.getElementById(id).style.backgroundColor;
-          // inp.style.backgroundColor = 'black';
-          // inp.style.color = 'green';
-          inp.style.border = '.2vw dotted black';
-          ele.appendChild(inp);
-          let val = 'no' 
-          let quads = this.quads; 
-          inp.onchange = function(e) {
-            e.preventDefault(); 
-            let int = parseInt(e.target.value, 10); 
-            // console.log(`quads: ${quads[quad]}`); 
-            console.log(`quads: ${quads[inp.className]}`); 
-            // console.log(`quads includes?: ${quads[quad].includes(e.target.value)}`); 
-            // console.log(`quads includes?: ${quads[inp.className].includes(parseInt(e.target.value,10))}`); 
-            console.log(`quads includes ${int}?: ${quads[inp.className].includes(int)}`); 
-            // console.log(`quad: ${quad}`); 
-            console.log(`quad: ${inp.className}`); 
-            // console.log(e.toString());
-            if (!quads[inp.className].includes((int))) {
-            // if (e.target.value % 2 === 0) {
-              inp.value = e.target.value; 
-              // console.log(this.val); 
-              console.log(val); 
-              // this.val = e.target.value; 
-              val = e.target.value; 
-              // console.log(e.target.value); 
-              // console.log(this.val); 
-              console.log(val); 
-            } else {
-              alert('try again');
-            }
-          } 
-        };
-        console.log(`rows ${x}: ${rows[x - 1]}`);
-        console.log(`cols ${y}: ${cols[y - 1]}`);
-        console.log(quad);
-        console.log(this.quads);
-      }
-    }
-  }
-
 }; 
 
 module.exports = Grid; 
