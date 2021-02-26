@@ -18,6 +18,8 @@ class Grid {
       7: [], 8: [], 9: [],
     }
 
+    this.gameOver = false; 
+
     this.emptyCount = 0;
 
     this.boxes = {};
@@ -215,6 +217,7 @@ class Grid {
               document.getElementById('myCanvas').appendChild(document.createTextNode(Math.ceil(scored)));
               document.getElementById('myCanvas').appendChild(document.createTextNode('%'));
               alert('game over');
+              this.gameOver = true; 
             }
           }
         } else {

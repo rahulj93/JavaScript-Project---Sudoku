@@ -21,19 +21,19 @@ function timeNow() {
   let t = setTimeout(function() {timeNow()}, 1000); 
 }
 let t; 
-function myFunc(time, x) {
-  let d = new Date();  
-  // let min = d.getMinutes() - x.getMinutes(); 
-  // let sec = d.getSeconds() - x.getSeconds(); 
-  time.innerHTML = 'Time: ';
-  let elapsedTime = Math.round((d - x) / 1000); 
-  if (elapsedTime % 60 < 10) { 
-    time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':0'+(elapsedTime%60))); 
-  } else {
-    time.appendChild(document.createTextNode(Math.floor(elapsedTime / 60) + ':' + (elapsedTime % 60)));  
-  }
-  t= setTimeout(function() {myFunc(time, x)}, 1000); 
-}
+// function myFunc(time, x) {
+//   let d = new Date();  
+//   // let min = d.getMinutes() - x.getMinutes(); 
+//   // let sec = d.getSeconds() - x.getSeconds(); 
+//   time.innerHTML = 'Time: ';
+//   let elapsedTime = Math.round((d - x) / 1000); 
+//   if (elapsedTime % 60 < 10) { 
+//     time.appendChild(document.createTextNode(Math.floor(elapsedTime/60)+':0'+(elapsedTime%60))); 
+//   } else {
+//     time.appendChild(document.createTextNode(Math.floor(elapsedTime / 60) + ':' + (elapsedTime % 60)));  
+//   }
+//   t= setTimeout(function() {myFunc(time, x)}, 1000); 
+// }
 
 // export default function newSudoku() {
   function newSudoku() {

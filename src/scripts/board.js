@@ -19,11 +19,7 @@ class Grid {
     }
 
     this.emptyCount = 0; 
-
-    this.boxes = {}; 
-    for (let i = 1; i <= 9; i++) {
-      this.boxes[i] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    }
+    this.currentId = 0; 
 
     this.quads = { 'topleft': [], 'topmiddle': [], 'topright': [], 'midleft': [], 'midmiddle': [], 'midright': [], 'bottomleft': [], 'bottommiddle': [], 'bottomright': [] }
     // this.quadsArray = ['topleft', 'topmiddle', 'topright', 'midleft', 'midmiddle', 'midright', 'bottomleft', 'bottommiddle', 'bottomright']; 
@@ -52,6 +48,7 @@ class Grid {
   this.transposeTemplate = this.transposeTemplate.bind(this); 
   this.renderTemplate = this.renderTemplate.bind(this); 
   this.score = 0; 
+  this.updateCell = this.updateCell.bind(this); 
   }
 
   transposeTemplate() {
@@ -105,8 +102,54 @@ class Grid {
     // return;
   }
 
+  updateCell(e) {
+    e.preventDefault(); 
+    let inputEls = document.getElementsByTagName('input'); 
+    let inp = inputEls.namedItem(this.currentId); 
+
+    console.log(this.currentId);
+    let x = parseInt(this.currentId[2]); 
+    let y = parseInt(this.currentId[7]); 
+    let i = y; 
+    let j = x - 1;  
+
+    let int = parseInt(e.target.value, 10);
+    // console.log(int); 
+    // console.log(int === this.rowSolutions[i][j]); 
+    if (int === this.rowSolutions[i][j]) {
+      this.score +=1; 
+      // document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) + 1; 
+      document.getElementById('score').innerHTML = this.score + '/ ' + this.emptyCount; 
+      this.updatedRows[i][j] = parseInt(e.target.value);
+      console.log(this.updatedRows);
+      console.log(inp); 
+      // console.log(inputEls.namedItem(this.currentId));
+      inp.style.backgroundColor = document.getElementById(this.currentId).style.backgroundColor; 
+      // inputEls.getElementById(this.currentId).style.backgroundColor = 'black';
+    } else if (!int) {
+      inp.style.backgroundColor = document.getElementById(this.currentId).style.backgroundColor;
+    } else {
+      this.score -= 2; 
+      // document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) - 2; 
+      document.getElementById('score').innerHTML = this.score + '/ ' + this.emptyCount; 
+      inp.style.backgroundColor = 'red'; 
+      // inputEls.namedItem(this.currentId).style.backgroundColor = 'red';
+    }
+    // let strUpdatedRows = JSON.stringify(this.updatedRows);
+    // let strSol = JSON.stringify(this.rowSolutions);
+    // if (strUpdatedRows === strSol) {
+    if (JSON.stringify(this.updatedRows) === JSON.stringify(this.rowSolutions)) {
+      // let scored = (parseInt(document.getElementById('score').innerHTML) / this.emptyCount) * 100
+      let scored = (this.score / this.emptyCount) * 100; 
+      document.getElementById('myCanvas').style.background = 'white';
+      document.getElementById('myCanvas').innerHTML = 'GAME OVER!  Final Score: ' + Math.ceil(scored)  + '%'; 
+      alert('game over');
+    }
+  }
+
   renderTemplate() {
     this.transposeTemplate(); 
+
     for (let i = 0; i < 9; i++) {
       for (let j = 0; j < 9; j++) {
         let x = this.obj[j + 1];
@@ -127,65 +170,55 @@ class Grid {
           inp.style.height = '5.4vh';
           inp.style.backgroundColor = document.getElementById(id).style.backgroundColor;
           // inp.style.border = '.2vw dotted black';
-          let val = 'no'
+          // let val = 'no'
           let updatedRows = this.updatedRows;
           let sol = this.rowSolutions;
           let score = this.score; 
           let emptyCount = this.emptyCount; 
           document.getElementById('score').innerHTML = 0; 
-
+          inp.addEventListener('input', ()=> {
+            this.currentId = inp.id; 
+            inp.className = this.currentId; 
+          })
           ele.appendChild(inp);
-          inp.onchange = function (e) {
-            e.preventDefault();
-            let int = parseInt(e.target.value, 10);
-            // console.log(e.toString());
-            console.log(sol);
-            // console.log(this.rowSolutions); 
-            if (int === sol[i + 1][j]) {
-              // if (int === this.rowSolutions[i+1][j]) {
-              // if (int === 1) {
-              // if (e.target.value % 2 === 0) {
-                // this.score += 1; 
-              document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) + 1; 
-              // document.getElementById('score').appendChild(document.createTextNode('/')); 
-              // document.getElementById('score').appendChild(document.createTextNode(emptyCount)); 
-                 //  appendChild(document.createTextNode(score)); 
-              inp.style.backgroundColor = document.getElementById(id).style.backgroundColor; 
+          inp.onchange = this.updateCell; 
+          
+          // inp.onchange = function (e) {
+          //   e.preventDefault();
+          //   let int = parseInt(e.target.value, 10);
+          //   if (int === sol[i + 1][j]) {
+          //     document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) + 1; 
+          //     // document.getElementById('score').appendChild(document.createTextNode('/')); 
+          //     // document.getElementById('score').appendChild(document.createTextNode(emptyCount));  
+          //     inp.style.backgroundColor = document.getElementById(id).style.backgroundColor; 
 
-              inp.value = e.target.value;
-              // console.log(this.val); 
-              console.log(val);
-              // this.val = e.target.value; 
-              val = e.target.value;
-              // console.log(e.target.value); 
-              // console.log(this.val); 
-              console.log(val);
-              updatedRows[i + 1][j] = parseInt(val);
-              console.log(updatedRows === sol);
+          //     inp.value = e.target.value;
+          //     // this.val = e.target.value; 
+          //     // val = e.target.value;
 
-              console.log(updatedRows);
-            } else if (!int) {
-              inp.style.backgroundColor = document.getElementById(id).style.backgroundColor; 
+          //     // updatedRows[i + 1][j] = parseInt(val);
+          //     updatedRows[i + 1][j] = parseInt(e.target.value);
+          //     console.log(updatedRows === sol);
+          //   } else if (!int) {
+          //     inp.style.backgroundColor = document.getElementById(id).style.backgroundColor; 
 
-            } else {
-              document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) - 2; 
-
-              // alert('try again');
-              // inp.value = '';
-              inp.style.backgroundColor = 'red'; 
-            }
-            let strUpdatedRows = JSON.stringify(updatedRows);
-            let strSol = JSON.stringify(sol);
-            if (strUpdatedRows === strSol) {
-              alert(`total empty spaces: ${emptyCount}`); 
-              let scored = (parseInt(document.getElementById('score').innerHTML) / emptyCount) * 100
-              document.getElementById('myCanvas').style.background = 'white';
-              document.getElementById('myCanvas').innerHTML = 'GAME OVER!  Final Score: '
-              document.getElementById('myCanvas').appendChild(document.createTextNode(Math.ceil(scored))); 
-              document.getElementById('myCanvas').appendChild(document.createTextNode('%')); 
-              alert('game over'); 
-            }
-          }
+          //   } else {
+          //     document.getElementById('score').innerHTML = parseInt(document.getElementById('score').innerHTML) - 2; 
+          //     // inp.value = '';
+          //     inp.style.backgroundColor = 'red'; 
+          //   }
+          //   let strUpdatedRows = JSON.stringify(updatedRows);
+          //   let strSol = JSON.stringify(sol);
+          //   if (strUpdatedRows === strSol) {
+          //     // alert(`total empty spaces: ${emptyCount}`); 
+          //     let scored = (parseInt(document.getElementById('score').innerHTML) / emptyCount) * 100
+          //     document.getElementById('myCanvas').style.background = 'white';
+          //     document.getElementById('myCanvas').innerHTML = 'GAME OVER!  Final Score: '
+          //     document.getElementById('myCanvas').appendChild(document.createTextNode(Math.ceil(scored))); 
+          //     document.getElementById('myCanvas').appendChild(document.createTextNode('%')); 
+          //     // alert('game over'); 
+          //   }
+          // }
         } else {
           ele.appendChild(document.createTextNode(num));
           ele.style.alignItems = 'center';
